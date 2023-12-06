@@ -3,6 +3,7 @@ import "./Pop-up.css";
 function Registatie() {
   return (
     <div className="pop-up x2">
+      <h1>Registratie</h1>
       <button className="exit-button">x</button>
       <div className="input-holder">
         <div className="side-by-side">
@@ -46,7 +47,7 @@ function Registatie() {
         </div>
         </div>
         {/* ja robin hier moet een map funtie komen om te zorgen dat het gegenereed word */}
-      <button className="input-button">Login</button>
+      <button className="confirm-button">Login</button>
       </div>
     </div>
   );

@@ -57,17 +57,18 @@ html {
 .input-bundel {
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .input-veld {
     border-radius: 15px;
     border: black 1px solid;
-    margin-top: 10px;
+    margin-top: 5px;
     padding: 10px 20px;
     opacity: .8;
 }
 
-.input-button {
+.confirm-button {
     border-radius: 15px;
     padding: 8px 50px;
     width: 50%;
@@ -88,6 +89,16 @@ html {
     width: 25px;
     height: 25px;
     font-size: .8rem;
+}
+
+.locked-input {
+    pointer-events: none;
+    user-select: none;
+    background-color: darkgray;
+}
+
+.locked-label {
+    pointer-events: none;
 }
 
 .ww-vergeten {
