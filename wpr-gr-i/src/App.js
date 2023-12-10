@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+
+import React from 'react';
 import './App.css';
+import background from './backgroundWithGradient.png'
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+<div className="App" style={{backgroundImage: `url(${background})`}}>
+      <style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,200&family=Roboto:ital,wght@1,300&display=swap');
+</style>
+      
+      <nav className='navbar'>
+      
+        <a href="/#">Bedrijvenportaal</a>
+        <a href="/#">Beheerdersportaal</a>
+      </nav>
+
+      <h1 className="titel">Een beter online bestaan begint hier</h1>
+      <h4 className="">Door mee te doen aan verschillende onderzoeken, helpt u ons met het begrijpen van uw beperking en kunnen wij ervoor zorgen dat het internet toegankelijker wordt voor u.</h4>
+
+      <div className="button-container">
+        <button type="button" className='Button'>Login</button>
+        <button type="button" className='Button'>Registreren</button>
+      </div>
+      
     </div>
+  
+
   );
 }
 
