@@ -62,32 +62,6 @@ h4{
   font-family: 'Poppins', sans-serif;
 }
 
-.button-container{
-  display: flex;
-justify-content: center;
-align-items: center;
-gap: 50px;
-flex-shrink: 0;
-}
-
-button{
-  font-family: 'Poppins', sans-serif;
-  padding: 13px 60px;
-  background: none;
-  text-decoration: none;
-  border: 1px solid #FFF;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 17px;
-  color: #FFF;
-  transition: background-color 0.3s ease-in-out;
-}
-
-button:hover {
-  background-color: #FFF; /* Change the background color on hover */
-  color: #333; /* Change the text color on hover */
-}
-
 /* Responsive Styles */
 @media screen and (max-width: 600px) {
   .App{
@@ -98,10 +72,6 @@ button:hover {
     
     align-items: center;
   }
-  /* h1{
-    font-size: 30px;
-  } */
-
   .navbar a {
     margin: 5px 0;
     width: 100%;
