@@ -1,7 +1,7 @@
 
 import React from 'react';
 import './App.css';
-import background from './backgroundWithGradient.png'
+import background from './Pages/backgroundWithGradient.png'
 
 
 function App() {
