@@ -5,13 +5,6 @@ import background from './backgroundWithGradient.png';
 import Button from '../Components/Button';
 
 function VoorPagina() {
-  const loginClick = () => {
-    console.log('Login knop is geklikt');
-  };
-  const aanmeldClick = () => {
-    console.log('aanmeld knop is geklikt');
-  };
-
   return (
     <div className="App" style={{ backgroundImage: `url(${background})` }}>
       <style>
@@ -32,8 +25,8 @@ function VoorPagina() {
       </h4>
 
       <div className="button-container">
-        <Button onClick={loginClick} label="Login" />
-        <Button onClick={aanmeldClick} label="Aanmelden" />
+        <Button  label="Login" href='https://google.com'/>
+        <Button  label="Aanmelden" href='https://youtube.com'/>
       </div>
     </div>
   );
