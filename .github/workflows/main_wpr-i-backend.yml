@@ -6,7 +6,7 @@ name: Build and deploy ASP.Net Core app to Azure Web App - wpr-i-backend
 on:
   push:
     branches:
-      - WesselMH-patch-1
+      -  Backend
     paths:
       - 'Backend/**'
 
