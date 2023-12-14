@@ -4,22 +4,32 @@
     background-repeat: no-repeat;
     min-height: 100vh;
     display: flex;
-    /* flex-direction: column; */
     flex-wrap: wrap;
+}
+.bedrijvenportaal a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    display: flex;
+    align-items: center;  
+    text-align: center;
 }
 
 .listOpdracht {
     padding: 20px;
-    width: 200px;
-    height: 280px;
+    width: 500px;
+    height: 580px;
     background-color: grey;
     border-radius: 5%;
     margin: 20px;
-
-    list-style-type: none;
+    overflow: clip;
     
-    flex-direction: center;
+    
+    flex-direction: left;
     justify-content: end;
+}
+
+.listOpdracht h2 {
+    text-align: center;
 }
 
 .listOpdracht li {
