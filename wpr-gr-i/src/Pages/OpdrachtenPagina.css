@@ -1,0 +1,44 @@
+.OpdrachtenPagina {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.listOpdracht {
+    padding: 20px;
+    width: 120vh;
+    margin: 40px;
+}
+
+.listOpdrachtHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.listOpdracht a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.listOpdracht li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: rgb(181, 181, 181);
+    margin-top: 24px;
+    position: relative;
+    line-height: 40px;
+    border-radius: 15px;
+    padding: 5px;
+}
+.Titel {
+    font-size: 32px;
+}
