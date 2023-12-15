@@ -1,4 +1,23 @@
 import "./Pop-up.css";
+import Button from "../Button";
+
+const knoppen = [
+  { Label: "Voornaam", InvoerVeld: "Vul hier je voornaam in." },
+  { Label: "Achternaam", InvoerVeld: "Vul hier je achternaam in." },
+  { Label: "Email", InvoerVeld: "Vul hier je email in." },
+  { Label: "Wachtwoord", InvoerVeld: "Vul hier je wachtwoord in." },
+  { Label: "Telefoonnummer", InvoerVeld: "Vul hier je telefoonnummer in." },
+  { Label: "Hulpmiddelen", InvoerVeld: "Vul hier je hulpmiddelen in." },
+  { Label: "Beperking", InvoerVeld: "Vul hier je beperking in." },
+  { Label: "Geboortedatum", InvoerVeld: "Vul hier je geboorte datum in." },
+  { Label: "Bevestig email", InvoerVeld: "Bevestig je email." },
+  { Label: "Wachtwoord bevestigen", InvoerVeld: "Bevestig je wachtwoord." },
+  { Label: "Postcode", InvoerVeld: "Vul hier je postcode in." },
+  {
+    Label: "Benadering",
+    InvoerVeld: "Selecteer hier je benaderings voorkeur.",
+  },
+];
 
 function Registatie() {
   return (
@@ -7,47 +26,33 @@ function Registatie() {
       <button className="exit-button">x</button>
       <div className="input-holder">
         <div className="side-by-side">
-        <div className="input-groep">
-          <div className="input-bundel">
-            <label for="naam">Volledige Naam </label>
-            <input
-              className="input-veld"
-              type="text"
-              id="naam"
-              placeholder="Vul hier je naam in"
-            ></input>
+          <div className="input-groep">
+            <div className="input-bundel">
+              {knoppen.map(() => {})}
+              <label for="naam">Volledige Naam </label>
+              <input
+                className="input-veld"
+                type="text"
+                id="naam"
+                placeholder="Vul hier je naam in"
+              ></input>
+            </div>
           </div>
-          <div className="input-bundel">
-            <label>Volledige Naam </label>
-            <input
-              className="input-veld"
-              type="text"
-              placeholder="Vul hier je naam in"
-            ></input>
-          </div>
-        </div>
 
-        <div className="input-groep">
-          <div className="input-bundel">
-            <label>Volledige Naam </label>
-            <input
-              className="input-veld"
-              type="text"
-              placeholder="Vul hier je naam in"
-            ></input>
+          <div className="input-groep">
+            <div className="input-bundel">
+              <label>Volledige Naam </label>
+              <input
+                className="input-veld"
+                type="text"
+                placeholder="Vul hier je naam in"
+              ></input>
+            </div>
           </div>
-          <div className="input-bundel">
-            <label>Volledige Naam </label>
-            <input
-              className="input-veld"
-              type="text"
-              placeholder="Vul hier je naam in"
-            ></input>
-          </div>
-        </div>
         </div>
         {/* ja robin hier moet een map funtie komen om te zorgen dat het gegenereed word */}
-      <button className="confirm-button">Login</button>
+        <button className="confirm-button">Login</button>
+        <Button label={"Login"} href={"/#"}></Button>
       </div>
     </div>
   );
