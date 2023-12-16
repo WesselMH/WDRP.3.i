@@ -1,14 +1,12 @@
-import React from 'react';
-import './Button.css'
+import React from "react";
+import "./Button.css";
+import {Link} from "react-router-dom";
 
-const Button = ({label ,href}) => {
+const Button = ({ label, href }) => {
   return (
-    <button className= "Button" onClick={(e) => {
-      e.preventDefault();
-      window.location.href = href;
-      }}>
-      {label}
-    </button>
+    <Link to={href}>
+      <button className="Button">{label}</button>
+    </Link>
   );
 };
 

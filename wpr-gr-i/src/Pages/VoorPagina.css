@@ -25,7 +25,7 @@ body {
     text-align: center;
   }
   
-  .navbar a {
+  .navbar li {
     text-decoration: none;
     color: #ffffff;
     font-size: 25px;
@@ -34,7 +34,7 @@ body {
     transition: color 0.3s ease-in-out;
   }
   
-  .navbar a:hover{
+  .navbar li:hover{
     color: #333; /* Change the text color on hover */
   }
   h1 {
@@ -76,7 +76,7 @@ body {
       font-size: 30px;
     } */
   
-    .navbar a {
+    .navbar li {
       margin: 5px 0;
       width: 100%;
       
