@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../Components/Header";
-import "./bedrijvenportaal.css";
+import "./BedrijvenPortaal.css";
 import background from "./backgroundWithGradient.png";
 
 const opdracht = [

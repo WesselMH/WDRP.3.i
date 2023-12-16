@@ -3,6 +3,7 @@ import React from 'react';
 import './VoorPagina.css';
 import background from './backgroundWithGradient.png';
 import Button from '../Components/Button';
+import {Link} from 'react-router-dom'
 
 function VoorPagina() {
   return (
@@ -14,7 +15,12 @@ function VoorPagina() {
       </style>
 
       <nav className="navbar">
-        <a href="/#">Bedrijvenportaal</a>
+        <ul>
+          <il>
+            <Link to='/BedrijvenPortaal'>BedrijvenPortaal</Link>
+          </il>
+        </ul>
+        {/* <a href="/#">Bedrijvenportaal</a> */}
         <a href="/#">Beheerdersportaal</a>
       </nav>
 
