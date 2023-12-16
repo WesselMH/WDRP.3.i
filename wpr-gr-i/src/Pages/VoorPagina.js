@@ -19,9 +19,10 @@ function VoorPagina() {
           <il>
             <Link to='/BedrijvenPortaal'>BedrijvenPortaal</Link>
           </il>
+          <li>
+            <Link to='/BeheerdersPortaal'>Beheerdersportaal</Link>  
+          </li>
         </ul>
-        {/* <a href="/#">Bedrijvenportaal</a> */}
-        <a href="/#">Beheerdersportaal</a>
       </nav>
 
       <h1 className="titel">Een beter online bestaan begint hier</h1>
@@ -31,8 +32,8 @@ function VoorPagina() {
       </h4>
 
       <div className="button-container">
-        <Button  label="Login" href='https://google.com'/>
-        <Button  label="Aanmelden" href='https://youtube.com'/>
+        <Button  label="Login" href='/Inlog'/>
+        <Button  label="Aanmelden" href='/Aanmelden'/>
       </div>
     </div>
   );

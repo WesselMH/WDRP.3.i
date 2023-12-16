@@ -27,9 +27,7 @@ const listOpdrachten = opdracht.map(opdracht =>
 );
 
 let buttons = [
-  { Naam: "Terug naar home", href: "/#" },
-  { Naam: "Voeg toe", href: "/#" },
-  { Naam: "Voeg toe", href: "/#" },
+  { Naam: "Uitloggen", href: "/" },
 ];
 
 function OpdrachtenPagina() {
