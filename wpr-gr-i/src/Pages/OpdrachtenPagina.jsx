@@ -2,6 +2,7 @@ import React from "react";
 import "./OpdrachtenPagina.css";
 import background from "./backgroundWithGradient.png";
 import Header from "../Components/Header";
+import {Link} from 'react-router-dom'
 
 const opdracht = [
   { title: 'Opdracht 1', bedrijf: 'Mediamarkt', beschrijving: "Een internet interview over ervaring", datum: "12-12-12", id: 1 },
@@ -15,16 +16,16 @@ const opdracht = [
 
 ];
 
-const listOpdrachten = opdracht.map(opdracht =>
-  <a href="/#">
+const listOpdrachten = opdracht.map((opdracht) => (
+  <Link to={opdracht.href}>
     <li key={opdracht.id}>
       <h3>{opdracht.title}</h3>
       <p>{opdracht.bedrijf}</p>
       <p>{opdracht.beschrijving}</p>
       <p>{opdracht.datum}</p>
     </li>
-  </a>
-);
+  </Link>
+));
 
 let buttons = [
   { Naam: "Uitloggen", href: "/" },
