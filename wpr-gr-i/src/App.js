@@ -2,7 +2,7 @@
 import React from 'react';
 import './App.css';
 import VoorPagina from './Pages/VoorPagina'
-// import BeheerProtaal from './Pages/BeheerPortaal'
+// import BeheerPortaal from './Pages/BeheerPortaal'
 import BedrijvenPortaal from './Pages/BedrijvenPortaal'
 import OpdrachtenPagina from './Pages/OpdrachtenPagina'
 import GeenPagina from './Pages/GeenPagina'
