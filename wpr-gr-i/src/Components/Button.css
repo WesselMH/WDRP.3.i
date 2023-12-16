@@ -7,7 +7,7 @@
   margin-top: 5vh;
 }
 
-.button {
+.Button {
   font-family: 'Poppins', sans-serif;
   padding: 13px 60px;
   background: none;
@@ -21,7 +21,7 @@
   transition: background-color 0.3s ease-in-out;
 }
 
-.button:hover {
+.Button:hover {
   background-color: #FFF;
   /* Change the background color on hover */
   color: #333;

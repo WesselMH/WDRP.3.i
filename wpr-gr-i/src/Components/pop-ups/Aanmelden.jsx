@@ -1,5 +1,6 @@
 import "./Pop-up.css";
 import Button from "../Button";
+import { Link } from "react-router-dom";
 
 const knoppen = [
   { Label: "Voornaam", InvoerVeld: "Vul hier je voornaam in." },
@@ -19,11 +20,13 @@ const knoppen = [
   },
 ];
 
-function Registatie() {
+function Aanmelden() {
   return (
     <div className="pop-up x2">
       <h1>Registratie</h1>
-      <button className="exit-button">x</button>
+      <Link to="/">
+        <button className="exit-button">x</button>
+      </Link>
       <div className="input-holder">
         <div className="side-by-side">
           <div className="input-groep">
@@ -51,11 +54,12 @@ function Registatie() {
           </div>
         </div>
         {/* ja robin hier moet een map funtie komen om te zorgen dat het gegenereed word */}
-        <button className="confirm-button">Login</button>
-        <Button label={"Login"} href={"/#"}></Button>
+        <Link to="/" className="full-size flex-center">
+          <button className="confirm-button">Login</button>
+        </Link>
       </div>
     </div>
   );
 }
 
-export default Registatie;
+export default Aanmelden;

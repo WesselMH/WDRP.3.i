@@ -4,7 +4,7 @@ function InvoerVeld({label, type, placeholder}) {
       <label for={label}>Volledige Naam </label>
       <input
         className="input-veld"
-        type="text"
+        type={type}
         id={label}
         placeholder={placeholder}
       ></input>

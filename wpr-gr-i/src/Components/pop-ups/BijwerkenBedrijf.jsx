@@ -1,13 +1,15 @@
 import "./Pop-up.css";
+import { Link } from "react-router-dom";
 
 function BijwerkenBedrijf() {
   return (
     <>
       <div className="pop-up">
         <h1>Bijwerken bedrijf profiel</h1>
-        <button className="exit-button">x</button>
+        <Link to="/">
+          <button className="exit-button">x</button>
+        </Link>
         <div className="input-holder">
-          <form /*onSubmit={}*/ className="full-size">
             <div className="side-by-side">
               <div className="input-groep">
                 <div className="input-bundel">
@@ -60,10 +62,10 @@ function BijwerkenBedrijf() {
                 </div>
               </div>
             </div>
-          </form>
           {/* ja robin hier moet een map funtie komen om te zorgen dat het gegenereed word */}
-          <input className="confirm-button" type="submit" value="Bijwerken"/>
-          {/* <button className="confirm-button">Bijwerken</button> */}
+          <Link to="/" className="full-size flex-center">
+            <button className="confirm-button">Bijwerken</button>
+          </Link>
         </div>
       </div>
     </>

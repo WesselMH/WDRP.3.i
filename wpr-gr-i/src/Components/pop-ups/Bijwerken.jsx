@@ -1,16 +1,21 @@
 import "./Pop-up.css";
+import { Link } from "react-router-dom";
 
 function Bijwerken() {
   return (
     <>
       <div className="pop-up">
         <h1>Bijwerken</h1>
-        <button className="exit-button">x</button>
+        <Link to="/">
+          <button className="exit-button">x</button>
+        </Link>
         <div className="input-holder">
           <div className="side-by-side">
             <div className="input-groep">
               <div className="input-bundel">
-                <label className="locked-label" for="naam">Volledige Naam </label>
+                <label className="locked-label" for="naam">
+                  Volledige Naam{" "}
+                </label>
                 <input
                   className="input-veld locked-input"
                   type="text"
@@ -49,7 +54,9 @@ function Bijwerken() {
             </div>
           </div>
           {/* ja robin hier moet een map funtie komen om te zorgen dat het gegenereed word */}
-          <button className="confirm-button">Bijwerken</button>
+          <Link to="/" className="full-size flex-center">
+            <button className="confirm-button">Bijwerken</button>
+          </Link>
         </div>
       </div>
     </>
