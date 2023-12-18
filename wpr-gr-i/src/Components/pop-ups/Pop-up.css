@@ -45,9 +45,10 @@ html {
 .side-by-side {
     width: 100%;
     display: flex;
-    column-gap: 40px;
+    /* column-gap: 40px; */
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .input-groep {
@@ -60,6 +61,7 @@ html {
 .input-bundel {
     display: flex;
     flex-direction: column;
+    width: 40%;
     /* margin-bottom: 20px; */
 }
 
@@ -80,8 +82,8 @@ html {
 }
 
 .confirm-button {
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
     border-radius: 15px;
     padding: 8px 50px;
     width: 50%;

@@ -5,7 +5,7 @@ function Bijwerken() {
   return (
     <>
       <div className="pop-up">
-        <h1>Bijwerken</h1>
+        <div className="titel">Bijwerken</div>
         <Link to="/">
           <button className="exit-button">x</button>
         </Link>

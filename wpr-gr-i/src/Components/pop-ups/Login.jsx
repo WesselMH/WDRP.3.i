@@ -7,6 +7,7 @@ function Login() {
       <Link to="/">
         <button className="exit-button">x</button>
       </Link>
+      <div className="titel">Login</div>
       <div className="button-holder">
         <input
           className="input-veld flex-center full-size"
@@ -31,7 +32,6 @@ function Login() {
         <Link to="/" className="full-size">
           <button className="inlog-button">Login met Microsoft</button>
         </Link>
-        <button>hallo</button>
       </div>
     </div>
   );

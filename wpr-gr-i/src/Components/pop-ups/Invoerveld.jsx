@@ -1,13 +1,17 @@
-function InvoerVeld({label, type, placeholder}) {
+function InvoerVeld({ label, className, type, placeholder, id }) {
+  // label, className, type, placeholder, id
+
   return (
-    <>
-      <label for={label}>Volledige Naam </label>
+    <div className="input-bundel">
+      <label htmlFor={id}>{label} </label>
       <input
-        className="input-veld"
+        className={className}
         type={type}
-        id={label}
+        id={id}
         placeholder={placeholder}
       ></input>
-    </>
+    </div>
   );
 }
+
+export default InvoerVeld;
