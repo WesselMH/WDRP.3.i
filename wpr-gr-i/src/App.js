@@ -1,6 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 function App() {
   return (
