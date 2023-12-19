@@ -11,7 +11,28 @@ const knoppen = [
     id: "naam",
     index: 0,
   },
+  {
+    label: "Voornaam",
+    type: "textarea",
+    placeholder: "Vul hier je voornaam in.",
+    id: "naam",
+    index: 0,
+  },
 ];
+
+const invoerVelden = knoppen.map((knop) => {
+  return (
+    <InvoerVeld
+      key={knop.index}
+      inputType={knop.inputType}
+      label={knop.label}
+      className="input-veld"
+      type={knop.type}
+      placeholder={knop.placeholder}
+      id={knop.id}
+    />
+  );
+});
 
 function BijwerkenBedrijf() {
   return (
@@ -23,50 +44,9 @@ function BijwerkenBedrijf() {
         <div className="titel">Bijwerken bedrijf profiel</div>
         <div className="input-holder">
           <div className="side-by-side">
-            <div className="input-bundel">
-              <label className="" for="naam">
-                Volledige Naam
-              </label>
-              <input
-                className="input-veld "
-                type="text"
-                id="naam"
-                placeholder="Vul hier je naam in"
-                required
-              ></input>
-            </div>
-            <div className="input-bundel">
-              <label for="achternaam">Achternaam </label>
-              <input
-                className="input-veld"
-                type="text"
-                id="achternaam"
-                placeholder="Vul hier je achternaam in"
-              ></input>
-            </div>
-
-            <div className="input-bundel">
-              <label for="beschrijving">Beschrijving</label>
-              <textarea className="beschrijving" id="beschrijving"></textarea>
-            </div>
-            <div className="input-bundel">
-              <label>Volledige Naam </label>
-              <input
-                className="input-veld"
-                type="text"
-                placeholder="Vul hier je naam in"
-              ></input>
-            </div>
-            <div className="input-bundel">
-              <label>Volledige Naam </label>
-              <input
-                className="input-veld"
-                type="text"
-                placeholder="Vul hier je naam in"
-              ></input>
-            </div>
+            {invoerVelden}
+            {/* als je een textarea wilt moet je inputType: textarea toevoegen in de array */}            
           </div>
-          {/* ja robin hier moet een map funtie komen om te zorgen dat het gegenereed word */}
           <Link to="/" className="full-size flex-center">
             <button className="confirm-button">Bijwerken</button>
           </Link>
