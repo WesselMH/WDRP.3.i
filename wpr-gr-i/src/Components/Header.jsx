@@ -7,10 +7,10 @@ function Header({ Titel, Knoppen }) {
   return (
     <header>
       <div className="inside-wrapper">
-        <img className="logo" src={Logo} alt="Logo Accessibility" />
-        <Link to={"/"} className="header-component Titel">
-          {Titel}
+        <Link to={"/"} className="img-wrapper">
+          <img className="logo" src={Logo} alt="Logo Accessibility" />
         </Link>
+        <div className="header-component Titel">{Titel}</div>
       </div>
       <div className="inside-wrapper knoppen-wrapper">
         {Knoppen.map(function (Knoppen) {

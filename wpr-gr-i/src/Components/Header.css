@@ -56,8 +56,10 @@ header{
     /* hier moeten we de kleuren voor de hover an focus zetten */
 }
 
-
-
 .header-component {
     text-decoration: none;
+}
+
+.img-wrapper {
+    height: inherit;
 }
