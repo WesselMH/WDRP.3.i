@@ -34,7 +34,7 @@ const headerButtons = [
 
 function BedrijvenPortaal() {
   return (
-    <div>
+    <>
       <Header Titel={"Bedrijven portaal"} Knoppen={headerButtons} />
       <div
         className="bedrijvenportaal"
@@ -45,7 +45,7 @@ function BedrijvenPortaal() {
           {listOpdrachten}
         </ul>
       </div>
-    </div>
+    </>
   );
 }
 
