@@ -16,7 +16,7 @@ const opdracht = [
 ];
 
 const listOpdrachten = opdracht.map((opdracht) => (
-  <Link to={opdracht.href} style={{ textDecoration: 'none' }}>
+  <Link to={opdracht.href}>
     <div className="opdracht">
       <li key={opdracht.id}>
         <div className="opdrachtHeader">
