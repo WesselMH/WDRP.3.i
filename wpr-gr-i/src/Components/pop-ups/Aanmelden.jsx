@@ -109,7 +109,7 @@ function Aanmelden() {
       <Link to="/">
         <button className="exit-button">x</button>
       </Link>
-      <div className="titel">Registratie</div>
+      <div className="Titel">Registratie</div>
       <div className="input-holder">
         <div className="side-by-side">{invoerVelden}</div>
         <Link to="/" className="full-size flex-center">

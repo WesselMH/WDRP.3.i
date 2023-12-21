@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 function Login() {
   return (
     <div className="pop-up">
-      <Link to="/">
-        <button className="exit-button">x</button>
+      <Link to="/" className="exit-button">
+        {/* <button > */}
+          x
+        {/* </button> */}
       </Link>
-      <div className="titel">Login</div>
+      <div className="Titel">Login</div>
       <div className="button-holder">
         <input
           className="input-veld flex-center full-size"

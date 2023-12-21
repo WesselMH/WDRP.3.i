@@ -12,13 +12,17 @@
 
 .listOpdrachten {
     padding: 20px;
-    width: 180vh;
-    margin: 50px;
-    height: fit-content;
+    margin: 0px 240px;
+    /* width: 180vh; */
+    /* margin: 50px; */
+    /* height: fit-content; */
     list-style-type: none;
 }
 
-.listOpdrachten a a, a:visited, a:hover, a:active {
+.listOpdrachten a, 
+.listOpdrachten a:visited, 
+.listOpdrachten a:hover, 
+.listOpdrachten a:active {
     text-decoration: none;
     color: inherit;
 
@@ -31,27 +35,27 @@
     margin-top: 24px;
 }
 
-.opdracht .opdrachtHeader {
+.opdrachtHeader {
     background-color: #2B50EC;
     border-radius: 12px;
     color:rgb(255, 255, 255);
     padding: 15px;
 }
-.opdracht .opdrachtHeader h3 {
+.opdrachtHeader h3 {
     font-size: xx-large;
     font-weight: 100;
 }
 
-.opdracht .opdrachtHeader p {
+.opdrachtHeader p {
     font-size: larger;
     font-weight: 100;
 }
 
-.opdracht .opdrachtBescrijving {
+.opdrachtBescrijving {
     padding: 15px;
 }
-
+/* 
 .opdracht a{
     text-decoration: none;
     color: rgb(0, 0, 0);
-}
+} */
