@@ -10,35 +10,52 @@
     justify-content: center;
 }
 
-.listOpdracht {
+.listOpdrachten {
     padding: 20px;
-    width: 120vh;
-    margin: 40px;
+    width: 180vh;
+    margin: 50px;
+    height: fit-content;
+    list-style-type: none;
 }
 
-.listOpdrachtHeader {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.listOpdrachten a a, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: inherit;
+
 }
 
-.listOpdracht a {
+.opdracht {
+    background-color: rgb(255, 255, 255);
+    border-radius: 12px;
+    line-height: 40px;
+    margin-top: 24px;
+}
+
+.opdracht .opdrachtHeader {
+    background-color: #2B50EC;
+    border-radius: 12px;
+    color:rgb(255, 255, 255);
+    padding: 15px;
+}
+.opdracht .opdrachtHeader h3 {
+    font-size: xx-large;
+    font-weight: 100;
+}
+
+.opdracht .opdrachtHeader p {
+    font-size: larger;
+    font-weight: 100;
+}
+
+.opdracht .opdrachtBescrijving {
+    padding: 15px;
+}
+
+.opdracht a{
     text-decoration: none;
     color: rgb(0, 0, 0);
 }
 
-.listOpdracht li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    background-color: rgb(181, 181, 181);
-    margin-top: 24px;
-    position: relative;
-    line-height: 40px;
-    border-radius: 15px;
-    padding: 5px;
-}
 .Titel {
     font-size: 32px;
 }
