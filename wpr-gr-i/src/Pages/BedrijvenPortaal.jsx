@@ -27,14 +27,14 @@ const listOpdrachten = opdracht.map((opdracht) => (
 ));
 
 const headerButtons = [
-  { Naam: "Profiel updaten", href: "/BedrijvenProtaal/Update" },
+  { Naam: "Profiel updaten", href: "/BedrijvenPortaal/Bijwerken" },
   { Naam: "Opdracht plaatsen", href: "/BedrijvenProtaal/NieuweOpdracht" },
   { Naam: "Uitloggen", href: "/" },
 ];
 
 function BedrijvenPortaal() {
   return (
-    <div>
+    <>
       <Header Titel={"Bedrijven portaal"} Knoppen={headerButtons} />
       <div
         className="bedrijvenportaal"
@@ -45,7 +45,7 @@ function BedrijvenPortaal() {
           {listOpdrachten}
         </ul>
       </div>
-    </div>
+    </>
   );
 }
 

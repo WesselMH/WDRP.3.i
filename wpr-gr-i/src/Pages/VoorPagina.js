@@ -32,7 +32,7 @@ function VoorPagina() {
       </h4>
 
       <div className="button-container">
-        <Button  label="Login" href='/Inlog'/>
+        <Button  label="Login" href='/Login'/>
         <Button  label="Aanmelden" href='/Aanmelden'/>
       </div>
     </div>
