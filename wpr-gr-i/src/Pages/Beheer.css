@@ -1,1 +1,26 @@
 
+
+.Blokjes Button{
+    display: inline-block;
+    box-sizing: border-box;
+    width: auto;
+    background-color: blue;
+    width: 300px;
+    
+}
+
+button{
+    background-color: black;
+    border-radius: 20px;
+    border-color: black;
+    
+
+}
+
+.Blokjes{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: green;
+    padding: 93px;
+    flex-direction: row;
+}
