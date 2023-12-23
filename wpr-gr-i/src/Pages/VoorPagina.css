@@ -37,7 +37,7 @@ body {
   .navbar li:hover{
     color: #333; /* Change the text color on hover */
   }
-  h1 {
+  .voorPagina-titel {
     color: #FFF;
     width: 40%; /* Set to 100% to take the full width of the container */
     height: 100px; /* Set a fixed height */
@@ -83,7 +83,7 @@ body {
       
     }
   
-    h1, h4 {
+    .voorPagina-titel, h4 {
       width: 100%;
     }
   }

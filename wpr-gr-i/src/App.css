@@ -39,17 +39,6 @@ body {
 .navbar a:hover{
   color: #333; /* Change the text color on hover */
 }
-h1 {
-  color: #FFF;
-  width: 40%; /* Set to 100% to take the full width of the container */
-  height: 100px; /* Set a fixed height */
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 50px; /* Adjust font size as needed */
-  font-style: normal;
-  font-weight: 300;
-  line-height: 60px; /* Set line-height equal to the height for vertical centering */
-}
 
 h4{
   color: #FFF;
@@ -81,7 +70,7 @@ h4{
     
   }
 
-  h1, h4 {
+  h4 {
     width: 100%;
   }
 }

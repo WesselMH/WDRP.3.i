@@ -1,4 +1,4 @@
-.OpdrachtenPagina {
+.opdrachtenPagina {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -10,52 +10,22 @@
     justify-content: center;
 }
 
+.opdrachten-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 240px;
+}
+
 .listOpdrachten {
-    padding: 20px;
-    margin: 0px 240px;
-    /* width: 180vh; */
-    /* margin: 50px; */
-    /* height: fit-content; */
     list-style-type: none;
 }
 
-.listOpdrachten a, 
-.listOpdrachten a:visited, 
-.listOpdrachten a:hover, 
-.listOpdrachten a:active {
+.opdrachten-wrapper a, 
+.opdrachten-wrapper a:visited, 
+.opdrachten-wrapper a:hover, 
+.opdrachten-wrapper a:active {
     text-decoration: none;
     color: inherit;
 
 }
 
-.opdracht {
-    background-color: rgb(255, 255, 255);
-    border-radius: 12px;
-    line-height: 40px;
-    margin-top: 24px;
-}
-
-.opdrachtHeader {
-    background-color: #2B50EC;
-    border-radius: 12px;
-    color:rgb(255, 255, 255);
-    padding: 15px;
-}
-.opdrachtHeader h3 {
-    font-size: xx-large;
-    font-weight: 100;
-}
-
-.opdrachtHeader p {
-    font-size: larger;
-    font-weight: 100;
-}
-
-.opdrachtBescrijving {
-    padding: 15px;
-}
-/* 
-.opdracht a{
-    text-decoration: none;
-    color: rgb(0, 0, 0);
-} */

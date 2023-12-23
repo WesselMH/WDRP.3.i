@@ -12,7 +12,7 @@ function Header({ Titel, Knoppen }) {
         </Link>
         <div className="header-component Titel">{Titel}</div>
       </div>
-      <div className="inside-wrapper knoppen-wrapper">
+      <nav className="inside-wrapper knoppen-wrapper">
         {Knoppen.map(function (Knoppen) {
           return (
             <>
@@ -25,7 +25,7 @@ function Header({ Titel, Knoppen }) {
             </>
           );
         })}
-      </div>
+      </nav>
     </header>
   );
 }

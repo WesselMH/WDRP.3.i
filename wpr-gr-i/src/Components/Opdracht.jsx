@@ -1,26 +1,24 @@
 import { Link } from "react-router-dom";
-import "./Opdracht.css"
+import "./Opdracht.css";
 
-function Opdracht() {
-  return <>
-    
-    <div>
-        hallo
-    </div>
+function Opdracht({ opdracht }) {
+  // console.log("ditis eentitel", opdracht);
+  return (
+    <>
+      <li className="opdracht-component">
+        <Link to={""}>
+          {/* hier moet nog de link komen */}
 
-    {/* <Link to={opdracht.href} style={{ textDecoration: 'none' }}>
-    <div className="opdracht">
-      <li key={opdracht.id}>
-        <div className="opdrachtHeader">
-          <h3>{opdracht.title}</h3>
-          <p>{opdracht.bedrijf}</p>
-        </div>
-        <div className="opdrachtBescrijving">
-          <p>{opdracht.beschrijving}</p>
-        </div>
+          <div className="opdracht">
+            <div className="opdracht-header">
+              <h1 className="opdracht-titel">{opdracht.title}</h1>
+              <h2 className="opdracht-opdrachtgever">{opdracht.bedrijf}</h2>
+            </div>
+            <p className="opdracht-omschrijving">{opdracht.beschrijving}</p>
+          </div>
+        </Link>
       </li>
-    </div>
-  </Link> */}
-  </>;
+    </>
+  );
 }
 export default Opdracht;

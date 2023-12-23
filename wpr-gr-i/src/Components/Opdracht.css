@@ -1,0 +1,40 @@
+:root {
+    --spacing-opdracht: 20px;
+}
+
+.opdracht {
+    background-color: white;
+    border-radius: 15px;
+    padding: var(--spacing-opdracht) calc( var(--spacing-opdracht ) + 5px);
+    margin: 25px 0px;
+}
+
+.opdracht-component {
+    width: inherit;
+    list-style-type: none;
+}
+
+.opdracht-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-opdracht);
+    background-color: #2B50EC;
+    border-radius: 15px;
+    color: white;
+    margin: calc(-1 * var(--spacing-opdracht )) calc(-1 * calc(var(--spacing-opdracht ) + 5px)) 0px;
+    padding: calc( var(--spacing-opdracht ) + 5px);
+}
+
+.opdracht-titel {
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.opdracht-opdrachtgever {
+    font-size: 24px;
+    font-weight: 200;
+}
+
+.opdracht-omschrijving {
+    margin: var(--spacing-opdracht ) 0px 0px;
+}
