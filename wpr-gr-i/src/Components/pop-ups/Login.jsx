@@ -1,7 +1,24 @@
 import "./Pop-up.css";
 import { Link } from "react-router-dom";
+import { useGoogleLogin } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 function Login() {
+  const login = useGoogleLogin({
+    onSuccess: (tokenResponse) => console.log(tokenResponse.access_token),
+
+    // <GoogleLogin
+    //       onSuccess={(credentialResponse) => {
+    //         const credentialResponseDecode = jwtDecode(credentialResponse.credential);
+    //         console.log(credentialResponseDecode);
+    //       }}
+    //       onError={() => {
+    //         console.log("Login Failed");
+    //       }}
+    //     />
+  });
+
   return (
     <div className="pop-up">
       <Link to="/">
@@ -26,8 +43,21 @@ function Login() {
         <Link to="/" className="full-size">
           <button className="inlog-button">Login</button>
         </Link>
-        <Link to="/" className="full-size">
-          <button className="inlog-button">Login met Google</button>
+        <Link to="" className="full-size">
+          <button className="inlog-button" onClick={() => login()}>
+            Sign in with Google 🚀
+          </button>
+          <GoogleLogin
+            onSuccess={(credentialResponse) => {
+              const credentialResponseDecode = jwtDecode(
+                credentialResponse.credential
+              );
+              console.log(credentialResponseDecode);
+            }}
+            onError={() => {
+              console.log("Login Failed");
+            }}
+          />
         </Link>
         <Link to="/" className="full-size">
           <button className="inlog-button">Login met Microsoft</button>
