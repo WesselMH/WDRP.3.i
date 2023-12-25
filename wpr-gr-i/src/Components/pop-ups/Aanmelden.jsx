@@ -1,5 +1,4 @@
 import "./Pop-up.css";
-import Button from "../Button";
 import { Link } from "react-router-dom";
 import InvoerVeld from "./Invoerveld";
 

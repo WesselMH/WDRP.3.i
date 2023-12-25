@@ -1,6 +1,5 @@
 import "./Header.css";
 import Logo from "../Accessibility props/Logo Icon/icon_accessibility.png";
-import Knop from "./Button.jsx";
 import { Link } from "react-router-dom";
 
 function Header({ Titel, Knoppen }) {

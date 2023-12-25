@@ -3,20 +3,27 @@ import { Link } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
+import axios from "axios";
+import GoogleLogo from "../../google.svg";
 
 function Login() {
   const login = useGoogleLogin({
-    onSuccess: (tokenResponse) => console.log(tokenResponse.access_token),
-
-    // <GoogleLogin
-    //       onSuccess={(credentialResponse) => {
-    //         const credentialResponseDecode = jwtDecode(credentialResponse.credential);
-    //         console.log(credentialResponseDecode);
-    //       }}
-    //       onError={() => {
-    //         console.log("Login Failed");
-    //       }}
-    //     />
+    onSuccess: async (response) => {
+      try {
+        const data = await axios.get(
+          "https://www.googleapis.com/oauth2/v3/userinfo",
+          {
+            headers: {
+              Authorization: `Bearer ${response.access_token}`,
+            },
+          }
+        );
+        console.log(data);
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
+    },
   });
 
   return (
@@ -40,25 +47,19 @@ function Login() {
         <Link to="/WW vergeten" className="ww-vergeten">
           Wachtwoord vergeten?
         </Link>
+
         <Link to="/" className="full-size">
           <button className="inlog-button">Login</button>
         </Link>
-        <Link to="" className="full-size">
-          <button className="inlog-button" onClick={() => login()}>
-            Sign in with Google 🚀
-          </button>
-          <GoogleLogin
-            onSuccess={(credentialResponse) => {
-              const credentialResponseDecode = jwtDecode(
-                credentialResponse.credential
-              );
-              console.log(credentialResponseDecode);
-            }}
-            onError={() => {
-              console.log("Login Failed");
-            }}
-          />
-        </Link>
+
+        <button
+          className="inlog-button full-size google-button"
+          onClick={() => login()}
+        >
+          <img src={GoogleLogo} alt=""></img>
+          Google Login
+        </button>
+
         <Link to="/" className="full-size">
           <button className="inlog-button">Login met Microsoft</button>
         </Link>
