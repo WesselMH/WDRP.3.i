@@ -1,12 +1,66 @@
 import "./Pop-up.css";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
-import { GoogleLogin } from "@react-oauth/google";
+// import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import GoogleLogo from "../../google.svg";
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 
-function Login() {
+// Login.propTypes = {
+//   setToken: PropTypes.func.isRequired,
+// };
+let help;
+
+async function loginUser(id, username, gebruikersnaam, wachtwoord) {
+  // console.log(username, gebruikersnaam);
+  await axios
+    .post("http://localhost:5155/api/AaaAccount/login", {
+      id,
+      gebruikersnaam,
+      wachtwoord,
+      username,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then(
+      (response) => {
+        // console.log(response.data.token);
+        help = response.data.token;
+        // return response.data;
+        const role = JSON.stringify(jwtDecode(response.data.token))
+          .split(",")[1]
+          .split(":")[2];
+        // console.log(role);
+
+        sessionStorage.setItem("authenticated", true);
+        sessionStorage.setItem("role", role);
+      },
+      (error) => {
+        console.log(error);
+        return error;
+      }
+    );
+}
+
+function Login({ setGoogle }) {
+  const [username, setUserName] = useState();
+  const [wachtwoord, setPassword] = useState();
+  const [gebruikersnaam, setgebruikersNaam] = useState();
+  const id = 0;
+
+  //zoek even uit hoe je dit doet als ze correct ingelogd zijn
+  useEffect(() => {}, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    await loginUser(id, username, gebruikersnaam, wachtwoord);
+    // console.log(help);
+  };
+
   const login = useGoogleLogin({
     onSuccess: async (response) => {
       try {
@@ -18,8 +72,26 @@ function Login() {
             },
           }
         );
-        console.log(data);
-        console.log(response);
+        sessionStorage.setItem("authenticated", true);
+        sessionStorage.setItem("role", "ervaringsDeskundige");
+        //kan je gebruiken om meer calls te doen naar google api's voor deze gebruiker
+        // console.log(response.access_token);
+
+        // console.log(data);
+        // loginGoogleUser(data.data);
+
+        const googleAcountData = data.data;
+
+        //hierdoor wordt de data naar App gestuurd en kan je het nog gebruiken bij het aanmaken/registreren van de beperkingen bij de google user
+        setGoogle(googleAcountData);
+        //voor nu zet in het ook in sessie strorage zodat we kunnen kiezen hoe we het pakken (tenzij het op de andere manier niet kan)
+        //dit is alleen niet veilig omdat een hacker dan de sub code kan bekijken in de browser geschiedenis
+        sessionStorage.setItem(
+          "googleAccount",
+          JSON.stringify(googleAcountData)
+        );
+
+        // console.log(data.data);
       } catch (err) {
         console.log(err);
       }
@@ -32,25 +104,32 @@ function Login() {
         <button className="exit-button">x</button>
       </Link>
       <div className="titel">Login</div>
-      <div className="button-holder">
+      <form className="button-holder" onSubmit={handleSubmit}>
         <input
           className="input-veld flex-center full-size"
           type="text"
           placeholder="Gebruikersnaam"
+          id="Gebruikersnaam"
+          onChange={(e) => {
+            setUserName(e.target.value);
+            setgebruikersNaam(e.target.value);
+          }}
         ></input>
         <input
           className="input-veld flex-center full-size"
           type="text"
           placeholder="Wachtwoord"
+          id="Wachtwoord"
+          onChange={(e) => setPassword(e.target.value)}
         ></input>
 
         <Link to="/WW vergeten" className="ww-vergeten">
           Wachtwoord vergeten?
         </Link>
 
-        <Link to="/" className="full-size">
-          <button className="inlog-button">Login</button>
-        </Link>
+        {/* <Link to="/" className="full-size"> */}
+        <button className="inlog-button full-size">Login</button>
+        {/* </Link> */}
 
         <button
           className="inlog-button full-size google-button"
@@ -63,7 +142,7 @@ function Login() {
         <Link to="/" className="full-size">
           <button className="inlog-button">Login met Microsoft</button>
         </Link>
-      </div>
+      </form>
     </div>
   );
 }
