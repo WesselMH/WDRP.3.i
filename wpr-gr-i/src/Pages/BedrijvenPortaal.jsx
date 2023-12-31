@@ -3,6 +3,7 @@ import Header from "../Components/Header";
 import "./BedrijvenPortaal.css";
 import background from "./backgroundWithGradient.png";
 import { Link, Navigate } from "react-router-dom";
+import Loguit from "../Loguit";
 
 const opdracht = [
   { title: "Opdracht 1", bedrijf: "Mediamarkt", id: 1 },
@@ -43,6 +44,11 @@ function BedrijvenPortaal() {
     if (loggedInUser) {
       setauthenticated(loggedInUser);
       setRole(loggedInUserrole);
+    }
+
+    if (sessionStorage.getItem("exp") < Date.now()) {
+      //om sessionstorage te resetten na een bepaalde tijd (automatische uitlog)
+      Loguit();
     }
   }, [authenticated, role]);
 

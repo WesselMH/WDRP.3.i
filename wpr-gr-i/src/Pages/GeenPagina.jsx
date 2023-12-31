@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./GeenPagina.css";
 import Header from "../Components/Header";
+import { useEffect } from "react";
 
 const headerButtons = [
   { Naam: "Bedrijven portaal", href: "/BedrijvenPortaal" },
@@ -9,6 +10,15 @@ const headerButtons = [
 ];
 
 function GeenPagina() {
+  const navigate = useNavigate();
+
+  //na 30 seconde zal de gebruiker sws terug gestuurd worden naar de voor pagina
+  useEffect(() => {
+    setTimeout(() => {
+      navigate("/");
+    }, 30000);
+  }, []);
+
   return (
     <>
       <Header Titel={""} Knoppen={headerButtons} />

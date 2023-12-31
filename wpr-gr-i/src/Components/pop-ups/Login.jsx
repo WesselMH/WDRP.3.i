@@ -31,10 +31,15 @@ async function loginUser(id, username, gebruikersnaam, wachtwoord) {
           decodedToken[
             "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
           ];
-        // console.log(role);
+        const exp =
+          decodedToken[
+            "exp"
+          ] * 1000;
+        // console.log(exp, Date.now());
 
         sessionStorage.setItem("authenticated", true);
         sessionStorage.setItem("role", role);
+        sessionStorage.setItem("exp", exp);
       },
       (error) => {
         console.log(error);
