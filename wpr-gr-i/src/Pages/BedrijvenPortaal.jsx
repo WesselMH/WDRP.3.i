@@ -3,7 +3,6 @@ import Header from "../Components/Header";
 import "./BedrijvenPortaal.css";
 import background from "./backgroundWithGradient.png";
 import { Link, Navigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
 
 const opdracht = [
   { title: "Opdracht 1", bedrijf: "Mediamarkt", id: 1 },
@@ -34,18 +33,22 @@ const headerButtons = [
 ];
 
 function BedrijvenPortaal() {
-  const [authenticated, setauthenticated] = useState();
-  const [role, setRole] = useState();
+  const [authenticated, setauthenticated] = useState(sessionStorage.getItem("authenticated"));
+  const [role, setRole] = useState(sessionStorage.getItem("role"));
+
   useEffect(() => {
     const loggedInUser = sessionStorage.getItem("authenticated");
     const loggedInUserrole = sessionStorage.getItem("role");
+
     if (loggedInUser) {
       setauthenticated(loggedInUser);
       setRole(loggedInUserrole);
     }
-  }, []);
+  }, [authenticated, role]);
 
-  if (authenticated && role !== "bedrijf") {
+  // console.log(authenticated, role);
+
+  if (authenticated && role === "bedrijf") {
     return (
       <>
         <Header Titel={"Bedrijven portaal"} Knoppen={headerButtons} />
