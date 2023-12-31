@@ -45,11 +45,6 @@ function BedrijvenPortaal() {
       setauthenticated(loggedInUser);
       setRole(loggedInUserrole);
     }
-
-    if (sessionStorage.getItem("exp") < Date.now()) {
-      //om sessionstorage te resetten na een bepaalde tijd (automatische uitlog)
-      Loguit();
-    }
   }, [authenticated, role]);
 
   // console.log(authenticated, role);

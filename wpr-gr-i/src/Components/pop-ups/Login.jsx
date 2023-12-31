@@ -106,7 +106,7 @@ function Login({ setGoogle }) {
 
   return (
     <div className="pop-up">
-      <Link to="/">
+      <Link to={-1}>
         <button className="exit-button">x</button>
       </Link>
       <div className="titel">Login</div>
@@ -133,9 +133,7 @@ function Login({ setGoogle }) {
           Wachtwoord vergeten?
         </Link>
 
-        {/* <Link to="/" className="full-size"> */}
         <button className="inlog-button full-size">Login</button>
-        {/* </Link> */}
 
         <button
           className="inlog-button full-size google-button"

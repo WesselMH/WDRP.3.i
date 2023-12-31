@@ -6,6 +6,7 @@ function Loguit (){
     sessionStorage.setItem("exp", null);
     sessionStorage.setItem("userName", null);
     sessionStorage.setItem("id", null);
+    sessionStorage.setItem("googleAccount", null);
 }
 
 export default Loguit;
