@@ -1,16 +1,11 @@
 import "./Pop-up.css";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
-// import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import GoogleLogo from "../../google.svg";
-import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
-// Login.propTypes = {
-//   setToken: PropTypes.func.isRequired,
-// };
 let help;
 
 async function loginUser(id, username, gebruikersnaam, wachtwoord) {
@@ -31,9 +26,11 @@ async function loginUser(id, username, gebruikersnaam, wachtwoord) {
         // console.log(response.data.token);
         help = response.data.token;
         // return response.data;
-        const role = JSON.stringify(jwtDecode(response.data.token))
-          .split(",")[1]
-          .split(":")[2];
+        const decodedToken = jwtDecode(response.data.token);
+        const role =
+          decodedToken[
+            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          ];
         // console.log(role);
 
         sessionStorage.setItem("authenticated", true);
