@@ -1,13 +1,12 @@
 // VoorPagina.jsx
 import React from "react";
 import "./VoorPagina.css";
+import "../Components/Button.css";
 import background from "./backgroundWithGradient.png";
-import Button from "../Components/Button";
-import { Link } from "react-router-dom";
-
-
+import { Link, useNavigate } from "react-router-dom";
 
 function VoorPagina() {
+  const navigate = useNavigate();
 
 
   return (
@@ -38,11 +37,9 @@ function VoorPagina() {
       </h4>
 
       <div className="button-container">
-        {/* <button className='Button'>Login</button> */}
-        
-
-        <Button label="Login" href="/Login" />
-        <Button label="Aanmelden" href="/Aanmelden" />
+        {/* hierdoor werkt tab beter voor keyboard users*/}
+        <Link to={"/Login"} className="Button">Login</Link>
+        <Link to={"/Aanmelden"} className="Button">Aanmelden</Link>
       </div>
     </div>
   );
