@@ -35,11 +35,14 @@ async function loginUser(id, username, gebruikersnaam, wachtwoord) {
           decodedToken[
             "exp"
           ] * 1000;
-        // console.log(exp, Date.now());
+        //console.log(help);
 
         sessionStorage.setItem("authenticated", true);
         sessionStorage.setItem("role", role);
         sessionStorage.setItem("exp", exp);
+        sessionStorage.setItem("userName", decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
+        sessionStorage.setItem("id", decodedToken["id"]);
+
       },
       (error) => {
         console.log(error);

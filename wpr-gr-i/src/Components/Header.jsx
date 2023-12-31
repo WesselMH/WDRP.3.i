@@ -16,6 +16,7 @@ function Header({ Titel, Knoppen }) {
         {Knoppen.map(function (Knoppen) {
           return (
             <>
+              {/* dit is een if statement in react component */}
               {Knoppen.Naam === "Uitloggen" ? (
                 <Link
                   to={Knoppen.href}
