@@ -25,13 +25,15 @@ function VoorPagina() {
         </ul>
       </nav>
 
-      <h1 className="titel">Een beter online bestaan begint hier</h1>
+      <h1 className="voorPagina-titel">Een beter online bestaan begint hier</h1>
       <h4 >
       Doe mee aan uiteenlopende onderzoeken en geef ons inzicht in jouw ervaringen. Door jouw deelname help je ons niet alleen om jouw beperking beter te begrijpen, 
       maar stellen we ons ook in staat om het internet toegankelijker te maken, speciaal voor jou.
       </h4>
 
       <div className="button-container">
+        {/* <button className='Button'>Login</button> */}
+        
         <Button  label="Login" href='/Login'/>
         <Button  label="Aanmelden" href='/Aanmelden'/>
       </div>
