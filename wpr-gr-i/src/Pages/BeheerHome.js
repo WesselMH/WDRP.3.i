@@ -6,7 +6,7 @@ import Knop from '../Components/Button.jsx'
 
 
 const Knoppen = [
-    {Naam: 'Opdrachten', href:"WesselIsStom"},
+    {Naam: 'Opdrachten', href:""},
     {Naam: 'Uitloggen', href:"/"}
 ]
 
@@ -16,9 +16,9 @@ function Beheer({}){
         <>
             <Header Titel={"Beheerderspagina"} Knoppen={Knoppen}></Header>
             <div className='Blokjes'>                
-                <Knop  label={"Overzicht van ervaringsdeskundigen"} href={"Beheerdersportaal/BeheerBedrijven"} />
-                <Knop  label={"Overzicht van bedrijven"} href={""} />
-                <Knop  label={"Overzicht van opdrachten"} href={"asdf"} />
+                <Knop  label={"Overzicht van ervaringsdeskundigen"} href={"Deskundigen"} />
+                <Knop  label={"Overzicht van bedrijven"} href={"Bedrijven"} />
+                <Knop  label={"Overzicht van opdrachten"} href={"Opdrachten"} />
             </div>
 
         </>
