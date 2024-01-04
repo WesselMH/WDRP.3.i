@@ -15,21 +15,19 @@ function VoorPagina() {
       </style>
 
       <div className="navbar">
-            <Link to='/BedrijvenPortaal'>BedrijvenPortaal</Link>   
-            <Link to='/BeheerdersPortaal'>Beheerdersportaal</Link>  
+            <Link to='/BedrijvenPortaal' className='voorpagina-navbar-knop'>BedrijvenPortaal</Link>   
+            <Link to='/BeheerdersPortaal'className='voorpagina-navbar-knop'>BeheerdersPortaal</Link>  
       </div>
 
       <h1 className="voorPagina-titel">Een beter online bestaan begint hier</h1>
-      <h4 >
+      <h4 className='voorpagina-tekst-onder-titel'>
       Doe mee aan uiteenlopende onderzoeken en geef ons inzicht in jouw ervaringen. Door jouw deelname help je ons niet alleen om jouw beperking beter te begrijpen, 
       maar stellen we ons ook in staat om het internet toegankelijker te maken, speciaal voor jou.
       </h4>
 
       <div className="button-container">
-        {/* <button className='Button'>Login</button> */}
-        
-        <Button  label="Login" href='/Login'/>
-        <Button  label="Aanmelden" href='/Aanmelden'/>
+        <Link to="/Login" className="Voorpagina-Button"> Login</Link>
+        <Link to="/Aanmelden" className="Voorpagina-Button">Registreren</Link>
       </div>
     </div>
   );
