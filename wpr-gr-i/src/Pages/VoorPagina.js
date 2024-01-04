@@ -14,16 +14,10 @@ function VoorPagina() {
         `}
       </style>
 
-      <nav className="navbar">
-        <ul>
-          <il>
-            <Link to='/BedrijvenPortaal'>BedrijvenPortaal</Link>
-          </il>
-          <li>
+      <div className="navbar">
+            <Link to='/BedrijvenPortaal'>BedrijvenPortaal</Link>   
             <Link to='/BeheerdersPortaal'>Beheerdersportaal</Link>  
-          </li>
-        </ul>
-      </nav>
+      </div>
 
       <h1 className="voorPagina-titel">Een beter online bestaan begint hier</h1>
       <h4 >
