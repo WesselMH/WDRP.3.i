@@ -11,6 +11,7 @@ import Login from "./Components/pop-ups/Login";
 import Aanmelden from "./Components/pop-ups/Aanmelden";
 import Bijwerken from "./Components/pop-ups/Bijwerken";
 import BijwerkenBedrijf from "./Components/pop-ups/BijwerkenBedrijf";
+import HomePortaal from "./Pages/HomePortaal";
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
       <Route path="/HomePortaal/Bijwerken" element={<Bijwerken />} />
       <Route path="/BedrijvenPortaal/Bijwerken" element={<BijwerkenBedrijf />} />
       <Route path="*" element={<GeenPagina />} />
+      <Route path="/HomePortaal" element={<HomePortaal />} />
+      
     </Routes>
   );
 }

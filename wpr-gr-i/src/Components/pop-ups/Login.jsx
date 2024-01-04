@@ -23,7 +23,7 @@ function Login() {
         <Link to="/WW vergeten" className="ww-vergeten">
           Wachtwoord vergeten?
         </Link>
-        <Link to="/" className="full-size">
+        <Link to="/HomePortaal" className="full-size">
           <button className="inlog-button">Login</button>
         </Link>
         <Link to="/" className="full-size">
