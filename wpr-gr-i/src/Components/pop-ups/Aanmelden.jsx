@@ -90,18 +90,24 @@ const knoppen = [
   },
 ];
 
-const invoerVelden = knoppen.map((knop) => {
+function InvoerVelden() {
   return (
-    <InvoerVeld
-      key={knop.index}
-      label={knop.label}
-      className="input-veld"
-      type={knop.type}
-      placeholder={knop.placeholder}
-      id={knop.id}
-    />
+    <>
+      {knoppen.map((knop) => {
+        return (
+          <InvoerVeld
+            key={knop.index}
+            label={knop.label}
+            className="input-veld"
+            type={knop.type}
+            placeholder={knop.placeholder}
+            id={knop.id}
+          />
+        );
+      })}
+    </>
   );
-});
+}
 
 function Aanmelden() {
   return (
@@ -109,9 +115,11 @@ function Aanmelden() {
       <Link to="/">
         <button className="exit-button">x</button>
       </Link>
-      <div className="titel">Registratie</div>
+      <div className="Titel">Registratie</div>
       <div className="input-holder">
-        <div className="side-by-side">{invoerVelden}</div>
+        <div className="side-by-side">
+          <InvoerVelden />
+        </div>
         <Link to="/" className="full-size flex-center">
           <button className="confirm-button">Login</button>
         </Link>

@@ -40,7 +40,7 @@ function Bijwerken() {
         <Link to="/">
           <button className="exit-button">x</button>
         </Link>
-        <div className="titel">Bijwerken</div>
+        <div className="Titel">Bijwerken</div>
         <div className="input-holder">
           <div className="side-by-side">
             {invoerVelden}

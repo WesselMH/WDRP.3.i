@@ -41,7 +41,7 @@ function BijwerkenBedrijf() {
         <Link to="/">
           <button className="exit-button">x</button>
         </Link>
-        <div className="titel">Bijwerken bedrijf profiel</div>
+        <div className="Titel">Bijwerken bedrijf profiel</div>
         <div className="input-holder">
           <div className="side-by-side">
             {invoerVelden}
