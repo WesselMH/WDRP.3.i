@@ -10,7 +10,6 @@ let help;
 // const navigate = useNavigate();
 
 async function loginUser(id, username, gebruikersnaam, wachtwoord) {
-
   // console.log(username, gebruikersnaam);
   await axios
     .post("http://localhost:5155/api/AaaAccount/login", {
@@ -33,16 +32,18 @@ async function loginUser(id, username, gebruikersnaam, wachtwoord) {
           decodedToken[
             "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
           ];
-        const exp =
-          decodedToken[
-            "exp"
-          ] * 1000;
+        const exp = decodedToken["exp"] * 1000;
         //console.log(help);
 
         sessionStorage.setItem("authenticated", true);
         sessionStorage.setItem("role", role);
         sessionStorage.setItem("exp", exp);
-        sessionStorage.setItem("userName", decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
+        sessionStorage.setItem(
+          "userName",
+          decodedToken[
+            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+          ]
+        );
         sessionStorage.setItem("id", decodedToken["id"]);
 
         // navigate("/HomePortaal");
@@ -109,10 +110,8 @@ function Login({ setGoogle }) {
 
   return (
     <div className="pop-up">
-      <Link to={-1}>
-        {/* <button > */}
+      <Link to={-1} className="exit-button">
         x
-        {/* </button> */}
       </Link>
       <div className="Titel">Login</div>
       <form className="button-holder" onSubmit={handleSubmit}>
@@ -137,7 +136,7 @@ function Login({ setGoogle }) {
         <Link to="/WW vergeten" className="ww-vergeten">
           Wachtwoord vergeten?
         </Link>
-        
+
         <button className="inlog-button full-size">Login</button>
 
         <button

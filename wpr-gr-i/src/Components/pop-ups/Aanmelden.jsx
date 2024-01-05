@@ -111,8 +111,8 @@ function InvoerVelden() {
 function Aanmelden() {
   return (
     <div className="pop-up">
-      <Link to={-1}>
-        <button className="exit-button">x</button>
+      <Link to={-1} className="exit-button">
+        x
       </Link>
       <div className="Titel">Registratie</div>
       <div className="input-holder">

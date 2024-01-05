@@ -92,19 +92,6 @@ html {
     font-weight: 600;
 }
 
-.google-button {
-    background-color: #B00000;
-    border: #B00000;
-    color: white;
-}
-.google-button img{
-    /* background-color: #B00000;
-    border: #B00000;
-    color: white; */
-    height: 20px;
-    float: left;
-}
-
 .inlog-button {
     border-radius: 15px;
     padding: 8px 50px;
@@ -113,7 +100,19 @@ html {
     background-color: white;
 }
 
+.google-button {
+    background-color: #B00000;
+    border: #B00000;
+    color: white;
+}
 
+.google-button img{
+    /* background-color: #B00000;
+    border: #B00000;
+    color: white; */
+    height: 20px;
+    float: left;
+}
 
 .exit-button {
     display: flex;
