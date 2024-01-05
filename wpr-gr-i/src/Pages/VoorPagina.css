@@ -39,20 +39,26 @@ body {
 
 .voorPagina-titel {
   color: #FFF;
-  width: 80%; /* Adjusted width for better responsiveness */
+  width: 90%; /* Adjusted width for better responsiveness */
   max-width: 600px; /* Added max-width to prevent text from becoming too wide on larger screens */
   font-family: 'Poppins', sans-serif;
   font-size: 3rem; /* Use rem for font size for better responsiveness */
   font-weight: 300;
   line-height: 1.2; /* Adjusted line-height for better readability */
   text-align: center;
-  height: 150px;
+  /* height: 150px; */
+}
+
+.flex-direction-column{
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
 }
 
 .voorpagina-tekst-onder-titel {
   color: #FFF;
   width: 80%; /* Adjusted width for better responsiveness */
-  height: 150px;
+  /* height: 150px; */
   max-width: 600px; /* Added max-width for better responsiveness on larger screens */
   text-align: center;
   font-family: 'Poppins';
@@ -63,6 +69,9 @@ body {
 
 .button-container {
   padding-top: 2%;
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
 }
 
 .Voorpagina-Button {
@@ -76,6 +85,8 @@ body {
   font-size: 1rem; /* Use rem for font size for better responsiveness */
   font-weight: 800;
   color: #FFF;
+  width: 40%;
+  text-align: center;
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -91,7 +102,14 @@ body {
 
 /* Responsive Styles */
 @media screen and (max-width: 600px) {
+  .navbar{
+    flex-direction: column;
+    margin-top: 20px;
+    align-items: center;
+  } 
+
   .voorpagina-navbar-knop {
+
     margin: 5px; /* Adjusted margin for better spacing on small screens */
     font-size:x-large;
   
@@ -114,5 +132,7 @@ body {
 
   .Voorpagina-Button {
     padding: 10px 20px; /* Adjusted padding for better responsiveness on small screens */
+  
+    text-align: center;
   }
 }

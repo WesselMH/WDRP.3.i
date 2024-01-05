@@ -1,7 +1,6 @@
 // VoorPagina.jsx
 import React from "react";
 import "./VoorPagina.css";
-import "../Components/Button.css";
 import background from "./backgroundWithGradient.png";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -17,26 +16,25 @@ function VoorPagina() {
       </style>
 
       <nav className="navbar">
-        
-            <Link to="/BedrijvenPortaal" className="voorpagina-navbar-knop">
-              BedrijvenPortaal
-            </Link>
-          
-            <Link to="/BeheerdersPortaal" className="voorpagina-navbar-knop">
-              Beheerdersportaal
-            </Link>
-         
-      </nav>
+        <Link to="/BedrijvenPortaal" className="voorpagina-navbar-knop">
+          BedrijvenPortaal
+        </Link>
 
-      <h1 className="voorPagina-titel">
-        Een beter online bestaan begint hier
-      </h1>
-      <h4 className="voorpagina-tekst-onder-titel">
-        Doe mee aan uiteenlopende onderzoeken en geef ons inzicht in jouw
-        ervaringen. Door jouw deelname help je ons niet alleen om jouw beperking
-        beter te begrijpen, maar stellen we ons ook in staat om het internet
-        toegankelijker te maken, speciaal voor jou.
-      </h4>
+        <Link to="/BeheerdersPortaal" className="voorpagina-navbar-knop">
+          Beheerdersportaal
+        </Link>
+      </nav>
+      <div className="flex-center flex-direction-column">
+        <h1 className="voorPagina-titel">
+          Een beter online bestaan begint hier
+        </h1>
+        <h4 className="voorpagina-tekst-onder-titel">
+          Doe mee aan uiteenlopende onderzoeken en geef ons inzicht in jouw
+          ervaringen. Door jouw deelname help je ons niet alleen om jouw
+          beperking beter te begrijpen, maar stellen we ons ook in staat om het
+          internet toegankelijker te maken, speciaal voor jou.
+        </h4>
+      </div>
 
       <div className="button-container">
         {/* hierdoor werkt tab beter voor keyboard users*/}
