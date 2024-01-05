@@ -45,7 +45,6 @@ function App() {
       <Route path="/Unauthorized" element={<UnauthorizedPagina />} />
       <Route path="*" element={<GeenPagina />} />
       <Route path="/HomePortaal" element={<HomePortaal />} />
-      
     </Routes>
   );
 }
