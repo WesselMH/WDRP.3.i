@@ -37,7 +37,7 @@ function Bijwerken() {
   return (
     <>
       <div className="pop-up">
-        <Link to="/">
+        <Link to={-1}>
           <button className="exit-button">x</button>
         </Link>
         <div className="titel">Bijwerken</div>
@@ -45,7 +45,7 @@ function Bijwerken() {
           <div className="side-by-side">
             {invoerVelden}
           </div>
-          <Link to="/" className="full-size flex-center">
+          <Link to={-1} className="full-size flex-center">
             <button className="confirm-button">Bijwerken</button>
           </Link>
         </div>
