@@ -22,12 +22,12 @@ function App() {
   // console.log( google)
 
   useEffect(() => {
-    exp = sessionStorage.getItem("exp");
+    // exp = sessionStorage.getItem("exp");
     if (sessionStorage.getItem("exp") < Date.now()) {
       //om sessionstorage te resetten na een bepaalde tijd (automatische uitlog)
       Loguit();
     }
-  }, [exp]);
+  }, []);
 
   return (
     <Routes>
