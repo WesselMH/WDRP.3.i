@@ -39,7 +39,7 @@ function VoorPagina() {
       <div className="button-container">
         {/* hierdoor werkt tab beter voor keyboard users*/}
         <Link to={"/Login"} className="Button">Login</Link>
-        <Link to={"/Aanmelden"} className="Button">Aanmelden</Link>
+        <Link to={"/Aanmelden"} className="Button">Registreren</Link>
       </div>
     </div>
   );
