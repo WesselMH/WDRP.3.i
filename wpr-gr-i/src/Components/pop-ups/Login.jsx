@@ -132,6 +132,7 @@ function Login({ setGoogle }) {
         <Link to="/WW vergeten" className="ww-vergeten">
           Wachtwoord vergeten?
         </Link>
+        {/* <Link to="/HomePortaal" className="full-size"> */}
 
         <button className="inlog-button full-size">Login</button>
 

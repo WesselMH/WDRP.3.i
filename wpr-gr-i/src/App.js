@@ -11,6 +11,7 @@ import Login from "./Components/pop-ups/Login";
 import Aanmelden from "./Components/pop-ups/Aanmelden";
 import Bijwerken from "./Components/pop-ups/Bijwerken";
 import BijwerkenBedrijf from "./Components/pop-ups/BijwerkenBedrijf";
+import HomePortaal from "./Pages/HomePortaal";
 import UnauthorizedPagina from "./Pages/UnauthorizedPagina";
 import Loguit from "./Loguit";
 
@@ -44,6 +45,8 @@ function App() {
       />
       <Route path="/Unauthorized" element={<UnauthorizedPagina />} />
       <Route path="*" element={<GeenPagina />} />
+      <Route path="/HomePortaal" element={<HomePortaal />} />
+      
     </Routes>
   );
 }
