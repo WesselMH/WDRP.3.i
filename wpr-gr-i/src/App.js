@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
 import { Routes, Route, useSearchParams } from "react-router-dom";
 
 import VoorPagina from "./Pages/VoorPagina";
