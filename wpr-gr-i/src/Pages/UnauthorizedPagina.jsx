@@ -9,13 +9,13 @@ const headerButtons = [
   { Naam: "inloggen", href: "/" },
 ];
 
-function GeenPagina() {
+function UnauthorizedPagina() {
   const navigate = useNavigate();
 
-  //na 30 seconde zal de gebruiker sws terug gestuurd worden naar de voor pagina
+  //na 30 seconde zal de gebruiker sws terug gestuurd worden naar de vorige pagina
   useEffect(() => {
     setTimeout(() => {
-      navigate("/");
+      navigate(-1);
     }, 30000);
   }, []);
 
@@ -23,9 +23,9 @@ function GeenPagina() {
     <>
       <Header Titel={""} Knoppen={headerButtons} />
       <div className="geen-wrapper">
-        <div className="code">404</div>
+        <div className="code">401</div>
         <p>
-          Sorry, de pagina die u probeerd te bezoek bestaat niet. We helpen u
+          Sorry, u bent niet authorized om deze pagina te bezoeken. We helpen u
           terug naar onze <Link to={"/"}>home pagina</Link>
         </p>
       </div>
@@ -33,4 +33,4 @@ function GeenPagina() {
   );
 }
 
-export default GeenPagina;
+export default UnauthorizedPagina;
