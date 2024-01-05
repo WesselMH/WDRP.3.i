@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import "./BedrijvenPortaal.css";
 import background from "./backgroundWithGradient.png";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import Loguit from "../Loguit";
 
 const opdracht = [
   { title: "Opdracht 1", bedrijf: "Mediamarkt", id: 1 },
@@ -33,20 +34,39 @@ const headerButtons = [
 ];
 
 function BedrijvenPortaal() {
-  return (
-    <>
-      <Header Titel={"Bedrijven portaal"} Knoppen={headerButtons} />
-      <div
-        className="bedrijvenportaal"
-        style={{ backgroundImage: `url(${background})` }}
-      >
-        <ul className="listOpdracht">
-          <h2>Open Opdrachten</h2>
-          {listOpdrachten}
-        </ul>
-      </div>
-    </>
-  );
+  const [authenticated, setauthenticated] = useState(sessionStorage.getItem("authenticated"));
+  const [role, setRole] = useState(sessionStorage.getItem("role"));
+
+  useEffect(() => {
+    const loggedInUser = sessionStorage.getItem("authenticated");
+    const loggedInUserrole = sessionStorage.getItem("role");
+
+    if (loggedInUser) {
+      setauthenticated(loggedInUser);
+      setRole(loggedInUserrole);
+    }
+  }, [authenticated, role]);
+
+  // console.log(authenticated, role);
+
+  if (authenticated && role === "bedrijf") {
+    return (
+      <>
+        <Header Titel={"Bedrijven portaal"} Knoppen={headerButtons} />
+        <div
+          className="bedrijvenportaal"
+          style={{ backgroundImage: `url(${background})` }}
+        >
+          <ul className="listOpdracht">
+            <h2>Open Opdrachten</h2>
+            {listOpdrachten}
+          </ul>
+        </div>
+      </>
+    );
+  } else {
+    return <Navigate replace to="/Unauthorized" />;
+  }
 }
 
 export default BedrijvenPortaal;

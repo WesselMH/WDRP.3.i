@@ -1,92 +1,138 @@
 /* App.css */
 body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .App {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    display: flex;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.App {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+ 
+}
+
+.voorpagina-navbar-knop {
+  margin: 30%;
+  margin-bottom: 0;
+  margin-top: 10%;
+  color: #FFF;
+  font-family: 'Poppins';
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 32px; /* 133.333% */
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.voorPagina-titel {
+  color: #FFF;
+  width: 90%; /* Adjusted width for better responsiveness */
+  max-width: 600px; /* Added max-width to prevent text from becoming too wide on larger screens */
+  font-family: 'Poppins', sans-serif;
+  font-size: 3rem; /* Use rem for font size for better responsiveness */
+  font-weight: 300;
+  line-height: 1.2; /* Adjusted line-height for better readability */
+  text-align: center;
+  /* height: 150px; */
+}
+
+.flex-direction-column{
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.voorpagina-tekst-onder-titel {
+  color: #FFF;
+  width: 80%; /* Adjusted width for better responsiveness */
+  /* height: 150px; */
+  max-width: 600px; /* Added max-width for better responsiveness on larger screens */
+  text-align: center;
+  font-family: 'Poppins';
+  font-size: 1.2rem; /* Use rem for font size for better responsiveness */
+  font-weight: 300;
+  line-height: 1.5; /* Adjusted line-height for better readability */
+}
+
+.button-container {
+  padding-top: 2%;
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.Voorpagina-Button {
+  font-family: 'Poppins', sans-serif;
+  padding: 13px 60px; /* Adjusted padding for better responsiveness */
+  background: none;
+  text-decoration: none;
+  border: 1px solid #FFF;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem; /* Use rem for font size for better responsiveness */
+  font-weight: 800;
+  color: #FFF;
+  width: 40%;
+  text-align: center;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.Voorpagina-Button:hover {
+  background-color: #2B50EC;
+  color: #ffffff;
+  border-color: transparent; /* Change border-color to transparent on hover */
+}
+
+.voorpagina-navbar-knop:hover{
+  color: #2B50EC;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 600px) {
+  .navbar{
     flex-direction: column;
+    margin-top: 20px;
     align-items: center;
-    justify-content: center;
-    
+  } 
+
+  .voorpagina-navbar-knop {
+
+    margin: 5px; /* Adjusted margin for better spacing on small screens */
+    font-size:x-large;
   
   }
-  .navbar {
-    position: fixed;
-    margin-top: 40px;
-    top: 0;
-    left: 0;
-    width: 100%;
+
+  .voorPagina-titel{
+    width: 95%; /* Full width on small screens */
+    max-width: none;
+    font-size:45px;
+   
+  }
+
+  .voorpagina-tekst-onder-titel {
+    width: 95%; /* Full width on small screens */
+    max-width: none; /* Remove max-width on small screens */
+    font-size: large;
+  }
+
+  
+
+  .Voorpagina-Button {
+    padding: 10px 20px; /* Adjusted padding for better responsiveness on small screens */
+  
     text-align: center;
   }
-  
-  .navbar li {
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 25px;
-    margin: 0 110px;
-    display: inline-block;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .navbar li:hover{
-    color: #333; /* Change the text color on hover */
-  }
-  .voorPagina-titel {
-    color: #FFF;
-    width: 40%; /* Set to 100% to take the full width of the container */
-    height: 100px; /* Set a fixed height */
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
-    font-size: 50px; /* Adjust font size as needed */
-    font-style: normal;
-    font-weight: 300;
-    line-height: 60px; /* Set line-height equal to the height for vertical centering */
-  }
-  
-  h4{
-    color: #FFF;
-    width: 40%;
-    height: 81px;
-    text-align: center;
-    font-family: Inter;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 19.5px; /* 121.875% */
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  /* Responsive Styles */
-  @media screen and (max-width: 600px) {
-    .App{
-      
-    }
-    .navbar {
-      flex-direction:column;
-      
-      align-items: center;
-    }
-    /* h1{
-      font-size: 30px;
-    } */
-  
-    .navbar li {
-      margin: 5px 0;
-      width: 100%;
-      
-      
-    }
-  
-    .voorPagina-titel, h4 {
-      width: 100%;
-    }
-  }
-  
-  
-  
+}
