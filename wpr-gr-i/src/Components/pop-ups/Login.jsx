@@ -1,5 +1,5 @@
 import "./Pop-up.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
@@ -7,8 +7,10 @@ import GoogleLogo from "../../google.svg";
 import { useEffect, useState } from "react";
 
 let help;
+// const navigate = useNavigate();
 
 async function loginUser(id, username, gebruikersnaam, wachtwoord) {
+
   // console.log(username, gebruikersnaam);
   await axios
     .post("http://localhost:5155/api/AaaAccount/login", {
@@ -43,6 +45,7 @@ async function loginUser(id, username, gebruikersnaam, wachtwoord) {
         sessionStorage.setItem("userName", decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
         sessionStorage.setItem("id", decodedToken["id"]);
 
+        // navigate("/HomePortaal");
       },
       (error) => {
         console.log(error);
@@ -132,8 +135,7 @@ function Login({ setGoogle }) {
         <Link to="/WW vergeten" className="ww-vergeten">
           Wachtwoord vergeten?
         </Link>
-        {/* <Link to="/HomePortaal" className="full-size"> */}
-
+        
         <button className="inlog-button full-size">Login</button>
 
         <button
