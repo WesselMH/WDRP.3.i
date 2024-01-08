@@ -5,9 +5,9 @@ import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import GoogleLogo from "../../google.svg";
 import { useEffect, useState } from "react";
+import MicrosoftLogo from "../../Microsoft_logo.png";
 
 let help;
-// const navigate = useNavigate();
 
 function Login({ setGoogle }) {
   const [username, setUserName] = useState(null);
@@ -17,6 +17,8 @@ function Login({ setGoogle }) {
 
   const [errorStyle, setErrorStyle] = useState("hidden");
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   //zoek even uit hoe je dit doet als ze correct ingelogd zijn
   useEffect(() => {}, []);
@@ -126,6 +128,10 @@ function Login({ setGoogle }) {
     },
   });
 
+  const redirectAanmelden = () => {
+    navigate("/Registreren");
+  };
+
   return (
     <div className="pop-up">
       <Link to={-1} className="exit-button">
@@ -171,10 +177,10 @@ function Login({ setGoogle }) {
           </div>
 
           <div className="flex-row">
-            <div>
+            {/* <div>
               <input type="checkbox" id="onthoudMij"></input>
               <label htmlFor="onthoudMij">Onthoud mij?</label>
-            </div>
+            </div> */}
             <Link to="/WW vergeten" className="ww-vergeten">
               Wachtwoord vergeten?
             </Link>
@@ -192,19 +198,26 @@ function Login({ setGoogle }) {
         <div className="right flex-column">
           <p>Of login met</p>
           <button
-            className="inlog-button google-button"
+            className="inlog-button google-button full-size"
             onClick={() => login()}
           >
             <img src={GoogleLogo} alt=""></img>
             Google Login
           </button>
 
-          <Link to="/" className="inlog-button">
-            Login met Microsoft
-          </Link>
+          <button
+            className="inlog-button microsoft-button full-size"
+            onClick={() => navigate("/")}
+          >
+            <img src={MicrosoftLogo} alt="" />
+            Microsoft Login
+          </button>
+
           <p>Nog geen account?</p>
 
-          <button className="inlog-button">Registreren</button>
+          <button className="inlog-button" onClick={redirectAanmelden}>
+            Registreren
+          </button>
         </div>
       </div>
     </div>

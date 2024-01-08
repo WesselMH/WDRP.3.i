@@ -7,7 +7,7 @@ import BedrijvenPortaal from "./Pages/BedrijvenPortaal";
 import OpdrachtenPagina from "./Pages/OpdrachtenPagina";
 import GeenPagina from "./Pages/GeenPagina";
 import Login from "./Components/pop-ups/Login";
-import Aanmelden from "./Components/pop-ups/Aanmelden";
+import Registreren from "./Components/pop-ups/Registreren";
 import Bijwerken from "./Components/pop-ups/Bijwerken";
 import BijwerkenBedrijf from "./Components/pop-ups/BijwerkenBedrijf";
 import HomePortaal from "./Pages/HomePortaal";
@@ -36,7 +36,7 @@ function App() {
       <Route path="/BedrijvenPortaal" element={<BedrijvenPortaal />} />
       <Route path="/Opdrachten" element={<OpdrachtenPagina />} />
       <Route path="/Login" element={<Login setGoogle={setGoogle} />} />
-      <Route path="/Aanmelden" element={<Aanmelden />} />
+      <Route path="/Registreren" element={<Registreren />} />
       <Route path="/HomePortaal/Bijwerken" element={<Bijwerken />} />
       <Route
         path="/BedrijvenPortaal/Bijwerken"

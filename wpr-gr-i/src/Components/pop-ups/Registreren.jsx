@@ -116,7 +116,7 @@ function Aanmelden() {
       </Link>
       <div className="Titel">Registratie</div>
       <div className="input-holder">
-        <div className="side-by-side">
+        <div className="side-by-side full-size">
           <InvoerVelden />
         </div>
         <Link to={-1} className="full-size flex-center">

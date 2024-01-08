@@ -14,7 +14,7 @@ html {
     border-radius: 15px;
     width: 900px; /*dit moet niet met percentages maar liggen aan de elementen er in */
     margin: auto;
-    padding: 20px 50px 20px 50px;
+    padding: 20px 30px ;
 }
 
 .button-holder {
@@ -94,8 +94,8 @@ html {
 
 .inlog-button {
     border: 0;
-    border-radius: 15px;
-    padding: 8px 50px;
+    border-radius: 25px;
+    padding: 10px 50px;
     /* width: 100%; */
     font-size: 1rem;
     background-color: #2B50EC;
@@ -103,17 +103,29 @@ html {
 }
 
 .google-button {
+    position: relative;
     background-color: #B00000;
     border: #B00000;
     color: white;
 }
 
 .google-button img{
-    /* background-color: #B00000;
-    border: #B00000;
-    color: white; */
+    position: absolute;
+    margin-left: -100px;
     height: 20px;
-    float: left;
+}
+
+.microsoft-button{
+    position: relative;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+}
+.microsoft-button img{
+    position: absolute;
+    margin-left: -98px;
+    margin-top: -6px;
+    height: 30px;
 }
 
 .pop-up a {
@@ -123,7 +135,7 @@ html {
 
 .exit-button {
     display: flex;
-    margin: 20px 0px auto auto;
+    margin: 10px 0px auto auto;
     border-radius: 50%;
     width: 30px;
     height: 30px;
