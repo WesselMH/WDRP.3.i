@@ -1,6 +1,6 @@
 import Header from '../Components/Header.jsx'
 import './Beheer.css'
-import Knop from '../Components/Button.jsx'
+import { Link } from "react-router-dom";
 // import { DeskundigePage } from './BeheerDeskundige'
 
 
@@ -16,9 +16,9 @@ function Beheer({}){
         <>
             <Header Titel={"Beheerderspagina"} Knoppen={Knoppen}></Header>
             <div className='Blokjes'>                
-                <Knop  label={"Overzicht van ervaringsdeskundigen"} href={"../Beheer/Deskundigen"} />
-                <Knop  label={"Overzicht van bedrijven"} href={"../Beheer/Bedrijven"} />
-                <Knop  label={"Overzicht van opdrachten"} href={"../Beheer/Opdrachten"} />
+                <Link className='knop' label={"Overzicht van ervaringsdeskundigen"} to={"/Beheer/Deskundigen"} />
+                <Link className='knop' label={"Overzicht van bedrijven"} to={"/Beheer/Bedrijven"} />
+                <Link className='knop' label={"Overzicht van opdrachten"} to={"/Beheer/Opdrachten"} />
             </div>
 
             <h1>Hallo</h1>

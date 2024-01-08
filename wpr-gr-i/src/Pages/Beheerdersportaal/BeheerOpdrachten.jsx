@@ -1,6 +1,5 @@
 import Header from '../../Components/Header.jsx'
 import '../Beheer.css'
-import Knop from '../../Components/Button.jsx'
 import {Link} from 'react-router-dom'
 
 const Knoppen = [
