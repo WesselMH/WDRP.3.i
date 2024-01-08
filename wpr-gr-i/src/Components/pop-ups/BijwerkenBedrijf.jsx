@@ -38,16 +38,16 @@ function BijwerkenBedrijf() {
   return (
     <>
       <div className="pop-up">
-        <Link to="/">
-          <button className="exit-button">x</button>
+        <Link to={-1} className="exit-button">
+          x
         </Link>
-        <div className="titel">Bijwerken bedrijf profiel</div>
+        <div className="Titel">Bijwerken bedrijf profiel</div>
         <div className="input-holder">
           <div className="side-by-side">
             {invoerVelden}
-            {/* als je een textarea wilt moet je inputType: textarea toevoegen in de array */}            
+            {/* als je een textarea wilt moet je inputType: textarea toevoegen in de array */}
           </div>
-          <Link to="/" className="full-size flex-center">
+          <Link to={-1} className="full-size flex-center">
             <button className="confirm-button">Bijwerken</button>
           </Link>
         </div>

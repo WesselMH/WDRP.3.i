@@ -37,15 +37,13 @@ function Bijwerken() {
   return (
     <>
       <div className="pop-up">
-        <Link to="/">
-          <button className="exit-button">x</button>
+        <Link to={-1} className="exit-button">
+          x
         </Link>
-        <div className="titel">Bijwerken</div>
+        <div className="Titel">Bijwerken</div>
         <div className="input-holder">
-          <div className="side-by-side">
-            {invoerVelden}
-          </div>
-          <Link to="/" className="full-size flex-center">
+          <div className="side-by-side">{invoerVelden}</div>
+          <Link to={-1} className="full-size flex-center">
             <button className="confirm-button">Bijwerken</button>
           </Link>
         </div>

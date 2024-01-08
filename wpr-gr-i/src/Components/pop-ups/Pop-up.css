@@ -5,21 +5,17 @@
 }
 
 html {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .pop-up {
-    position: relative;
+    /* position: relative; */
     border: solid 1px black;
     border-radius: 15px;
     width: 100%; /*dit moet niet met percentages maar liggen aan de elementen er in */
     margin: auto;
-    /* padding: 30px 50px; */
+    padding: 20px 50px 60px 50px;
 }
-
-/* .x2 {
-    width: 900px; /*dit moet niet met percentages maar liggen aan de elementen er in 
-} */
 
 .button-holder {
     display: flex;
@@ -35,20 +31,19 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: space-evenly; */
     row-gap: 20px;
-    
-    margin: 25px;
+/*     
+    margin: 25px; */
     font-size: 1rem;
 }
 
 .side-by-side {
     width: 100%;
     display: flex;
-    /* column-gap: 40px; */
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-wrap: wrap;
+    margin: 50px 0px 20px 0px;
 }
 
 .input-groep {
@@ -61,16 +56,22 @@ html {
 .input-bundel {
     display: flex;
     flex-direction: column;
-    width: 40%;
-    /* margin-bottom: 20px; */
+    width: 47%;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
 .input-veld {
     border-radius: 15px;
-    border: black 1px solid;
+    border: #B3B3B3 2px solid;
     margin-top: 5px;
     padding: 10px 20px;
-    opacity: .8;
+    color: #B3B3B3;
+    /* opacity: .8; */
+}
+.input-veld:focus{
+    border:  3px solid #2B50EC;
 }
 
 .beschrijving {
@@ -82,13 +83,13 @@ html {
 }
 
 .confirm-button {
-    /* display: flex;
-    justify-content: center; */
     border-radius: 15px;
     padding: 8px 50px;
     width: 50%;
     font-size: 1rem;
-
+    border: 2px solid black;
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
 .inlog-button {
@@ -96,16 +97,41 @@ html {
     padding: 8px 50px;
     width: 100%;
     font-size: 1rem;
+    background-color: white;
+}
+
+.google-button {
+    background-color: #B00000;
+    border: #B00000;
+    color: white;
+}
+
+.google-button img{
+    /* background-color: #B00000;
+    border: #B00000;
+    color: white; */
+    height: 20px;
+    float: left;
 }
 
 .exit-button {
-    display: block;
-    margin: 20px 20px auto auto;
+    display: flex;
+    margin: 20px 0px auto auto;
     border-radius: 50%;
-    width: 25px;
-    height: 25px;
+    width: 50px;
+    height: 50px;
     font-size: .8rem;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #1CA883; */
+    color: black;
+    border: 3px solid #111329;
+    font-size: 30px;
 }
+
+.pop-up a {text-decoration: none;
+}
+/* .pop-up a:visited {color: none;} */
 
 .locked-input {
     pointer-events: none;

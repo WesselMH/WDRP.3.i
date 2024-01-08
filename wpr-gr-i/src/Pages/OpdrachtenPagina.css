@@ -1,44 +1,30 @@
-.OpdrachtenPagina {
+.opdrachtenPagina {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 100vh;
-    
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.listOpdracht {
-    padding: 20px;
-    width: 120vh;
-    margin: 40px;
-}
-
-.listOpdrachtHeader {
+.opdrachten-wrapper {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    margin: 50px 240px;
 }
 
-.listOpdracht a {
+.listOpdrachten {
+    list-style-type: none;
+}
+
+.opdrachten-wrapper a, 
+.opdrachten-wrapper a:visited, 
+.opdrachten-wrapper a:hover, 
+.opdrachten-wrapper a:active {
     text-decoration: none;
-    color: rgb(0, 0, 0);
+    color: inherit;
+
 }
 
-.listOpdracht li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    background-color: rgb(181, 181, 181);
-    margin-top: 24px;
-    position: relative;
-    line-height: 40px;
-    border-radius: 15px;
-    padding: 5px;
-}
-/* .Titel {
-    font-size: 32px;
-} */
