@@ -15,7 +15,7 @@ function VoorPagina() {
         `}
       </style>
 
-      <nav className="navbar">
+      {/* <nav className="navbar">
         <Link to="/BedrijvenPortaal" className="voorpagina-navbar-knop">
           BedrijvenPortaal
         </Link>
@@ -23,7 +23,7 @@ function VoorPagina() {
         <Link to="/BeheerdersPortaal" className="voorpagina-navbar-knop">
           Beheerdersportaal
         </Link>
-      </nav>
+      </nav> */}
       <div className="flex-center flex-direction-column">
         <h1 className="voorPagina-titel">
           Een beter online bestaan begint hier
@@ -41,7 +41,7 @@ function VoorPagina() {
         <Link to={"/Login"} className="Voorpagina-Button">
           Login
         </Link>
-        <Link to={"/Aanmelden"} className="Voorpagina-Button">
+        <Link to={"/Registreren"} className="Voorpagina-Button">
           Registreren
         </Link>
       </div>

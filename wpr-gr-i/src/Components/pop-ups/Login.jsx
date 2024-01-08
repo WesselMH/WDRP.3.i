@@ -17,6 +17,7 @@ function Login({ setGoogle }) {
 
   const [errorStyle, setErrorStyle] = useState("hidden");
   const [error, setError] = useState(null);
+  const [isLoading, setisLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -38,6 +39,7 @@ function Login({ setGoogle }) {
       })
       .then(
         (response) => {
+          setisLoading(true);
           // console.log(response.data.token);
           help = response.data.token;
           // return response.data;
@@ -75,13 +77,22 @@ function Login({ setGoogle }) {
 
           return error;
         }
-      );
+      )
+      .finally(() => setisLoading(false));
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (username !== null && wachtwoord !== null) {
       await loginUser(id, username, gebruikersnaam, wachtwoord);
+
+      if (sessionStorage.getItem("role") === "ervaringsDeskundige") {
+        navigate("/HomePortaal");
+      } else if (sessionStorage.getItem("role") === "bedrijf") {
+        navigate("/BedrijvenPortaal");
+      } else if (sessionStorage.getItem("role") === "beheerder") {
+        navigate("");
+      }
     } else {
       setError("Vul de velden in.");
       setErrorStyle("error");
@@ -139,7 +150,7 @@ function Login({ setGoogle }) {
       </Link>
       {/* <div className="Titel">Login</div> */}
       <div className="button-holder flex-row">
-        <from className="left flex-column" onSubmit={handleSubmit}>
+        <form className="left flex-column">
           <div className="inlog-bundel full-size">
             {/* <label htmlFor="Gebruikersnaam className="inlog-label">Email</label> */}
             <label htmlFor="Gebruikersnaam" className="inlog-label">
@@ -187,11 +198,14 @@ function Login({ setGoogle }) {
           </div>
 
           <p className={errorStyle}>{error}</p>
-
-          <button className="inlog-button" onClick={handleSubmit}>
-            Login
-          </button>
-        </from>
+          {isLoading ? (
+            <button className="inlog-button">Loading...</button>
+          ) : (
+            <button className="inlog-button" onClick={handleSubmit}>
+              Login
+            </button>
+          )}
+        </form>
 
         <hr className="divider"></hr>
 

@@ -6,7 +6,7 @@ import { useEffect } from "react";
 const headerButtons = [
   { Naam: "Bedrijven portaal", href: "/BedrijvenPortaal" },
   { Naam: "beheerdersportaal", href: "/" },
-  { Naam: "inloggen", href: "/" },
+  { Naam: "inloggen", href: "/Login" },
 ];
 
 function UnauthorizedPagina() {
@@ -16,7 +16,7 @@ function UnauthorizedPagina() {
   useEffect(() => {
     const home = setTimeout(() => {
       navigate(-1);
-    }, 3000);
+    }, 30000);
 
     return () => {
       clearTimeout(home);
