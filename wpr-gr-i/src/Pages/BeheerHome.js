@@ -16,11 +16,12 @@ function Beheer({}){
         <>
             <Header Titel={"Beheerderspagina"} Knoppen={Knoppen}></Header>
             <div className='Blokjes'>                
-                <Knop  label={"Overzicht van ervaringsdeskundigen"} href={"Deskundigen"} />
-                <Knop  label={"Overzicht van bedrijven"} href={"Bedrijven"} />
-                <Knop  label={"Overzicht van opdrachten"} href={"Opdrachten"} />
+                <Knop  label={"Overzicht van ervaringsdeskundigen"} href={"../Beheer/Deskundigen"} />
+                <Knop  label={"Overzicht van bedrijven"} href={"../Beheer/Bedrijven"} />
+                <Knop  label={"Overzicht van opdrachten"} href={"../Beheer/Opdrachten"} />
             </div>
 
+            <h1>Hallo</h1>
         </>
     )
 

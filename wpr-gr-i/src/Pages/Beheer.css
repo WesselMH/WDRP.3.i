@@ -14,7 +14,6 @@ button{
     border-radius: 20px;
     border-color: black;
     
-
 }
 
 .Blokjes{
@@ -23,4 +22,36 @@ button{
     background-color: green;
     padding: 93px;
     flex-direction: row;
+}
+
+.TitelBeheerLijst{
+    display: flex; 
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10px;
+    background-color: blue  ;
+    border-radius: 20px;
+
+}
+.BeheerLijst{
+    
+}
+.BeheerItem{
+    display: flex;
+    
+    text-align: center;
+    justify-content: space-evenly;
+    padding: 1px;
+    background-color: blue;    
+}
+.BeheerInhoud{
+    text-align: center;
+    padding: 10px;
+    width: 9%;
+    background-color: white;
+}
+.BeheerItems{
+    display: inline;
+    padding-right: 5%;
+    text-align: center;
 }
