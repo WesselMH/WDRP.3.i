@@ -20,15 +20,15 @@ body {
   justify-content: center;
   position: fixed;
   top: 0;
+  gap: 30%;
  
 }
 
 .voorpagina-navbar-knop {
-  margin: 30%;
+  /* margin: 30%; */
   margin-bottom: 0;
   margin-top: 10%;
   color: #FFF;
-  font-family: 'Poppins';
   font-size: 30px;
   font-style: normal;
   font-weight: 300;
