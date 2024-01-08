@@ -1,0 +1,41 @@
+.HomePortaal{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;    
+}
+
+.HomePortaal-Button{
+    background-color: #2B50EC;
+    cursor: pointer;
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 40px; /* 80% */
+    border: none;
+    text-decoration: none;
+    width: 400px;
+    height: 100px;
+    margin: 5%;
+    padding: 2%;
+    border-radius: 16px;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.HomePortaal-Button-Container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 350px;
+        
+}
+
+.Newsfeed{
+    display: flex;
+    justify-content: center;
+}
