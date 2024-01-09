@@ -99,7 +99,7 @@ function Login({
       } else if (sessionStorage.getItem("role") === "bedrijf") {
         navigate("/BedrijvenPortaal");
       } else if (sessionStorage.getItem("role") === "beheerder") {
-        navigate("");
+        navigate("/BeheerdersPortaal");
       }
     } else {
       setError("Vul de velden in.");
