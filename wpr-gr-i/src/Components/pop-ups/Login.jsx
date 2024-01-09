@@ -32,7 +32,7 @@ function Login({
     // console.log(username, gebruikersnaam);
     await axios
       // .post("http://localhost:5155/api/AaaAccount/login", {
-        .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
+      .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
         id,
         gebruikersnaam,
         wachtwoord,
@@ -40,6 +40,7 @@ function Login({
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "POST",
+          "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
           "Content-Type": "application/json",
         },
       })
@@ -72,7 +73,7 @@ function Login({
         },
         (error) => {
           //fout response gebruiker
-          console.log(error)
+          console.log(error);
           let errorMassage = JSON.stringify(error.response.data);
           if (errorMassage.includes('"status":400')) {
             errorMassage = JSON.parse(errorMassage).errors;
