@@ -9,7 +9,11 @@ import MicrosoftLogo from "../../Microsoft_logo.png";
 
 let help;
 
-function Login({ setGoogle }) {
+function Login({
+  setGoogle,
+  handleOverlayLoginClick,
+  handleOverlayRegistreerClick,
+}) {
   const [username, setUserName] = useState(null);
   const [wachtwoord, setPassword] = useState(null);
   const [gebruikersnaam, setgebruikersNaam] = useState();
@@ -140,14 +144,15 @@ function Login({ setGoogle }) {
   });
 
   const redirectAanmelden = () => {
-    navigate("/Registreren");
+    handleOverlayLoginClick();
+    handleOverlayRegistreerClick();
   };
 
   return (
     <div className="pop-up">
-      <Link to={-1} className="exit-button">
+      <button className="exit-button" onClick={handleOverlayLoginClick}>
         x
-      </Link>
+      </button>
       {/* <div className="Titel">Login</div> */}
       <div className="button-holder flex-row">
         <form className="left flex-column">
@@ -159,7 +164,7 @@ function Login({ setGoogle }) {
             <input
               className="input-veld flex-center full-size"
               type="text"
-              placeholder="Gebruikersnaam"
+              placeholder="Voornaam+Achternaam"
               id="Gebruikersnaam"
               onChange={(e) => {
                 setUserName(e.target.value);
@@ -176,7 +181,7 @@ function Login({ setGoogle }) {
             </label>
             <input
               className="input-veld flex-center full-size"
-              type="text"
+              type="password"
               placeholder="Wachtwoord"
               id="Wachtwoord"
               onChange={(e) => {

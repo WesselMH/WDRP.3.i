@@ -6,7 +6,7 @@ import { useEffect } from "react";
 const headerButtons = [
   { Naam: "Bedrijven portaal", href: "/BedrijvenPortaal" },
   { Naam: "beheerdersportaal", href: "/" },
-  { Naam: "inloggen", href: "/Login" },
+  { Naam: "inloggen", href: "/" },
 ];
 
 function GeenPagina() {

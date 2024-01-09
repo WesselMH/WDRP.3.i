@@ -34,7 +34,9 @@ const headerButtons = [
 ];
 
 function BedrijvenPortaal() {
-  const [authenticated, setauthenticated] = useState(sessionStorage.getItem("authenticated"));
+  const [authenticated, setauthenticated] = useState(
+    sessionStorage.getItem("authenticated")
+  );
   const [role, setRole] = useState(sessionStorage.getItem("role"));
 
   useEffect(() => {
@@ -49,7 +51,7 @@ function BedrijvenPortaal() {
 
   // console.log(authenticated, role);
 
-  if (authenticated && role === "bedrijf") {
+  if (authenticated && role.includes("bedrijf")) {
     return (
       <>
         <Header Titel={"Bedrijven portaal"} Knoppen={headerButtons} />
