@@ -13,7 +13,7 @@ const Bedr = [
     Bedrijfnaam: "Horsthuis",
     WebSite: "28-02-2003",
     Locatie: "asd@asd.com",
-    Omschrijving: "0647976660",
+    Omschrijving: "0612345678",
   },
   {
     ID: "2",
@@ -21,7 +21,7 @@ const Bedr = [
     Bedrijfnaam: "Horsthuis",
     WebSite: "28-02-2003",
     Locatie: "asd@asd.com",
-    Omschrijving: "0647976660",
+    Omschrijving: "0612345678",
   },
   {
     ID: "3",
@@ -29,7 +29,7 @@ const Bedr = [
     Bedrijfnaam: "Horsthuis",
     WebSite: "28-02-2003",
     Locatie: "asd@asd.com",
-    Omschrijving: "0647976660",
+    Omschrijving: "0612345678",
   },
   {
     ID: "4",
@@ -37,7 +37,7 @@ const Bedr = [
     Bedrijfnaam: "Horsthuis",
     WebSite: "28-02-2003",
     Locatie: "asd@asd.com",
-    Omschrijving: "0647976660",
+    Omschrijving: "0612345678",
   },
   {
     ID: "5",
@@ -45,7 +45,7 @@ const Bedr = [
     Bedrijfnaam: "Horsthuis",
     WebSite: "28-02-2003",
     Locatie: "asd@asd.com",
-    Omschrijving: "0647976660",
+    Omschrijving: "0612345678",
   },
   {
     ID: "6",
@@ -53,7 +53,7 @@ const Bedr = [
     Bedrijfnaam: "Horsthuis",
     WebSite: "28-02-2003",
     Locatie: "asd@asd.com",
-    Omschrijving: "0647976660",
+    Omschrijving: "0612345678",
   },
   {
     ID: "7",
@@ -61,7 +61,7 @@ const Bedr = [
     Bedrijfnaam: "Horsthuis",
     WebSite: "28-02-2003",
     Locatie: "asd@asd.com",
-    Omschrijving: "0647976660",
+    Omschrijving: "0612345678",
   },
 ];
 
