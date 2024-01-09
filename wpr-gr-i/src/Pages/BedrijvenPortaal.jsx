@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import BedrijvenOpdracht from "../Components/BedrijvenOpdracht";
 import BedrijvenBerichten from "../Components/BedrijvenBerichten";
 import BedrijvenItem from "../Components/BedrijvenItem";
 import "./BedrijvenPortaal.css";
-import background from "../achtergrondfoto.jpg";
-import { Link } from "react-router-dom";
+import background from "./backgroundWithGradient.png";
+import { Link, Navigate } from "react-router-dom";
+import Loguit from "../Loguit";
 
 const opdracht = [
   { title: 'Toegankelijkheid voor Mensen met Beperkingen', bedrijf: 'Accessibility Foundation', beschrijving: "Studie naar Kwaliteit van Leven bij Mensen met Beperkingen: Een diepgaand onderzoek naar de dagelijkse hindernissen en mogelijkheden tot verbetering. Het doel is waardevolle inzichten te vergaren ter bevordering van levenskwaliteit en inclusie voor deze individuen.", datum: "12-12-12", id: 1 },
@@ -42,19 +43,38 @@ const InboxButton =
   ;
 
 function BedrijvenPortaal() {
-  return (
-    <>
-      <Header Titel={"Bedrijven portaal"} Knoppen={headerButtons} />
-      <div
-        className="bedrijvenportaal"
-        style={{ backgroundImage: `url(${background})` }}
-      >
-        {BedrijvenItem("Open Opdrachten", listOpdrachten)}
-        {BedrijvenItem("Berichten", InboxButton, listBerichten)}
-        {BedrijvenItem("Chat", InboxButton, listBerichten)}
-      </div>
-    </>
-  );
+  const [authenticated, setauthenticated] = useState(sessionStorage.getItem("authenticated"));
+  const [role, setRole] = useState(sessionStorage.getItem("role"));
+
+  useEffect(() => {
+    const loggedInUser = sessionStorage.getItem("authenticated");
+    const loggedInUserrole = sessionStorage.getItem("role");
+
+    if (loggedInUser) {
+      setauthenticated(loggedInUser);
+      setRole(loggedInUserrole);
+    }
+  }, [authenticated, role]);
+
+  // console.log(authenticated, role);
+
+  if (authenticated && role === "bedrijf") {
+    return (
+      <>
+        <Header Titel={"Bedrijven portaal"} Knoppen={headerButtons} />
+        <div
+          className="bedrijvenportaal"
+          style={{ backgroundImage: `url(${background})` }}
+        >
+          {BedrijvenItem("Open Opdrachten", listOpdrachten)}
+          {BedrijvenItem("Berichten", InboxButton, listBerichten)}
+          {BedrijvenItem("Chat", InboxButton, listBerichten)}
+        </div>
+      </>
+    );  
+  } else {
+    return <Navigate replace to="/Unauthorized" />;
+  }
 }
 
 export default BedrijvenPortaal;
