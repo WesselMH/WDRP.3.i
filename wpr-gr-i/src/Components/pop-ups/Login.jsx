@@ -38,7 +38,7 @@ function Login({
         wachtwoord,
         username,
         headers: {
-          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Origin": "https://wdrp-3-i.vercel.app/",
           "Access-Control-Allow-Methods": "POST",
           "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
           "Content-Type": "application/json",
