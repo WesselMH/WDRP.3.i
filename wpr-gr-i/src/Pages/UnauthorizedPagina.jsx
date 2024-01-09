@@ -14,9 +14,13 @@ function UnauthorizedPagina() {
 
   //na 30 seconde zal de gebruiker sws terug gestuurd worden naar de vorige pagina
   useEffect(() => {
-    setTimeout(() => {
+    const home = setTimeout(() => {
       navigate(-1);
     }, 30000);
+
+    return () => {
+      clearTimeout(home);
+    };
   }, []);
 
   return (

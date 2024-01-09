@@ -5,6 +5,7 @@ body {
 }
 
 .App {
+  position: relative;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -20,15 +21,15 @@ body {
   justify-content: center;
   position: fixed;
   top: 0;
+  gap: 30%;
  
 }
 
 .voorpagina-navbar-knop {
-  margin: 30%;
+  /* margin: 30%; */
   margin-bottom: 0;
   margin-top: 10%;
   color: #FFF;
-  font-family: 'Poppins';
   font-size: 30px;
   font-style: normal;
   font-weight: 300;
@@ -59,7 +60,7 @@ body {
   color: #FFF;
   width: 80%; /* Adjusted width for better responsiveness */
   /* height: 150px; */
-  max-width: 600px; /* Added max-width for better responsiveness on larger screens */
+  max-width: 900px; /* Added max-width for better responsiveness on larger screens */
   text-align: center;
   font-family: 'Poppins';
   font-size: 1.2rem; /* Use rem for font size for better responsiveness */
@@ -80,7 +81,7 @@ body {
   background: none;
   text-decoration: none;
   border: 1px solid #FFF;
-  border-radius: 20px;
+  border-radius: 25px;
   cursor: pointer;
   font-size: 1rem; /* Use rem for font size for better responsiveness */
   font-weight: 800;
@@ -100,6 +101,13 @@ body {
   color: #2B50EC;
 }
 
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /* Responsive Styles */
 @media screen and (max-width: 600px) {
   .navbar{
@@ -116,21 +124,31 @@ body {
   }
 
   .voorPagina-titel{
-    width: 95%; /* Full width on small screens */
+    width: 80%; /* Full width on small screens */
     max-width: none;
-    font-size:45px;
-   
+    font-size: 24px;
+    border: 3px solid gray;
+    border-radius: 15px;
   }
 
   .voorpagina-tekst-onder-titel {
-    width: 95%; /* Full width on small screens */
-    max-width: none; /* Remove max-width on small screens */
-    font-size: large;
+    width: 80%; /* Full width on small screens */
+    /* max-width: none; Remove max-width on small screens */
+    font-size: 16px;
+    margin-bottom: 30px;
+    border: 3px solid gray;
+    border-radius: 25px;
   }
 
-  
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
 
   .Voorpagina-Button {
+    width: 100%;
     padding: 10px 20px; /* Adjusted padding for better responsiveness on small screens */
   
     text-align: center;

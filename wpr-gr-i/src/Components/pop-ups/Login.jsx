@@ -5,70 +5,104 @@ import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import GoogleLogo from "../../google.svg";
 import { useEffect, useState } from "react";
+import MicrosoftLogo from "../../Microsoft_logo.png";
 
 let help;
-// const navigate = useNavigate();
 
-async function loginUser(id, username, gebruikersnaam, wachtwoord) {
-  // console.log(username, gebruikersnaam);
-  await axios
-    .post("http://localhost:5155/api/AaaAccount/login", {
-      // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
-      id,
-      gebruikersnaam,
-      wachtwoord,
-      username,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then(
-      (response) => {
-        // console.log(response.data.token);
-        help = response.data.token;
-        // return response.data;
-        const decodedToken = jwtDecode(response.data.token);
-        const role =
-          decodedToken[
-            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-          ];
-        const exp = decodedToken["exp"] * 1000;
-        //console.log(help);
-
-        sessionStorage.setItem("authenticated", true);
-        sessionStorage.setItem("role", role);
-        sessionStorage.setItem("exp", exp);
-        sessionStorage.setItem(
-          "userName",
-          decodedToken[
-            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
-          ]
-        );
-        sessionStorage.setItem("id", decodedToken["id"]);
-
-        // navigate("/HomePortaal");
-      },
-      (error) => {
-        console.log(error);
-        return error;
-      }
-    );
-}
-
-function Login({ setGoogle }) {
-  const [username, setUserName] = useState();
-  const [wachtwoord, setPassword] = useState();
+function Login({
+  setGoogle,
+  handleOverlayLoginClick,
+  handleOverlayRegistreerClick,
+}) {
+  const [username, setUserName] = useState(null);
+  const [wachtwoord, setPassword] = useState(null);
   const [gebruikersnaam, setgebruikersNaam] = useState();
   const id = 0;
+
+  const [errorStyle, setErrorStyle] = useState("hidden");
+  const [error, setError] = useState(null);
+  const [isLoading, setisLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   //zoek even uit hoe je dit doet als ze correct ingelogd zijn
   useEffect(() => {}, []);
 
+  async function loginUser(id, username, gebruikersnaam, wachtwoord) {
+    // console.log(username, gebruikersnaam);
+    await axios
+      .post("http://localhost:5155/api/AaaAccount/login", {
+        // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
+        id,
+        gebruikersnaam,
+        wachtwoord,
+        username,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(
+        (response) => {
+          setisLoading(true);
+          // console.log(response.data.token);
+          help = response.data.token;
+          // return response.data;
+          const decodedToken = jwtDecode(response.data.token);
+          const role =
+            decodedToken[
+              "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+            ];
+          const exp = decodedToken["exp"] * 1000;
+          //console.log(help);
+
+          sessionStorage.setItem("authenticated", true);
+          sessionStorage.setItem("role", role);
+          sessionStorage.setItem("exp", exp);
+          sessionStorage.setItem(
+            "userName",
+            decodedToken[
+              "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+            ]
+          );
+          sessionStorage.setItem("id", decodedToken["id"]);
+
+          // navigate("/HomePortaal");
+        },
+        (error) => {
+          //fout response gebruiker
+          let errorMassage = JSON.stringify(error.response.data);
+          if (errorMassage.includes('"status":400')) {
+            errorMassage = JSON.parse(errorMassage).errors;
+          }
+          // console.log(errorMassage);
+          // console.log(error.response.data);
+          setError(error.response.data);
+          setErrorStyle("error");
+
+          return error;
+        }
+      )
+      .finally(() => setisLoading(false));
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (username !== null && wachtwoord !== null) {
+      await loginUser(id, username, gebruikersnaam, wachtwoord);
 
-    await loginUser(id, username, gebruikersnaam, wachtwoord);
-    // console.log(help);
+      if (sessionStorage.getItem("role") === "ervaringsDeskundige") {
+        navigate("/HomePortaal");
+      } else if (sessionStorage.getItem("role") === "bedrijf") {
+        navigate("/BedrijvenPortaal");
+      } else if (sessionStorage.getItem("role") === "beheerder") {
+        navigate("");
+      }
+    } else {
+      setError("Vul de velden in.");
+      setErrorStyle("error");
+    }
+
+    // console.log(response);
   };
 
   const login = useGoogleLogin({
@@ -82,8 +116,9 @@ function Login({ setGoogle }) {
             },
           }
         );
-        sessionStorage.setItem("authenticated", true);
+        sessionStorage.setItem("authenticated", false);
         sessionStorage.setItem("role", "ervaringsDeskundige");
+
         //kan je gebruiken om meer calls te doen naar google api's voor deze gebruiker
         // console.log(response.access_token);
 
@@ -108,49 +143,102 @@ function Login({ setGoogle }) {
     },
   });
 
+  const redirectAanmelden = () => {
+    handleOverlayLoginClick();
+    handleOverlayRegistreerClick();
+  };
+
   return (
     <div className="pop-up">
-      <Link to={-1} className="exit-button">
+      <button className="exit-button" onClick={handleOverlayLoginClick}>
         x
-      </Link>
-      <div className="Titel">Login</div>
-      <form className="button-holder" onSubmit={handleSubmit}>
-        <input
-          className="input-veld flex-center full-size"
-          type="text"
-          placeholder="Gebruikersnaam"
-          id="Gebruikersnaam"
-          onChange={(e) => {
-            setUserName(e.target.value);
-            setgebruikersNaam(e.target.value);
-          }}
-        ></input>
-        <input
-          className="input-veld flex-center full-size"
-          type="text"
-          placeholder="Wachtwoord"
-          id="Wachtwoord"
-          onChange={(e) => setPassword(e.target.value)}
-        ></input>
+      </button>
+      {/* <div className="Titel">Login</div> */}
+      <div className="button-holder flex-row">
+        <form className="left flex-column">
+          <div className="inlog-bundel full-size">
+            {/* <label htmlFor="Gebruikersnaam className="inlog-label">Email</label> */}
+            <label htmlFor="Gebruikersnaam" className="inlog-label">
+              Gebruikersnaam
+            </label>
+            <input
+              className="input-veld flex-center full-size"
+              type="text"
+              placeholder="Voornaam+Achternaam"
+              id="Gebruikersnaam"
+              onChange={(e) => {
+                setUserName(e.target.value);
+                setgebruikersNaam(e.target.value);
+                setErrorStyle(null);
+                setError(null);
+              }}
+            ></input>
+          </div>
 
-        <Link to="/WW vergeten" className="ww-vergeten">
-          Wachtwoord vergeten?
-        </Link>
+          <div className="inlog-bundel full-size">
+            <label htmlFor="Wachtwoord" className={"inlog-label"}>
+              Wachtwoord
+            </label>
+            <input
+              className="input-veld flex-center full-size"
+              type="password"
+              placeholder="Wachtwoord"
+              id="Wachtwoord"
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setErrorStyle(null);
+                setError(null);
+              }}
+            ></input>
+          </div>
 
-        <button className="inlog-button full-size">Login</button>
+          <div className="flex-row">
+            {/* <div>
+              <input type="checkbox" id="onthoudMij"></input>
+              <label htmlFor="onthoudMij">Onthoud mij?</label>
+            </div> */}
+            <Link to="/WW vergeten" className="ww-vergeten">
+              Wachtwoord vergeten?
+            </Link>
+          </div>
 
-        <button
-          className="inlog-button full-size google-button"
-          onClick={() => login()}
-        >
-          <img src={GoogleLogo} alt=""></img>
-          Google Login
-        </button>
+          <p className={errorStyle}>{error}</p>
+          {isLoading ? (
+            <button className="inlog-button">Loading...</button>
+          ) : (
+            <button className="inlog-button" onClick={handleSubmit}>
+              Login
+            </button>
+          )}
+        </form>
 
-        <Link to="/" className="full-size">
-          <button className="inlog-button">Login met Microsoft</button>
-        </Link>
-      </form>
+        <hr className="divider"></hr>
+
+        <div className="right flex-column">
+          <p>Of login met</p>
+          <button
+            className="inlog-button google-button full-size"
+            onClick={() => login()}
+          >
+            <img src={GoogleLogo} alt=""></img>
+            Google Login
+          </button>
+
+          <button
+            className="inlog-button microsoft-button full-size"
+            onClick={() => navigate("/")}
+          >
+            <img src={MicrosoftLogo} alt="" />
+            Microsoft Login
+          </button>
+
+          <p>Nog geen account?</p>
+
+          <button className="inlog-button" onClick={redirectAanmelden}>
+            Registreren
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

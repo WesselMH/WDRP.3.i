@@ -14,9 +14,13 @@ function GeenPagina() {
 
   //na 30 seconde zal de gebruiker sws terug gestuurd worden naar de voor pagina
   useEffect(() => {
-    setTimeout(() => {
+    const terug = setTimeout(() => {
       navigate("/");
     }, 30000);
+
+    return () => {
+      clearTimeout(terug);
+    };
   }, []);
 
   return (
