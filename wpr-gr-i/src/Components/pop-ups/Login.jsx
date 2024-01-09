@@ -47,7 +47,7 @@ function Login({
       .then(
         (response) => {
           setisLoading(true);
-          console.log(response.data.token);
+          // console.log(response.data.token);
           help = response.data.token;
           // return response.data;
           const decodedToken = jwtDecode(response.data.token);
