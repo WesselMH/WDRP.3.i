@@ -38,7 +38,7 @@ function Login({
         wachtwoord,
         username,
         headers: {
-          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Origin": "POST",
           "Content-Type": "application/json",
         },
       })
