@@ -25,7 +25,7 @@ function HomePortaal() {
     }
   }, [authenticated, role]);
 
-  if (authenticated && role.includes("ervaringDeskundige")) {
+  if (authenticated && role.includes("ervaringsDeskundige")) {
     return (
       <>
         <Header Titel={"HomePortaal"} Knoppen={headerButtons}></Header>
@@ -39,11 +39,9 @@ function HomePortaal() {
           </style>
           <div className="HomePortaal-Button-Container">
             <Link to="/opdrachten" className="HomePortaal-Button">
-              {" "}
               Opdrachten
             </Link>
             <Link to="" className="HomePortaal-Button">
-              {" "}
               Afgeronde opdrachten
             </Link>
           </div>
