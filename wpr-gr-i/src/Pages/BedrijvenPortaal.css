@@ -2,43 +2,79 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 100vh;
 
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
-    align-items: flex-start;
-    align-content: stretch;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
-.listOpdracht {
-    padding: 20px;
-    width: 500px;
+.bedrijvenItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 400px;
     height: fit-content;
-    background-color: grey;
+    background-color: #c9c9c970;
     border-radius: 15px;
     margin: 50px;
     overflow: visible;
 }
 
-.listOpdracht h2 {
-    text-align: center;
-}
-
-.listOpdracht a {
+.bedrijvenItem a {
     text-decoration: none;
     color: rgb(0, 0, 0);
 }
 
-.listOpdracht li {
+.bedrijvenItemHeader {
+    width: inherit;
+    height: 100px;
+    background-color: #2B50EC;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    color: #ffffff;
+    text-align: center;
+    padding: 30px;
+}
+
+.bedrijvenOpdracht li {
+    margin-top: 20px;
+    padding: 10px;
+    list-style-type: none;
+}
+
+.bedrijvenOpdracht p {
+    padding: 10px;
+}
+
+.bedrijvenInbox {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 
-    background-color: rgb(84, 84, 84);
-    margin-top: 24px;
-    position: relative;
-    line-height: 20px;
-    border-radius: 15px;
+    width: 300px;
+    height: 80px;
+    background-color: #131B56;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.bedrijvenInbox p {
+    color: #ffffff;
+    font-weight: 200;
+}
+
+.bedrijfPortaalBericht {
+    margin: 10px;
+    width: 300px;
+    display: list-item;
+}
+
+.bedrijfPortaalBerichtOnderwerp {
+    background-color: #2B50EC;
+    color: #ffffff;
+    border-radius: 12px;
     padding: 5px;
+    margin-bottom: 5px;
 }

@@ -1,36 +1,45 @@
 import React from "react";
 import Header from "../Components/Header";
+import BedrijvenOpdracht from "../Components/BedrijvenOpdracht";
+import BedrijvenBerichten from "../Components/BedrijvenBerichten";
+import BedrijvenItem from "../Components/BedrijvenItem";
 import "./BedrijvenPortaal.css";
-import background from "./backgroundWithGradient.png";
+import background from "../achtergrondfoto.jpg";
 import { Link } from "react-router-dom";
 
 const opdracht = [
-  { title: "Opdracht 1", bedrijf: "Mediamarkt", id: 1 },
-  { title: "Opdracht 2", bedrijf: "Microsoft", id: 2 },
-  { title: "Opdracht 3", bedrijf: "Albert Heijn", id: 3 },
-  { title: "Opdracht 4", bedrijf: "Albert Heijn", id: 4 },
-  { title: "Opdracht 5", bedrijf: "Albert Heijn", id: 5 },
-  { title: "Opdracht 6", bedrijf: "Albert Heijn", id: 6 },
-  { title: "Opdracht 7", bedrijf: "Albert Heijn", id: 7 },
-  { title: "Opdracht 8", bedrijf: "Albert Heijn", id: 8 },
-  { title: "Opdracht 9", bedrijf: "Albert Heijn", id: 9 },
-  { title: "Opdracht 10", bedrijf: "Albert Heijn", id: 10 },
+  { title: 'Toegankelijkheid voor Mensen met Beperkingen', bedrijf: 'Accessibility Foundation', beschrijving: "Studie naar Kwaliteit van Leven bij Mensen met Beperkingen: Een diepgaand onderzoek naar de dagelijkse hindernissen en mogelijkheden tot verbetering. Het doel is waardevolle inzichten te vergaren ter bevordering van levenskwaliteit en inclusie voor deze individuen.", datum: "12-12-12", id: 1 },
+  { title: 'Inclusie en Welzijn bij Mensen met Beperkingen', bedrijf: 'Bartiméus', beschrijving: "Onderzoek naar Levenskwaliteit bij Personen met een Beperking: Een analyse van sociale inclusie en dagelijkse uitdagingen, met het doel bij te dragen aan verbeterde maatschappelijke participatie en welzijn.", datum: "12-12-12", id: 2 },
+  { title: 'Toegankelijkheidsbeoordeling 2023', bedrijf: 'Mediamarkt', beschrijving: "Deze enquête is ontworpen om inzicht te krijgen in uw ervaringen met de toegankelijkheid van onze producten/diensten/ruimtes. Neem alstublieft de tijd om de vragen eerlijk en gedetailleerd te beantwoorden. Uw input zal direct bijdragen aan het verbeteren van onze inspanningen op het gebied van inclusiviteit.", datum: "12-12-12", href: "/Opdrachten", id: 3 },
 ];
 
 const listOpdrachten = opdracht.map((opdracht) => (
-  <Link to={opdracht.href}>
-    <li key={opdracht.id}>
-      <strong>{opdracht.title}</strong>
-      <p>{opdracht.bedrijf}</p>
-    </li>
-  </Link>
+  <BedrijvenOpdracht key={opdracht.id} opdracht={opdracht} />
 ));
+
+const berichten = [
+  { onderwerp: "Bericht onderwerp", afzender: "Afzender", id: 1 },
+  { onderwerp: "Vragen betreft onderzoek \"inclusie en welzijn\"", afzender: "Phil Collins", id: 2 }
+];
+
+const listBerichten = berichten.map((berichten) => (
+  <BedrijvenBerichten key={berichten.id} berichten={berichten} />
+));
+
 
 const headerButtons = [
   { Naam: "Profiel updaten", href: "/BedrijvenPortaal/Bijwerken" },
-  { Naam: "Opdracht plaatsen", href: "/BedrijvenProtaal/NieuweOpdracht" },
+  { Naam: "Opdracht plaatsen", href: "/BedrijvenPortaal/NieuweOpdracht" },
   { Naam: "Uitloggen", href: "/" },
 ];
+
+const InboxButton =
+  <Link to={""}>
+    <div className="bedrijvenInbox">
+      <p>Postvak IN: {berichten.length}</p>
+    </div>
+  </Link>
+  ;
 
 function BedrijvenPortaal() {
   return (
@@ -40,10 +49,9 @@ function BedrijvenPortaal() {
         className="bedrijvenportaal"
         style={{ backgroundImage: `url(${background})` }}
       >
-        <ul className="listOpdracht">
-          <h2>Open Opdrachten</h2>
-          {listOpdrachten}
-        </ul>
+        {BedrijvenItem("Open Opdrachten", listOpdrachten)}
+        {BedrijvenItem("Berichten", InboxButton, listBerichten)}
+        {BedrijvenItem("Chat", InboxButton, listBerichten)}
       </div>
     </>
   );
