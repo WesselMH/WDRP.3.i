@@ -1,0 +1,65 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+    height: 120px;
+    background-color: white;
+}
+
+.inside-wrapper {
+    display: flex;
+    height: inherit;
+    width: 380px;
+    align-items: center;
+}
+
+.logo {
+    height: inherit;
+    padding: 20px 30px;
+}
+.Titel{
+    color: #131B56;
+    font-size: 32px;    
+}
+
+.knoppen-wrapper {
+    flex-grow: 1;
+    justify-content: end;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding-right: 50px;
+}
+
+.button-component {
+    text-decoration: none;
+    color: inherit;
+}
+
+.knop{
+    background-color: #131B56;
+    color: white;
+    cursor: pointer;
+    padding: 12px 0px;
+    border-radius: 15px;
+    border: none;
+    font-size: 16px;
+    text-transform: uppercase;
+    width: 220px;
+    text-wrap: wrap;
+    text-align: center;
+}
+
+.knop:hover,
+.knop:focus {
+    background-color: #2B50EC;
+    /* hier moeten we de kleuren voor de hover an focus zetten */
+}
+
+.header-component {
+    text-decoration: none;
+}
+
+.img-wrapper {
+    height: inherit;
+}
