@@ -38,13 +38,14 @@ function Login({
         wachtwoord,
         username,
         headers: {
+          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         },
       })
       .then(
         (response) => {
           setisLoading(true);
-          // console.log(response.data.token);
+          console.log(response.data.token);
           help = response.data.token;
           // return response.data;
           const decodedToken = jwtDecode(response.data.token);
@@ -70,6 +71,7 @@ function Login({
         },
         (error) => {
           //fout response gebruiker
+          console.log(error)
           let errorMassage = JSON.stringify(error.response.data);
           if (errorMassage.includes('"status":400')) {
             errorMassage = JSON.parse(errorMassage).errors;
