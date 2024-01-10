@@ -46,7 +46,6 @@ function Login({
       })
       .then(
         (response) => {
-          setisLoading(true);
           // console.log(response.data.token);
           help = response.data.token;
           // return response.data;
@@ -92,6 +91,7 @@ function Login({
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (username !== null && wachtwoord !== null) {
+      setisLoading(true);
       await loginUser(id, username, gebruikersnaam, wachtwoord);
 
       if (sessionStorage.getItem("role") === "ervaringsDeskundige") {
