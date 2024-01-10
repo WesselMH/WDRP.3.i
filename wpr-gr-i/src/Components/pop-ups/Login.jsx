@@ -32,18 +32,21 @@ function Login({
     // console.log(username, gebruikersnaam);
     await axios
       .post("http://localhost:5155/api/AaaAccount/login", {
-        // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
+      // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
         id,
         gebruikersnaam,
         wachtwoord,
         username,
         headers: {
+          "Access-Control-Allow-Origin": "http://localhost:5155",
+          // "Access-Control-Allow-Origin": "https://wdrp-3-i.vercel.app/",
+          "Access-Control-Allow-Methods": "POST",
+          "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
           "Content-Type": "application/json",
         },
       })
       .then(
         (response) => {
-          setisLoading(true);
           // console.log(response.data.token);
           help = response.data.token;
           // return response.data;
@@ -70,6 +73,7 @@ function Login({
         },
         (error) => {
           //fout response gebruiker
+          console.log(error);
           let errorMassage = JSON.stringify(error.response.data);
           if (errorMassage.includes('"status":400')) {
             errorMassage = JSON.parse(errorMassage).errors;
@@ -88,6 +92,7 @@ function Login({
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (username !== null && wachtwoord !== null) {
+      setisLoading(true);
       await loginUser(id, username, gebruikersnaam, wachtwoord);
 
       if (sessionStorage.getItem("role") === "ervaringsDeskundige") {
@@ -95,7 +100,7 @@ function Login({
       } else if (sessionStorage.getItem("role") === "bedrijf") {
         navigate("/BedrijvenPortaal");
       } else if (sessionStorage.getItem("role") === "beheerder") {
-        navigate("");
+        navigate("/BeheerdersPortaal");
       }
     } else {
       setError("Vul de velden in.");

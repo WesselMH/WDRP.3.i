@@ -112,7 +112,11 @@ function Registreren({ handleOverlayRegistreerClick }) {
 
   useEffect(() => {
     if (progress >= 1) {
-      setTekst("Registreer");
+      if (isLoading) {
+        setTekst("Loading...");
+      } else {
+        setTekst("Registreer");
+      }
     } else {
       setTekst("Ga verder");
     }
@@ -122,46 +126,63 @@ function Registreren({ handleOverlayRegistreerClick }) {
     e.preventDefault();
     console.log("clicked");
 
-    if (progress === 1) {
+    if (progress === 1 && !isLoading) {
+      const Id = 0;
       const gebruiker = inputValues.Voornaam + inputValues.Achternaam;
-      const userName = { userName: gebruiker };
-      const gebruikersNaam = { GebruikersNaam: gebruiker };
-      // console.log(gebruiker, userName, gebruikersNaam);
-      
-      const aanmelder = Object.assign(
-        { id: 0 },
-        userName,
-        gebruikersNaam,
-        inputValues
-      );
-      console.log(aanmelder);
-      // await axios
-      //   .post(
-      //     "http://localhost:5155/api/AaaAccount/ervaringsdeskundige/aanmelden",
 
-      //     // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/ervaringsdeskundige/aanmelden"
-      //     {
-      //       aanmelder,
-      //       headers: {
-      //         accept: "text/plain",
-      //         "Content-Type": "application/json",
-      //       },
-      //     }
-      //   )
-      //   .then(
-      //     (response) => {
-      //       setisLoading(true);
-      //       console.log(response);
-      //       handleOverlayRegistreerClick()
-      //     },
-      //     (error) => {
-      //       console.log(error);
-      //       handleOverlayRegistreerClick()
-      //       return error;
-      //     }
-      //   )
-      //   .finally(() => setisLoading(false));
-      handleOverlayRegistreerClick();
+      const achternaam = inputValues.Achternaam;
+      const wachtwoord = inputValues.Wachtwoord;
+      const userName = gebruiker;
+      const gebruikersNaam = gebruiker;
+      const postcode = inputValues.PostCode;
+      const telefoonnummer = inputValues.TelefoonNummer;
+      const voornaam = inputValues.Voornaam;
+      const EmailAccounts = inputValues.EmailAccounts;
+
+      // console.log(inputValues);
+
+      setisLoading(true);
+
+      await axios
+        .post(
+          "http://localhost:5155/api/AaaAccount/ervaringsdeskundige/aanmelden",
+
+          // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/ervaringsdeskundige/aanmelden"
+          {
+            Id,
+            gebruiker,
+            userName,
+            achternaam,
+            wachtwoord,
+            voornaam,
+            postcode,
+            telefoonnummer,
+            gebruikersNaam,
+            EmailAccounts,
+            headers: {
+              "Access-Control-Allow-Origin": "http://localhost:5155",
+              // "Access-Control-Allow-Origin": "https://wdrp-3-i.vercel.app/",
+              "Access-Control-Allow-Methods": "POST",
+              "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then(
+          (response) => {
+            console.log(response);
+            handleOverlayRegistreerClick();
+          },
+          (error) => {
+            console.log(error);
+            // handleOverlayRegistreerClick();
+            return error;
+          }
+        )
+        .finally(() => {
+          setisLoading(false);
+          // handleOverlayRegistreerClick();
+        });
     }
 
     //registratie logica

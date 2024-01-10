@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, useSearchParams } from "react-router-dom";
 
 import VoorPagina from "./Pages/VoorPagina";
-import BeheerHome from './Pages/BeheerHome'
-import BeheerBedrijven from './Pages/Beheerdersportaal/BeheerBedrijven'
-import BeheerDeskundigen from './Pages/Beheerdersportaal/BeheerDeskundigen'
-import BeheeBeheerOpdrachtenrHome from './Pages/Beheerdersportaal/BeheerOpdrachten'
+import BeheerHome from "./Pages/BeheerHome";
+import BeheerBedrijven from "./Pages/Beheerdersportaal/BeheerBedrijven";
+import BeheerDeskundigen from "./Pages/Beheerdersportaal/BeheerDeskundigen";
+import BeheeBeheerOpdrachtenrHome from "./Pages/Beheerdersportaal/BeheerOpdrachten";
 import BedrijvenPortaal from "./Pages/BedrijvenPortaal";
 import OpdrachtenPagina from "./Pages/OpdrachtenPagina";
 import GeenPagina from "./Pages/GeenPagina";
@@ -35,14 +35,23 @@ function App() {
   return (
     <Routes>
       <Route index element={<VoorPagina />} />
-      <Route path='/BeheerdersPortaal' element={<BeheerHome />} />
-      <Route path='/BeheerdersPortaal/Bedrijven' element={<BeheerBedrijven />} />
-      <Route path='/BeheerdersPortaal/Deskundigen' element={<BeheerDeskundigen />} />
-      <Route path='/BeheerdersPortaal/Opdrachten' element={<BeheeBeheerOpdrachtenrHome />} />
+      <Route path="/BeheerdersPortaal" element={<BeheerHome />} />
+      <Route
+        path="/BeheerdersPortaal/Bedrijven"
+        element={<BeheerBedrijven />}
+      />
+      <Route
+        path="/BeheerdersPortaal/Deskundigen"
+        element={<BeheerDeskundigen />}
+      />
+      <Route
+        path="/BeheerdersPortaal/Opdrachten"
+        element={<BeheeBeheerOpdrachtenrHome />}
+      />
       <Route path="/BedrijvenPortaal" element={<BedrijvenPortaal />} />
       <Route path="/Opdrachten" element={<OpdrachtenPagina />} />
       {/* <Route path="/Login" element={<Login setGoogle={setGoogle} />} /> */}
-      {/* <Route path="/Registreren" element={<Registreren />} /> */}
+      <Route path="/Registreren" element={<Registreren />} />
       <Route path="/HomePortaal/Bijwerken" element={<Bijwerken />} />
       <Route
         path="/BedrijvenPortaal/Bijwerken"

@@ -52,7 +52,7 @@ function OpdrachtenBox() {
 }
 
 const buttons = [
-  { Naam: "Beschikbare Opdrachten", href: "/" },
+  { Naam: "Beschikbare Opdrachten", href: "/iest" },
   { Naam: "Uitloggen", href: "/" },
 ];
 
