@@ -31,14 +31,15 @@ function Login({
   async function loginUser(id, username, gebruikersnaam, wachtwoord) {
     // console.log(username, gebruikersnaam);
     await axios
-      // .post("http://localhost:5155/api/AaaAccount/login", {
-      .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
+      .post("http://localhost:5155/api/AaaAccount/login", {
+      // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
         id,
         gebruikersnaam,
         wachtwoord,
         username,
         headers: {
-          "Access-Control-Allow-Origin": "https://wdrp-3-i.vercel.app/",
+          "Access-Control-Allow-Origin": "http://localhost:5155",
+          // "Access-Control-Allow-Origin": "https://wdrp-3-i.vercel.app/",
           "Access-Control-Allow-Methods": "POST",
           "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
           "Content-Type": "application/json",
