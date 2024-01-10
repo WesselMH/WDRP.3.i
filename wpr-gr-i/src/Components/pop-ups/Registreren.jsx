@@ -139,7 +139,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
       const voornaam = inputValues.Voornaam;
       const EmailAccounts = inputValues.EmailAccounts;
 
-      console.log(inputValues);
+      // console.log(inputValues);
 
       setisLoading(true);
 
