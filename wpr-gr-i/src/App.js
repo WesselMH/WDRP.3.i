@@ -51,7 +51,7 @@ function App() {
       <Route path="/BedrijvenPortaal" element={<BedrijvenPortaal />} />
       <Route path="/Opdrachten" element={<OpdrachtenPagina />} />
       {/* <Route path="/Login" element={<Login setGoogle={setGoogle} />} /> */}
-      {/* <Route path="/Registreren" element={<Registreren />} /> */}
+      <Route path="/Registreren" element={<Registreren />} />
       <Route path="/HomePortaal/Bijwerken" element={<Bijwerken />} />
       <Route
         path="/BedrijvenPortaal/Bijwerken"
