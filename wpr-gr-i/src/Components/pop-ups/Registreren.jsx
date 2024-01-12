@@ -120,7 +120,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
     } else {
       setTekst("Ga verder");
     }
-  }, [progress]);
+  }, [isLoading, progress]);
 
   async function handleRegistratie(e) {
     e.preventDefault();
@@ -174,9 +174,8 @@ function Registreren({ handleOverlayRegistreerClick }) {
             handleOverlayRegistreerClick();
           },
           (error) => {
-            console.log(error);
+            console.log(error.response.data.errors);
             // handleOverlayRegistreerClick();
-            return error;
           }
         )
         .finally(() => {
@@ -202,12 +201,6 @@ function Registreren({ handleOverlayRegistreerClick }) {
     setTeller(Math.max(teller - 1, 0));
     // console.log(progress);
   };
-
-  const beperkingen = [
-    { index: 11, titel: "bp 1", name: "Hallo2" },
-    { index: 12, titel: "bp 2", name: "Hallo3" },
-    { index: 13, titel: "bp 3", name: "Hallo4" },
-  ];
   const [multipleValuesBeperkingen, setMultipleValuesBeperkingen] = useState(
     []
   );
@@ -216,11 +209,6 @@ function Registreren({ handleOverlayRegistreerClick }) {
     // console.log(multipleValuesBeperkingen);
   };
 
-  const hulpmiddelen = [
-    { index: 21, titel: "hm 1", name: "hallow" },
-    { index: 22, titel: "hm 2", name: "halloe" },
-    { index: 23, titel: "hm 3", name: "hallor" },
-  ];
   const [multipleValuesHulpmiddelen, setMultipleValuesHulpmiddelen] = useState(
     []
   );
@@ -229,11 +217,6 @@ function Registreren({ handleOverlayRegistreerClick }) {
     // console.log(multipleValuesHulpmiddelen);
   };
 
-  const bereikOpties = [
-    { index: 31, titel: "bo 1", name: "hallioq" },
-    { index: 32, titel: "bo 2", name: "halliow" },
-    { index: 33, titel: "bo 3", name: "hallior" },
-  ];
   const [multipleValuesBereik, setMultipleValuesBereik] = useState([]);
   const handleMultipleValuesChangeBereik = (newValues) => {
     setMultipleValuesBereik(newValues);
@@ -255,17 +238,14 @@ function Registreren({ handleOverlayRegistreerClick }) {
         {teller === 0 && (
           <div className="flex-row selecter-wrapper">
             <BeperkingenRegistreren
-              options={beperkingen}
               selectedValues={multipleValuesBeperkingen}
               onChange={handleMultipleValuesChangeBeperkingen}
             />
             <HulpmiddelenRegistreren
-              options={hulpmiddelen}
               selectedValues={multipleValuesHulpmiddelen}
               onChange={handleMultipleValuesChangeHulpmiddelen}
             />
             <BereikRegistratie
-              options={bereikOpties}
               selectedValues={multipleValuesBereik}
               onChange={handleMultipleValuesChangeBereik}
             />

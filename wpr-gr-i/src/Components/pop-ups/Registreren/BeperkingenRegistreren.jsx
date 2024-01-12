@@ -1,12 +1,35 @@
+import axios from "axios";
 import "./../Pop-up.css";
+import { useEffect, useState } from "react";
 
-function BeperkingenRegistreren({ options, selectedValues, onChange }) {
+function BeperkingenRegistreren({ selectedValues, onChange }) {
+  const [options, setOptions] = useState([]);
+
+  useEffect(() => {
+    haalDataOp();
+  }, []);
+
+  async function haalDataOp() {
+    await axios
+      .get("http://localhost:5155/api/BeperkingOptie")
+      .then(
+        (response) => {
+          setOptions(response.data);
+          // console.log(response.data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+      .finally(() => {});
+  }
+
   const handleCheckboxChange = (value) => {
     const updatedValues = selectedValues.includes(value)
       ? selectedValues.filter((v) => v !== value)
       : [...selectedValues, value];
     onChange(updatedValues);
-    //   console.log(updatedValues);
+    // console.log(updatedValues);
   };
 
   return (
@@ -17,15 +40,15 @@ function BeperkingenRegistreren({ options, selectedValues, onChange }) {
         <div>
           {options.map((item) => {
             return (
-              <div key={item.index}>
+              <div key={item.id}>
                 <input
                   type="checkbox"
-                  id={item.index}
-                  checked={selectedValues.includes(item.name)}
-                  onChange={() => handleCheckboxChange(item.name)}
-                  name={item.name}
+                  id={item.beperking}
+                  checked={selectedValues.includes(item.beperking)}
+                  onChange={() => handleCheckboxChange(item.beperking)}
+                  name={item.beperking}
                 ></input>
-                <label htmlFor={item.index}>{item.titel}</label>
+                <label htmlFor={item.beperking}>{item.beperking}</label>
               </div>
             );
           })}

@@ -1,6 +1,28 @@
+import { useEffect, useState } from "react";
 import "./../Pop-up.css";
+import axios from "axios";
 
-function HulpmiddelenRegistreren({ options, selectedValues, onChange }) {
+function HulpmiddelenRegistreren({  selectedValues, onChange }) {
+  const [options, setOptions] = useState([]);
+
+  useEffect(() => {
+    haalDataOp();
+  }, []);
+
+  async function haalDataOp() {
+    await axios
+      .get("http://localhost:5155/api/Hulpmiddel")
+      .then(
+        (response) => {
+          setOptions(response.data);
+          // console.log(response.data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+      .finally(() => {});
+  }
   const handleCheckboxChange = (value) => {
     const updatedValues = selectedValues.includes(value)
       ? selectedValues.filter((v) => v !== value)
@@ -16,6 +38,7 @@ function HulpmiddelenRegistreren({ options, selectedValues, onChange }) {
       <div className="selecter-lijst">
         <h3>Hulpmiddelen</h3>
         <div>
+          <div className="submit-hulpmiddel"></div>
           {options.map((item) => {
             return (
               <div key={item.index}>
