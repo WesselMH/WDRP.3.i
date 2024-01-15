@@ -42,7 +42,8 @@ function Login({
     // !TODO
     // await axios
     //   .put("", {
-    //     // .post("AaaAccount/login", {
+    //     .post("http://localhost:5155/api/AaaAccount/login", {
+    //     // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
     //     id,
     //     wachtwoord,
     //   })
@@ -57,8 +58,8 @@ function Login({
 
     // console.log(username, gebruikersnaam);
     await axios
-      .post("AaaAccount/login", {
-        // .post("AaaAccount/login", {
+      .post("http://localhost:5155/api/AaaAccount/login", {
+        // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
         id,
         gebruikersnaam,
         wachtwoord,
@@ -84,8 +85,8 @@ function Login({
   async function loginUser(id, username, gebruikersnaam, wachtwoord) {
     // console.log(username, gebruikersnaam);
     await axios
-      .post("AaaAccount/login", {
-        // .post("AaaAccount/login", {
+      .post("http://localhost:5155/api/AaaAccount/login", {
+        // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
         id,
         gebruikersnaam,
         wachtwoord,

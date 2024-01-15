@@ -9,15 +9,6 @@ import axios from "axios";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-const localHost = "http://localhost:5155/api/";
-const productionHost = "https://wpr-i-backend.azurewebsites.net/api/"
-
-//localhost
-axios.defaults.baseURL = localHost;
-
-//productie
-// axios.defaults.baseURL = productionHost;
-
 axios.defaults.headers.common["headers"] = {
   "Access-Control-Allow-Origin": localHost,
   // "Access-Control-Allow-Origin": productionHost,

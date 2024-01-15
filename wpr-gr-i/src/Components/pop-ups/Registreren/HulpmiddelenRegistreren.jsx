@@ -11,7 +11,8 @@ function HulpmiddelenRegistreren({ selectedValues, onChange }) {
 
   async function haalDataOp() {
     await axios
-      .get("Hulpmiddelen")
+      .get("http://localhost:5155/api/Hulpmiddelen")
+      .get("https://wpr-i-backend.azurewebsites.net/api/Hulpmiddelen")
       .then(
         (response) => {
           setOptions(response.data);

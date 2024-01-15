@@ -153,9 +153,9 @@ function Registreren({ handleOverlayRegistreerClick }) {
 
       await axios
         .post(
-          "AaaAccount/ervaringsdeskundige/aanmelden",
+          "http://localhost:5155/api/AaaAccount/ervaringsdeskundige/aanmelden",
 
-          // "AaaAccount/ervaringsdeskundige/aanmelden"
+          // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/ervaringsdeskundige/aanmelden"
           {
             // ...inputValues,
             // Voornaam:

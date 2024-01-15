@@ -117,9 +117,9 @@ function GoogleRegistreren({
 
       await axios
         .post(
-          "AaaAccount/google/aanmelden",
+          "http://localhost:5155/api/AaaAccount/google/aanmelden",
 
-          // "AaaAccount/ervaringsdeskundige/aanmelden"
+          // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/ervaringsdeskundige/aanmelden"
           {
             // ...inputValues,
             // Voornaam:
@@ -166,8 +166,8 @@ function GoogleRegistreren({
   async function loginGoogleUser() {
     // console.log(username, gebruikersnaam);
     await axios
-      .post("AaaAccount/login", {
-        // .post("AaaAccount/login", {
+      .post("http://localhost:5155/api/AaaAccount/login", {
+        // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
         Id,
         gebruikersNaam,
         wachtwoord,

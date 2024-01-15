@@ -8,7 +8,9 @@ const Knoppen = [
 ];
 
 function ApiRequest({}) {
-  fetch("Account").then((Response) => Response.json());
+  fetch("https://wpr-i-backend.azurewebsites.net/api/Account").then(
+    (Response) => Response.json()
+  );
 }
 
 const opdracht = [
