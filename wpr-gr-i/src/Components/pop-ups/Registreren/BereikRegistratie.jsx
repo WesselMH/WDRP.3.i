@@ -1,4 +1,29 @@
-function BereikRegistratie({ options, selectedValues, onChange }) {
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+function BereikRegistratie({ selectedValues, onChange }) {
+  const [options, setOptions] = useState([]);
+
+  useEffect(() => {
+    haalDataOp();
+  }, []);
+
+  async function haalDataOp() {
+    await axios
+      .get("http://localhost:5155/api/BenaderOptie")
+      // .get("https://wpr-i-backend.azurewebsites.net/api/BenaderOptie")
+      .then(
+        (response) => {
+          setOptions(response.data);
+          // console.log(response.data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+      .finally(() => {});
+  }
+
   const handleCheckboxChange = (value) => {
     const updatedValues = selectedValues.includes(value)
       ? selectedValues.filter((v) => v !== value)
@@ -15,15 +40,15 @@ function BereikRegistratie({ options, selectedValues, onChange }) {
         <div>
           {options.map((item) => {
             return (
-              <div key={item.index}>
+              <div key={item.id}>
                 <input
                   type="checkbox"
-                  id={item.index}
-                  checked={selectedValues.includes(item.name)}
-                  onChange={() => handleCheckboxChange(item.name)}
-                  name={item.name}
+                  id={item.id}
+                  checked={selectedValues.includes(item.type)}
+                  onChange={() => handleCheckboxChange(item.type)}
+                  name={item.type}
                 ></input>
-                <label htmlFor={item.index}>{item.titel}</label>
+                <label htmlFor={item.id}>{item.type}</label>
               </div>
             );
           })}

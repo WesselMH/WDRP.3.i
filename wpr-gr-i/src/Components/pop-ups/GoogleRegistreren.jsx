@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import HulpmiddelenRegistreren from "./Registreren/HulpmiddelenRegistreren";
 import BereikRegistratie from "./Registreren/BereikRegistratie";
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 function InvoerVelden({ knoppen, handleInputChange, inputValues }) {
   return (
@@ -16,7 +18,6 @@ function InvoerVelden({ knoppen, handleInputChange, inputValues }) {
             label={knop.label}
             className="input-veld"
             type={knop.type}
-            autoComplete={knop.autoComplete}
             placeholder={knop.placeholder}
             id={knop.id}
             onChange={(value) => handleInputChange(knop.id, value)}
@@ -28,53 +29,12 @@ function InvoerVelden({ knoppen, handleInputChange, inputValues }) {
   );
 }
 
-function Registreren({ handleOverlayRegistreerClick }) {
+function GoogleRegistreren({
+  handleOverlayGoogleRegistreerClick,
+  googleUser,
+  googleToken,
+}) {
   const knoppen = [
-    {
-      label: "Voornaam",
-      type: "text",
-      placeholder: "Vul hier je voornaam in.",
-      id: "Voornaam",
-      index: 0,
-    },
-    {
-      label: "Achternaam",
-      type: "text",
-      placeholder: "Vul hier je achternaam in.",
-      id: "Achternaam",
-      index: 1,
-    },
-    {
-      label: "Wachtwoord",
-      type: "password",
-      autoComplete: "new-password",
-      placeholder: "Vul hier je wachtwoord in.",
-      id: "Wachtwoord",
-      index: 2,
-    },
-    {
-      label: "Wachtwoord bevestigen",
-      type: "password",
-      autoComplete: "new-password",
-      placeholder: "Bevestig je wachtwoord.",
-      id: "bevestigWachtwoord",
-      index: 3,
-    },
-    {
-      label: "Email",
-      type: "email",
-      autoComplete: "username",
-      placeholder: "Vul hier je email in.",
-      id: "EmailAccount",
-      index: 4,
-    },
-    {
-      label: "Bevestig email",
-      type: "email",
-      placeholder: "Bevestig je email.",
-      id: "bevestigEmail",
-      index: 5,
-    },
     {
       label: "Geboortedatum",
       type: "date",
@@ -99,6 +59,26 @@ function Registreren({ handleOverlayRegistreerClick }) {
   ];
 
   const [inputValues, setInputValues] = useState({});
+  const navigate = useNavigate();
+
+  const googleUserGegevens = googleUser;
+  const googleUserToken = googleToken;
+
+  const Id = "";
+  const gebruiker =
+    googleUserToken.given_name + " " + googleUserToken.family_name;
+  const wachtwoord = googleUserToken;
+  const EmailAccount = googleUserGegevens.email;
+  // console.log(EmailAccount)
+  const userName = EmailAccount;
+  const gebruikersNaam =
+    googleUserGegevens.given_name + " " + googleUserGegevens.family_name;
+  const geboorteDatum = inputValues.geboorteDatum;
+
+  const postcode = inputValues.PostCode;
+  const telefoonnummer = inputValues.TelefoonNummer;
+  const voogd = null;
+  const hulpmiddelen = [];
 
   const handleInputChange = (id, value) => {
     setInputValues((prevValues) => ({
@@ -128,61 +108,51 @@ function Registreren({ handleOverlayRegistreerClick }) {
 
   async function handleRegistratie(e) {
     e.preventDefault();
-    console.log("clicked");
+    // console.log("clicked");
 
     if (progress === 1 && !isLoading) {
-      const Id = "";
-      const gebruiker = inputValues.Voornaam + " " + inputValues.Achternaam;
-
-      const achternaam = inputValues.Achternaam;
-      const wachtwoord = inputValues.Wachtwoord;
-
-      const EmailAccount = inputValues.EmailAccount;
-      const userName = EmailAccount;
-      const gebruikersNaam = gebruiker;
-      const postcode = inputValues.PostCode;
-      const telefoonnummer = inputValues.TelefoonNummer;
-      const voornaam = inputValues.Voornaam;
-      const geboorteDatum = inputValues.geboorteDatum;
-      const voogd = null;
-      const hulpmiddelen = [];
-
       // console.log(inputValues);
 
       setisLoading(true);
 
       await axios
         .post(
-          "http://localhost:5155/api/AaaAccount/ervaringsdeskundige/aanmelden",
+          "http://localhost:5155/api/AaaAccount/google/aanmelden",
 
           // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/ervaringsdeskundige/aanmelden"
           {
             // ...inputValues,
             // Voornaam:
-
             Id,
-            gebruiker,
-            userName,
-            achternaam,
-            wachtwoord,
-            voornaam,
-            postcode,
-            telefoonnummer,
             gebruikersNaam,
-            EmailAccount,
-            geboorteDatum,
-            voogd,
-            hulpmiddelen,
+            emailGoogle: googleUserGegevens.email,
+            sub: googleUserGegevens.sub,
+            ervaringsDeskundige: {
+              Id,
+              gebruiker,
+              userName: googleUserGegevens.email,
+              achternaam: googleUserGegevens.family_name,
+              wachtwoord,
+              voornaam: googleUserGegevens.given_name,
+              postcode,
+              telefoonnummer,
+              gebruikersNaam,
+              EmailAccount,
+              geboorteDatum,
+              voogd,
+              hulpmiddelen,
+            },
           }
         )
         .then(
           (response) => {
-            console.log(response);
-            handleOverlayRegistreerClick();
+            // console.log(response);
+            loginGoogleUser();
+            handleOverlayGoogleRegistreerClick();
           },
           (error) => {
-            console.log(error.response.data);
-            // console.log(error.response.data.errors);
+            // console.log(error);
+            console.log(error.response.data.errors);
           }
         )
         .finally(() => {
@@ -191,6 +161,36 @@ function Registreren({ handleOverlayRegistreerClick }) {
     }
 
     //registratie logica
+  }
+
+  async function loginGoogleUser() {
+    // console.log(username, gebruikersnaam);
+    await axios
+      .post("http://localhost:5155/api/AaaAccount/login", {
+        // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
+        Id,
+        gebruikersNaam,
+        wachtwoord,
+        userName,
+      })
+      .then(
+        (response) => {
+          // console.log(response.data.token);
+          // console.log(response);
+
+          const token = response.data.token;
+
+          sessionStorage.setItem("token", token);
+          sessionStorage.setItem("exp", jwtDecode(token)["exp"] * 1000);
+          navigate("/HomePortaal");
+        },
+        (error) => {
+          //fout response gebruiker
+          console.log(error);
+          handleOverlayGoogleRegistreerClick();
+        }
+      )
+      .finally(() => setisLoading(false));
   }
 
   const gaVerder = () => {
@@ -230,10 +230,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
 
   return (
     <div className="pop-up">
-      <button className="exit-button" onClick={handleOverlayRegistreerClick}>
-        x
-      </button>
-      <h1 className="Titel">Registratie</h1>
+      <h1 className="Titel">Google registratie</h1>
 
       <form className="registreer-wrapper" onSubmit={dontSubmit}>
         {teller === 0 && (
@@ -292,4 +289,4 @@ function Registreren({ handleOverlayRegistreerClick }) {
   );
 }
 
-export default Registreren;
+export default GoogleRegistreren;

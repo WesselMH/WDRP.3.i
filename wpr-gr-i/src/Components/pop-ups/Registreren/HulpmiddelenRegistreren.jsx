@@ -1,11 +1,33 @@
+import { useEffect, useState } from "react";
 import "./../Pop-up.css";
+import axios from "axios";
 
-function HulpmiddelenRegistreren({ options, selectedValues, onChange }) {
+function HulpmiddelenRegistreren({ selectedValues, onChange }) {
+  const [options, setOptions] = useState([]);
+
+  useEffect(() => {
+    haalDataOp();
+  }, []);
+
+  async function haalDataOp() {
+    await axios
+      .get("http://localhost:5155/api/Hulpmiddelen")
+      // .get("https://wpr-i-backend.azurewebsites.net/api/Hulpmiddelen")
+      .then(
+        (response) => {
+          setOptions(response.data);
+          // console.log(response.data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+      .finally(() => {});
+  }
   const handleCheckboxChange = (value) => {
     const updatedValues = selectedValues.includes(value)
       ? selectedValues.filter((v) => v !== value)
-      : ([...selectedValues, 
-         value]);
+      : [...selectedValues, value];
     onChange(updatedValues);
     //   console.log(updatedValues);
   };
@@ -16,17 +38,18 @@ function HulpmiddelenRegistreren({ options, selectedValues, onChange }) {
       <div className="selecter-lijst">
         <h3>Hulpmiddelen</h3>
         <div>
+          <div className="submit-hulpmiddel"></div>
           {options.map((item) => {
             return (
-              <div key={item.index}>
+              <div key={item.id}>
                 <input
                   type="checkbox"
-                  id={item.index}
-                  checked={selectedValues.includes(item.name)}
-                  onChange={() => handleCheckboxChange(item.name)}
-                  name={item.name}
+                  id={item.id}
+                  checked={selectedValues.includes(item.middel)}
+                  onChange={() => handleCheckboxChange(item.middel)}
+                  name={item.middel}
                 ></input>
-                <label htmlFor={item.index}>{item.titel}</label>
+                <label htmlFor={item.id}>{item.middel}</label>
               </div>
             );
           })}
