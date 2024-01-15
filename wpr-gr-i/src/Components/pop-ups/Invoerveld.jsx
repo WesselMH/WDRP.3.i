@@ -5,6 +5,7 @@ function InvoerVeld({
   label,
   className,
   type,
+  autoComplete,
   placeholder,
   id,
   onChange,
@@ -26,6 +27,7 @@ function InvoerVeld({
         <textarea
           className={className}
           type={type}
+          autoComplete={autoComplete}
           id={id}
           placeholder={placeholder}
           value={inputValue}
@@ -35,6 +37,7 @@ function InvoerVeld({
         <input
           className={className}
           type={type}
+          autoComplete={autoComplete}
           id={id}
           placeholder={placeholder}
           value={inputValue}

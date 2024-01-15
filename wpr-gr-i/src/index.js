@@ -5,8 +5,27 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import axios from "axios";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+const localHost = "http://localhost:5155/api/";
+const productionHost = "https://wpr-i-backend.azurewebsites.net/api/"
+
+//localhost
+axios.defaults.baseURL = localHost;
+
+//productie
+// axios.defaults.baseURL = productionHost;
+
+axios.defaults.headers.common["headers"] = {
+  "Access-Control-Allow-Origin": localHost,
+  // "Access-Control-Allow-Origin": productionHost,
+  "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
+  "Content-Type": "application/json",
+};
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>

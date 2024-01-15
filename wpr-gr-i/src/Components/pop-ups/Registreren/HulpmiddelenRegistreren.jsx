@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./../Pop-up.css";
 import axios from "axios";
 
-function HulpmiddelenRegistreren({  selectedValues, onChange }) {
+function HulpmiddelenRegistreren({ selectedValues, onChange }) {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ function HulpmiddelenRegistreren({  selectedValues, onChange }) {
 
   async function haalDataOp() {
     await axios
-      .get("http://localhost:5155/api/Hulpmiddel")
+      .get("Hulpmiddelen")
       .then(
         (response) => {
           setOptions(response.data);
@@ -26,8 +26,7 @@ function HulpmiddelenRegistreren({  selectedValues, onChange }) {
   const handleCheckboxChange = (value) => {
     const updatedValues = selectedValues.includes(value)
       ? selectedValues.filter((v) => v !== value)
-      : ([...selectedValues, 
-         value]);
+      : [...selectedValues, value];
     onChange(updatedValues);
     //   console.log(updatedValues);
   };
@@ -41,15 +40,15 @@ function HulpmiddelenRegistreren({  selectedValues, onChange }) {
           <div className="submit-hulpmiddel"></div>
           {options.map((item) => {
             return (
-              <div key={item.index}>
+              <div key={item.id}>
                 <input
                   type="checkbox"
-                  id={item.index}
-                  checked={selectedValues.includes(item.name)}
-                  onChange={() => handleCheckboxChange(item.name)}
-                  name={item.name}
+                  id={item.id}
+                  checked={selectedValues.includes(item.middel)}
+                  onChange={() => handleCheckboxChange(item.middel)}
+                  name={item.middel}
                 ></input>
-                <label htmlFor={item.index}>{item.titel}</label>
+                <label htmlFor={item.id}>{item.middel}</label>
               </div>
             );
           })}

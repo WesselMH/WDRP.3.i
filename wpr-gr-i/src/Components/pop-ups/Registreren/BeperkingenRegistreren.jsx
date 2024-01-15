@@ -11,7 +11,7 @@ function BeperkingenRegistreren({ selectedValues, onChange }) {
 
   async function haalDataOp() {
     await axios
-      .get("http://localhost:5155/api/BeperkingOptie")
+      .get("BeperkingOptie")
       .then(
         (response) => {
           setOptions(response.data);
