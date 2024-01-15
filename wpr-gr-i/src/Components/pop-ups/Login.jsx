@@ -41,9 +41,9 @@ function Login({
     //verander eerst nog het ww naar de nieuwe token
     // !TODO
     // await axios
-    //   .put("", {
-    //     .post("http://localhost:5155/api/AaaAccount/login", {
-    //     // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
+    //   .put("http://localhost:5155/api/AaaAccountController/google/wachtwoordupdate", {
+    //   // .put("https://wpr-i-backend.azurewebsites.net/AaaAccountController/google/wachtwoordupdate", {
+    //
     //     id,
     //     wachtwoord,
     //   })
@@ -64,6 +64,13 @@ function Login({
         gebruikersnaam,
         wachtwoord,
         username,
+        headers: {
+          "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+          // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
+          "Content-Type": "application/json",
+        },
       })
       .then(
         (response) => {
@@ -91,6 +98,13 @@ function Login({
         gebruikersnaam,
         wachtwoord,
         username,
+        headers: {
+          "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+          // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
+          "Content-Type": "application/json",
+        },
       })
       .then(
         (response) => {

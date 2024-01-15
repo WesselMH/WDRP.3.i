@@ -118,7 +118,6 @@ function GoogleRegistreren({
       await axios
         .post(
           "http://localhost:5155/api/AaaAccount/google/aanmelden",
-
           // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/ervaringsdeskundige/aanmelden"
           {
             // ...inputValues,
@@ -142,6 +141,13 @@ function GoogleRegistreren({
               voogd,
               hulpmiddelen,
             },
+            headers: {
+              "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+              // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+              "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+              "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
+              "Content-Type": "application/json",
+            }
           }
         )
         .then(

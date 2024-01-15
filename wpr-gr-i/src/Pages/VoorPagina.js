@@ -82,10 +82,11 @@ function VoorPagina() {
           <Login
             handleOverlayLoginClick={handleOverlayLoginClick}
             handleOverlayRegistreerClick={handleOverlayRegistreerClick}
-            handleOverlayGoogleRegistreerClick={handleOverlayGoogleRegistreerClick}
+            handleOverlayGoogleRegistreerClick={
+              handleOverlayGoogleRegistreerClick
+            }
             setGoogleUser={setGoogleUser}
             setGoogleToken={setGoogleToken}
-
           />
         </div>
       )}
@@ -99,7 +100,9 @@ function VoorPagina() {
       {registreerGoogleOverlay && (
         <div className="overlay">
           <GoogleRegistreren
-            handleOverlayGoogleRegistreerClick={handleOverlayGoogleRegistreerClick}
+            handleOverlayGoogleRegistreerClick={
+              handleOverlayGoogleRegistreerClick
+            }
             googleUser={googleUser}
             googleToken={googleToken}
           />

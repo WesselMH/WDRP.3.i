@@ -173,6 +173,14 @@ function Registreren({ handleOverlayRegistreerClick }) {
             geboorteDatum,
             voogd,
             hulpmiddelen,
+            headers: {
+              "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+              // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+              "Access-Control-Allow-Methods":
+                "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+              "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
+              "Content-Type": "application/json",
+            },
           }
         )
         .then(
