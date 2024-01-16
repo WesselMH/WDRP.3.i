@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function InvoerVeld({
   inputType,
@@ -9,8 +9,14 @@ function InvoerVeld({
   placeholder,
   id,
   onChange,
+  value
 }) {
   const [inputValue, setInputValue] = useState("");
+  
+  useEffect(() => {
+    // Update inputValue when the value prop changes (for controlled components)
+    setInputValue(value || "");
+  }, [value]);
 
   const handleInputChange = (event) => {
     const value = event.target.value;

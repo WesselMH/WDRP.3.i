@@ -40,21 +40,31 @@ function Login({
   async function loginGoogleUser(id, username, gebruikersnaam, wachtwoord) {
     //verander eerst nog het ww naar de nieuwe token
     // !TODO
-    // await axios
-    //   .put("http://localhost:5155/api/AaaAccountController/google/wachtwoordupdate", {
-    //   // .put("https://wpr-i-backend.azurewebsites.net/AaaAccountController/google/wachtwoordupdate", {
-    //
-    //     id,
-    //     wachtwoord,
-    //   })
-    //   .then(
-    //     (response) => {
-    //       console.log(response);
-    //     },
-    //     (error) => {
-    //       console.log(error);
-    //     }
-    //   );
+    // console.log(wachtwoord);
+    await axios
+      .put(
+        `http://localhost:5155/api/AaaAccount/google/wachtwoordupdate/${username}`,
+
+        // .put("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/google/wachtwoordupdate/" + {username}, {
+        '"' + wachtwoord + '"',
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+            // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+            "Access-Control-Allow-Methods": "PUT",
+            "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
 
     // console.log(username, gebruikersnaam);
     await axios
