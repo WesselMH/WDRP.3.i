@@ -66,40 +66,43 @@ function Login({
         }
       );
 
-    // console.log(username, gebruikersnaam);
-    await axios
-      .post("http://localhost:5155/api/AaaAccount/login", {
-        // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
-        id,
-        gebruikersnaam,
-        wachtwoord,
-        username,
-        headers: {
-          "Access-Control-Allow-Origin": "http://localhost:5155/api/",
-          // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
-          "Content-Type": "application/json",
-        },
-      })
-      .then(
-        (response) => {
-          // console.log(response.data.token);
-          const token = response.data.token;
+    setTimeout(async () => {
+      await axios
+        .post("http://localhost:5155/api/AaaAccount/login", {
+          // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
+          id,
+          gebruikersnaam,
+          wachtwoord,
+          username,
+          headers: {
+            "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+            // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+            "Access-Control-Allow-Methods": "POST",
+            "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
+            "Content-Type": "application/json",
+          },
+        })
+        .then(
+          (response) => {
+            // console.log(response.data.token);
+            const token = response.data.token;
 
-          sessionStorage.setItem("token", token);
-          sessionStorage.setItem("exp", jwtDecode(token)["exp"] * 1000);
-        },
-        (error) => {
-          //fout response gebruiker
-          console.log(error);
-          handleOverlayLoginClick();
-          handleOverlayGoogleRegistreerClick();
-        }
-      )
-      .finally(() => setisLoading(false));
+            sessionStorage.setItem("token", token);
+            sessionStorage.setItem("exp", jwtDecode(token)["exp"] * 1000);
+          },
+          (error) => {
+            //fout response gebruiker
+            console.log(error);
+            handleOverlayLoginClick();
+            handleOverlayGoogleRegistreerClick();
+          }
+        )
+        .finally(() => setisLoading(false));
+    }, 5000);
+
+    // console.log(username, gebruikersnaam);
   }
-  async function loginUser(id, username, gebruikersnaam, wachtwoord) {
+  async function loginUser() {
     // console.log(username, gebruikersnaam);
     await axios
       .post("http://localhost:5155/api/AaaAccount/login", {
@@ -144,7 +147,7 @@ function Login({
     e.preventDefault();
     if (username !== null && wachtwoord !== null) {
       setisLoading(true);
-      await loginUser(id, username, gebruikersnaam, wachtwoord);
+      await loginUser();
 
       if (
         jwtDecode(sessionStorage.getItem("token"))[
