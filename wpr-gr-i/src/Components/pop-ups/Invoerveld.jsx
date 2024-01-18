@@ -9,7 +9,8 @@ function InvoerVeld({
   placeholder,
   id,
   onChange,
-  value
+  value,
+  data_cy
 }) {
   const [inputValue, setInputValue] = useState("");
   
@@ -38,6 +39,7 @@ function InvoerVeld({
           placeholder={placeholder}
           value={inputValue}
           onChange={handleInputChange}
+          data-cy={id}
         ></textarea>
       ) : (
         <input
@@ -48,6 +50,7 @@ function InvoerVeld({
           placeholder={placeholder}
           value={inputValue}
           onChange={handleInputChange}
+          data-cy={id}
         ></input>
       )}
     </div>

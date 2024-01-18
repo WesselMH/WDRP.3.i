@@ -1,10 +1,10 @@
-import "./Pop-up.css";
-import InvoerVeld from "./Invoerveld";
-import BeperkingenRegistreren from "./Registreren/BeperkingenRegistreren";
+import "../Pop-up.css";
+import InvoerVeld from "../Invoerveld";
+import BeperkingenRegistreren from "./BeperkingenRegistreren";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import HulpmiddelenRegistreren from "./Registreren/HulpmiddelenRegistreren";
-import BereikRegistratie from "./Registreren/BereikRegistratie";
+import HulpmiddelenRegistreren from "./HulpmiddelenRegistreren";
+import BereikRegistratie from "./BereikRegistratie";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
@@ -22,6 +22,7 @@ function InvoerVelden({ knoppen, handleInputChange, inputValues }) {
             id={knop.id}
             onChange={(value) => handleInputChange(knop.id, value)}
             value={inputValues[knop.id] || ""}
+            data_cy={knop.data_cy}
           />
         );
       })}
@@ -64,9 +65,8 @@ function GoogleRegistreren({
     },
   ]);
 
-  function updateAllKnoppen() {
-    const checkLeeftijd = checkGeboorteDatum();
-    const newKnoppenList = {
+  function updateAllKnoppen(value) {
+    const KnoppenLijstLeeftijd = {
       Id: 3,
       lijst: [
         {
@@ -120,16 +120,18 @@ function GoogleRegistreren({
         },
       ],
     };
-    if (checkLeeftijd) {
-      const updatedValues = allKnoppen.some((v) => v.Id === newKnoppenList.Id)
-        ? allKnoppen.filter((v) => v.Id !== newKnoppenList.Id)
-        : [...allKnoppen, newKnoppenList];
+    if (value === "LeeftijdCheck") {
+      console.log("error");
+      const updatedValues = allKnoppen.some(
+        (v) => v.Id === KnoppenLijstLeeftijd.Id
+      )
+        ? allKnoppen.filter((v) => v.id !== value.id)
+        : [...allKnoppen, KnoppenLijstLeeftijd];
 
       // Update the state with the new array list
       setAllKnoppen(updatedValues);
-      setAantalStappen(allKnoppen.length);
-      // setProgress(1 / (aantalStappen - 1))
     }
+    setAantalStappen(allKnoppen.length - 1);
     // console.log(aantalStappen , allKnoppen.length)
   }
 
@@ -185,32 +187,30 @@ function GoogleRegistreren({
   const benaderOpties =
     multipleValuesBereik.length !== 0 ? multipleValuesBereik : null;
 
-  const handleInputChange = (id, value) => {
-    setAllInputValues((prevValues) => {
-      const updatedValues = [...prevValues];
-      updatedValues[currentStep] = {
-        ...updatedValues[currentStep],
-        [id]: value,
-      };
-      // console.table(updatedValues);
-      return updatedValues;
-    });
-    // console.log(currentStep);
-    if (currentStep === 1) {
-      checkGeboorteDatum();
-      // console.log(checkGeboorteDatum());
-      updateAllKnoppen();
-      // checkGeboorteDatum()
-      // console.log("aantal stappemn: " + aantalStappen);
-      // setProgress(progress)
-    }
-    setErrorStyle(null);
-    setError(null);
-  };
+    let geboorteGecheckt = false;
+
+    const handleInputChange = (id, value) => {
+      setAllInputValues((prevValues) => {
+        const updatedValues = [...prevValues];
+        updatedValues[currentStep] = {
+          ...updatedValues[currentStep],
+          [id]: value,
+        };
+        return updatedValues;
+      });
+      if (currentStep === 1 && !geboorteGecheckt) {
+        if (checkGeboorteDatum()) {
+          updateAllKnoppen("LeeftijdCheck");
+          geboorteGecheckt = true;
+        }
+      }
+      setErrorStyle(null);
+      setError(null);
+    };
 
   const [progress, setProgress] = useState(0);
   const [tekst, setTekst] = useState("Ga verder");
-  const [aantalStappen, setAantalStappen] = useState(2);
+  const [aantalStappen, setAantalStappen] = useState(allKnoppen.length);
   const [currentStep, setCurrentStep] = useState(0);
   const [allInputValues, setAllInputValues] = useState(
     new Array(aantalStappen).fill({})
@@ -228,7 +228,9 @@ function GoogleRegistreren({
     } else {
       setTekst("Ga verder");
     }
-  }, [isLoading, progress, aantalStappen]);
+    setAantalStappen(allKnoppen.length - 1);
+    setProgress(currentStep / aantalStappen);
+  }, [isLoading, progress, aantalStappen, allKnoppen.length, currentStep]);
 
   async function handleRegistratie(e) {
     e.preventDefault();
@@ -299,6 +301,9 @@ function GoogleRegistreren({
   }
 
   const areFieldsFilledForStep = (step, values) => {
+    if (!values) {
+      return false;
+    }
     const knoppen = allKnoppen[step].lijst;
     for (const knop of knoppen) {
       const fieldId = knop.id;
@@ -308,8 +313,12 @@ function GoogleRegistreren({
     }
     return true; // Return true if all input fields are filled
   };
-  
+
   const checkGeboorteDatum = () => {
+    if (!allInputValues[currentStep]) {
+      return false;
+    }
+    // console.table(allInputValues[currentStep]);
     const geboorteDatumValue = String(
       allInputValues[currentStep]["geboorteDatum"]
     ).split("-");
@@ -328,11 +337,16 @@ function GoogleRegistreren({
     const age_day = nowday - birthday;
 
     // If age is younger than 18, increase max steps
-    if (age_month < 0 || (age_month === 0 && age_day < 0) || age < 18) {
-      setAantalStappen(3);
-      setProgress(currentStep / aantalStappen);
+    if (
+      age < 18 ||
+      (age === 18 && (age_month < 0 || (age_month === 0 && age_day < 0)))
+    ) {
+      setAantalStappen(allKnoppen.length - 1);
+      // setProgress(currentStep / aantalStappen);
       return true;
     }
+    
+    geboorteGecheckt = false
     return false;
   };
 
@@ -386,8 +400,6 @@ function GoogleRegistreren({
   const gaTerug = () => {
     setProgress(progress - 1 / (aantalStappen - 1));
     setCurrentStep(Math.max(currentStep - 1, 0));
-
-    console.log(currentStep);
   };
 
   const dontSubmit = (e) => {
