@@ -1,25 +1,44 @@
 // VoorPagina.jsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./VoorPagina.css";
 import background from "./backgroundWithGradient.png";
 import { Link } from "react-router-dom";
 import Login from "../Components/pop-ups/Login";
 import Registreren from "../Components/pop-ups/Registreren";
+import ReactGA from 'react-ga4'
+import { useLocation } from 'react-router-dom'
 
 function VoorPagina() {
   const [loginOverlay, setLoginOverlay] = useState(false);
   const [registreerOverlay, setRegistreerOverlay] = useState(false);
+  const location = useLocation();
+  
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: location.pathname, title: "Hoofd Pagina" });
+  })
 
   const handleOverlayLoginClick = () => {
+    ReactGA.event({
+      category: 'Button Click',
+      action: 'Login Button Click',
+      label: 'VoorPagina',
+    });
     setLoginOverlay(!loginOverlay);
   };
 
   const handleOverlayRegistreerClick = () => {
+    ReactGA.event({
+      category: 'Button Click',
+      action: 'Registreer Button Click',
+      label: 'VoorPagina',
+    });
+
     setRegistreerOverlay(!registreerOverlay);
   };
 
   return (
     <>
+
       <div className="App" style={{ backgroundImage: `url(${background})` }}>
         <style>
           {`

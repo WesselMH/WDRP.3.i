@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./OpdrachtenPagina.css";
 import background from "../achtergrondfoto.jpg";
 import Header from "../Components/Header";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Opdracht from "../Components/Opdracht";
+import ReactGA from "react-ga4"
 
 const opdrachten = [
   {
@@ -41,6 +42,8 @@ const opdrachten = [
 ];
 
 function OpdrachtenBox() {
+
+
   console.table(opdrachten);
   return (
     <>
@@ -52,11 +55,16 @@ function OpdrachtenBox() {
 }
 
 const buttons = [
-  { Naam: "Beschikbare Opdrachten", href: "/iest" },
+  { Naam: "Beschikbare Opdrachten", href: "/" },
   { Naam: "Uitloggen", href: "/" },
 ];
 
 function OpdrachtenPagina() {
+  const location = useLocation()
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: location.pathname, title: "Opdrachten Pagina" });
+  },[])
+
   return (
     <div>
       <Header Titel={"Opdrachten"} Knoppen={buttons} />

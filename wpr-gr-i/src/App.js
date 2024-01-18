@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, useSearchParams } from "react-router-dom";
-
 import VoorPagina from "./Pages/VoorPagina";
 import BeheerHome from "./Pages/BeheerHome";
 import BeheerBedrijven from "./Pages/Beheerdersportaal/BeheerBedrijven";
@@ -16,6 +15,11 @@ import BijwerkenBedrijf from "./Components/pop-ups/BijwerkenBedrijf";
 import HomePortaal from "./Pages/HomePortaal";
 import UnauthorizedPagina from "./Pages/UnauthorizedPagina";
 import Loguit from "./Loguit";
+import ReactGA from 'react-ga4'
+import { useLocation } from 'react-router-dom'
+
+// Initialize React Ga with your tracking ID
+ReactGA.initialize('G-B951RLLBYX');
 
 function App() {
   const [token, setToken] = useState();
@@ -23,14 +27,18 @@ function App() {
   let [exp, setExp] = useState();
   // const [loggedIn, setLoggedIn] = useState();
   // console.log( google)
+  
 
   useEffect(() => {
+    // ReactGA.pageview(location.pathname + location.search);
+    // ReactGA.send({ hitType: "pageview", page: location.pathname, title: "Main Page" });
+
     // exp = sessionStorage.getItem("exp");
     if (sessionStorage.getItem("exp") < Date.now()) {
       //om sessionstorage te resetten na een bepaalde tijd (automatische uitlog)
       Loguit();
     }
-  }, []);
+  });
 
   return (
     <Routes>

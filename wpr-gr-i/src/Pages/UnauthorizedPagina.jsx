@@ -1,7 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./GeenPagina.css";
 import Header from "../Components/Header";
 import { useEffect } from "react";
+import ReactGA from "react-ga4";
+
 
 const headerButtons = [
   { Naam: "Bedrijven portaal", href: "/BedrijvenPortaal" },
@@ -11,9 +13,12 @@ const headerButtons = [
 
 function UnauthorizedPagina() {
   const navigate = useNavigate();
-
+  const location = useLocation();
   //na 30 seconde zal de gebruiker sws terug gestuurd worden naar de vorige pagina
   useEffect(() => {
+    document.title = 'Unauthorized'
+    ReactGA.send({ hitType: "pageview", page: location.pathname, title: document.title });
+
     const home = setTimeout(() => {
       navigate(-1);
     }, 30000);
