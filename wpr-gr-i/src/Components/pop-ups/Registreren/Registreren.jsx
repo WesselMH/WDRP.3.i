@@ -1,34 +1,11 @@
-import "./Pop-up.css";
-import InvoerVeld from "./Invoerveld";
-import BeperkingenRegistreren from "./Registreren/BeperkingenRegistreren";
+import "../Pop-up.css";
+import InvoerVelden from "./InvoerVelden";
+import BeperkingenRegistreren from "./BeperkingenRegistreren";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import HulpmiddelenRegistreren from "./Registreren/HulpmiddelenRegistreren";
-import BereikRegistratie from "./Registreren/BereikRegistratie";
-import AccountKeuze from "./Registreren/AccountKeuze";
-
-function InvoerVelden({ knoppen, handleInputChange, inputValues }) {
-  return (
-    <>
-      {knoppen.map((knop) => {
-        return (
-          <InvoerVeld
-            key={knop.index}
-            label={knop.label}
-            className="input-veld"
-            type={knop.type}
-            autoComplete={knop.autoComplete}
-            placeholder={knop.placeholder}
-            id={knop.id}
-            onChange={(value) => handleInputChange(knop.id, value)}
-            value={inputValues[knop.id] || ""}
-            data_cy={knop.data_cy}
-          />
-        );
-      })}
-    </>
-  );
-}
+import HulpmiddelenRegistreren from "./HulpmiddelenRegistreren";
+import BereikRegistratie from "./BereikRegistratie";
+import AccountKeuze from "./AccountKeuze";
 
 function Registreren({ handleOverlayRegistreerClick }) {
   const [allKnoppen, setAllKnoppen] = useState([
@@ -63,6 +40,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je voornaam in.",
           id: "Voornaam",
           index: 0,
+          aria_label: "Voornaam invullen",
         },
         {
           label: "Achternaam",
@@ -133,49 +111,99 @@ function Registreren({ handleOverlayRegistreerClick }) {
           type: "text",
           placeholder: "Vul hier je voornaam in.",
           id: "Voornaam",
-          index: 9,
+          index: 1,
         },
         {
           label: "Achternaam",
           type: "text",
           placeholder: "Vul hier je achternaam in.",
           id: "Achternaam",
-          index: 10,
+          index: 2,
         },
         {
           label: "Email",
           type: "email",
           placeholder: "Vul hier je email in.",
           id: "Email",
-          index: 11,
+          index: 3,
         },
         {
           label: "Bevestig email",
           type: "email",
           placeholder: "Bevestig je email.",
           id: "bevestigEmail",
-          index: 12,
+          index: 4,
         },
         {
           label: "Geboortedatum",
           type: "date",
           placeholder: "Vul hier je geboorte datum in.",
           id: "geboorteDatum",
-          index: 13,
+          index: 5,
         },
         {
           label: "Postcode",
           type: "text",
           placeholder: "Vul hier je postcode in.",
           id: "PostCode",
-          index: 14,
+          index: 6,
         },
         {
           label: "Telefoonnummer",
           type: "tell",
           placeholder: "Vul hier je telefoonnummer in.",
           id: "TelefoonNummer",
-          index: 15,
+          index: 7,
+        },
+      ],
+    };
+    const KnoppenLijstBedrijf = {
+      Id: 4,
+      lijst: [
+        {
+          label: "Email / gebruikersnaam",
+          type: "email",
+          autoComplete: "username",
+          placeholder: "Bedrijf@voorbeeld.com",
+          id: "EmailAccount",
+          index: 1,
+        },
+        {
+          label: "Website URL",
+          type: "text",
+          placeholder: "Website URL",
+          id: "URL",
+          index: 2,
+        },
+        {
+          label: "Wachtwoord",
+          type: "password",
+          autoComplete: "new-password",
+          placeholder: "Wachtwoord",
+          id: "Wachtwoord",
+          index: 3,
+        },
+        {
+          label: "Bevestig wachtwoord",
+          type: "password",
+          autoComplete: "new-password",
+          placeholder: "Bevestig je wachtwoord",
+          id: "bevestigWachtwoord",
+          index: 4,
+        },
+        {
+          label: "Locatie bedrijf",
+          type: "text",
+          placeholder: "Vul hier het adres in",
+          id: "Locatie",
+          index: 5,
+        },
+        {
+          label: "Informatie",
+          inputType: "textarea",
+          placeholder: "Vul hier wat informatie over het bedrijf in",
+          id: "Informatie",
+          index: 6,
         },
       ],
     };
@@ -190,6 +218,19 @@ function Registreren({ handleOverlayRegistreerClick }) {
       // Update the state with the new array list
       setAllKnoppen(updatedValues);
     }
+
+    if (value === "Bedrijf") {
+      const updatedValues = allKnoppen.some(
+        (v) => v.Id === KnoppenLijstBedrijf.Id
+      )
+        ? allKnoppen
+        : [...allKnoppen, KnoppenLijstBedrijf];
+
+      // Update the state with the new array list
+      setAllKnoppen(updatedValues);
+      console.log("test");
+    }
+
     if (value === "LeeftijdCheck") {
       console.log("error");
       const updatedValues = allKnoppen.some(
@@ -206,8 +247,6 @@ function Registreren({ handleOverlayRegistreerClick }) {
     // setProgress(currentStep / aantalStappen )
   }
 
-  const [inputValues, setInputValues] = useState({});
-  const [inputValuesVoogd, setInputValuesVoogd] = useState({ Id: "" });
   const [errorStyle, setErrorStyle] = useState("hidden");
   const [error, setError] = useState(null);
 
@@ -223,6 +262,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
       return updatedValues;
     });
     if (currentStep === 1 && !geboorteGecheckt) {
+      // console.log(checkGeboorteDatum())
       if (checkGeboorteDatum()) {
         updateAllKnoppen("LeeftijdCheck");
         geboorteGecheckt = true;
@@ -269,29 +309,14 @@ function Registreren({ handleOverlayRegistreerClick }) {
     e.preventDefault();
     console.log("clicked");
     if (areFieldsFilledForStep(currentStep, allInputValues[currentStep])) {
+      console.table(allInputValues);
       if (progress === 1 && !isLoading) {
         const Id = "";
-        const gebruiker = inputValues.Voornaam + " " + inputValues.Achternaam;
+        let gebruikersNaam;
+        const wachtwoord = allInputValues[1].Wachtwoord;
 
-        const achternaam = inputValues.Achternaam;
-        const wachtwoord = inputValues.Wachtwoord;
-
-        const EmailAccount = inputValues.EmailAccount;
+        const EmailAccount = allInputValues[1].EmailAccount;
         const userName = EmailAccount;
-        const gebruikersNaam = gebruiker;
-        const postcode = inputValues.PostCode;
-        const telefoonnummer = inputValues.TelefoonNummer;
-        const voornaam = inputValues.Voornaam;
-        const geboorteDatum = inputValues.geboorteDatum;
-        const voogd = inputValuesVoogd !== null ? inputValuesVoogd : null;
-        const hulpmiddelenLijst =
-          multipleValuesHulpmiddelen.length !== 0
-            ? multipleValuesHulpmiddelen
-            : null;
-        const beperkingenLijst =
-          multipleValuesBeperkingen.length !== 0
-            ? multipleValuesBeperkingen
-            : null;
         // const typeOnderzoekenLijst = multipleValuesHulpmiddelen.length !== 0 ? multipleValuesHulpmiddelen : null;
         const benaderOpties =
           multipleValuesBereik.length !== 0 ? multipleValuesBereik : null;
@@ -300,54 +325,122 @@ function Registreren({ handleOverlayRegistreerClick }) {
 
         setisLoading(true);
 
-        await axios
-          .post(
-            "http://localhost:5155/api/AaaAccount/ervaringsdeskundige/aanmelden",
+        if (accountKeuze === "Ervaringsdeskundige") {
+          const gebruiker =
+            allInputValues[1].Voornaam + " " + allInputValues[1].Achternaam;
 
-            // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/ervaringsdeskundige/aanmelden"
-            {
-              // ...inputValues,
-              // Voornaam:
+          const achternaam = allInputValues[1].Achternaam;
+          const gebruikersNaam = gebruiker;
+          const postcode = allInputValues[1].PostCode;
+          const telefoonnummer = allInputValues[1].TelefoonNummer;
+          const voornaam = allInputValues[1].Voornaam;
+          const geboorteDatum = allInputValues[1].geboorteDatum;
 
-              Id,
-              gebruiker,
-              userName,
-              achternaam,
-              wachtwoord,
-              voornaam,
-              postcode,
-              telefoonnummer,
-              gebruikersNaam,
-              EmailAccount,
-              geboorteDatum,
-              voogd,
-              hulpmiddelenLijst,
-              benaderOpties,
-              beperkingenLijst,
-              headers: {
-                "Access-Control-Allow-Origin": "http://localhost:5155/api/",
-                // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
-                "Access-Control-Allow-Methods":
-                  "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-                "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
-                "Content-Type": "application/json",
+          const voogd = allInputValues[2] !== null ? allInputValues[2] : null;
+          const hulpmiddelenLijst =
+            multipleValuesHulpmiddelen.length !== 0
+              ? multipleValuesHulpmiddelen
+              : null;
+          const beperkingenLijst =
+            multipleValuesBeperkingen.length !== 0
+              ? multipleValuesBeperkingen
+              : null;
+
+          await axios
+            .post(
+              "http://localhost:5155/api/AaaAccount/ervaringsdeskundige/aanmelden",
+
+              // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/ervaringsdeskundige/aanmelden"
+              {
+                // ...inputValues,
+                // Voornaam:
+
+                Id,
+                gebruiker,
+                userName,
+                achternaam,
+                wachtwoord,
+                voornaam,
+                postcode,
+                telefoonnummer,
+                gebruikersNaam,
+                EmailAccount,
+                geboorteDatum,
+                voogd,
+                hulpmiddelenLijst,
+                benaderOpties,
+                beperkingenLijst,
+                headers: {
+                  "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+                  // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+                  "Access-Control-Allow-Methods":
+                    "POST",
+                  "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
+                  "Content-Type": "application/json",
+                },
+              }
+            )
+            .then(
+              (response) => {
+                console.log(response);
+                handleOverlayRegistreerClick();
               },
-            }
-          )
-          .then(
-            (response) => {
-              console.log(response);
-              handleOverlayRegistreerClick();
-            },
-            (error) => {
-              console.log(error);
-              // console.log(error.response.data);
-              // console.log(error.response.data.errors);
-            }
-          )
-          .finally(() => {
-            setisLoading(false);
-          });
+              (error) => {
+                console.log(error);
+                // console.log(error.response.data);
+                // console.log(error.response.data.errors);
+              }
+            )
+            .finally(() => {
+              setisLoading(false);
+            });
+        }
+
+        if (accountKeuze === "Bedrijf") {
+
+          const gebruikersNaam = allInputValues[currentStep].Gebruikersnaam
+          const URL = allInputValues[currentStep].URL
+          const locatie = allInputValues[currentStep].Locatie
+          const informatie = allInputValues[currentStep].Informatie
+
+          // alert("hoi je probeerd in te loggen")
+          await axios
+            .post(
+              "http://localhost:5155/api/AaaAccount/bedrijf/aanmelden",
+              // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/bedrijf/aanmelden"
+              {
+                Id,
+                userName,
+                wachtwoord,
+                gebruikersNaam,
+                EmailAccount,
+                URL,
+                locatie,informatie,
+                headers: {
+                  "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+                  // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+                  "Access-Control-Allow-Methods":
+                    "POST",
+                  "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
+                  "Content-Type": "application/json",
+                },
+              }
+            )
+            .then(
+              (response) => {
+                console.log(response);
+                handleOverlayRegistreerClick();
+              },
+              (error) => {
+                console.log(error);
+                // console.log(error.response.data);
+                // console.log(error.response.data.errors);
+              }
+            )
+            .finally(() => {
+              setisLoading(false);
+            });
+        }
       }
     } else {
       setError("Vul de velden in.");
@@ -405,7 +498,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
       // setProgress(currentStep / aantalStappen);
       return true;
     }
-    geboorteGecheckt = false
+    geboorteGecheckt = false;
     return false;
   };
 
@@ -414,13 +507,6 @@ function Registreren({ handleOverlayRegistreerClick }) {
       currentStep,
       allInputValues[currentStep]
     );
-
-    if (accountKeuze === "Ervaringsdeskundige" && currentStep === 0) {
-      updateAllKnoppen("Ervaringsdeskundige");
-      console.log("Ervaringsdeskundige");
-    } else if (accountKeuze === "Bedrijf") {
-      console.log("Bedrijf");
-    }
 
     if (allFieldsFilled) {
       setProgress(progress + 1 / (aantalStappen - 1));
@@ -463,10 +549,10 @@ function Registreren({ handleOverlayRegistreerClick }) {
   };
 
   const [accountKeuze, setAccountKeuze] = useState();
-  const handleAcountKeuze = (value) => {
-    setAccountKeuze(value);
 
-    console.log(accountKeuze);
+  const handleAcountKeuze = (value) => {
+    updateAllKnoppen(value);
+    setAccountKeuze(value);
   };
 
   const dontSubmit = (e) => {
@@ -486,7 +572,6 @@ function Registreren({ handleOverlayRegistreerClick }) {
             <AccountKeuze
               knoppen={allKnoppen[currentStep].lijst || {}}
               handleInputChange={handleInputChange}
-              // selectedValues={accountKeuze}
               onClick={handleAcountKeuze}
             />
           </div>
@@ -509,6 +594,27 @@ function Registreren({ handleOverlayRegistreerClick }) {
           </div>
         )}
 
+        {currentStep === 0 && accountKeuze === "Bedrijf" && (
+          <div className="flex-center welkom-bedrijf">
+            <p>
+              Welkom bij ons platform! Op dit platform kunnen accessibility
+              onderzoeken afgenomen worden door onze ervaringsdeskundige. Mocht
+              dit nou het geen zijn wat uw bedrijf nodig heeft maak dan snel een
+              account aan door op "ga verder" te klikken
+            </p>
+          </div>
+        )}
+
+        {currentStep > 0 && accountKeuze === "Bedrijf" && (
+          <div className="input-holder">
+            <InvoerVelden
+              knoppen={allKnoppen[currentStep].lijst}
+              handleInputChange={handleInputChange}
+              inputValues={allInputValues[currentStep] || {}}
+            />
+          </div>
+        )}
+
         {currentStep > 0 && accountKeuze === "Ervaringsdeskundige" && (
           <div className="input-holder">
             {currentStep === 2 ? <h2>Voogd registratie</h2> : <></>}
@@ -525,7 +631,9 @@ function Registreren({ handleOverlayRegistreerClick }) {
         </p>
 
         <div
-          className={!accountKeuze ? "hidden" : "flex-column full-size progress-bar"}
+          className={
+            !accountKeuze ? "hidden" : "flex-column full-size progress-bar"
+          }
         >
           <progress value={progress} data-cy="progressBar" />
           <div className="full-size flex-center">

@@ -9,7 +9,7 @@ describe("Veranderende leeftijd user", () => {
     cy.contains("Bevestig account keuze").click()
 
     cy.contains("Ga verder").click();
-    cy.contains("Ga verder").click();
+    // cy.contains("Ga verder").click();
     
     cy.get(`[data-cy="geboorteDatum"]`).type("2023-02-28");
     cy.get(`[data-cy="PostCode"]`).type("1234 AB");

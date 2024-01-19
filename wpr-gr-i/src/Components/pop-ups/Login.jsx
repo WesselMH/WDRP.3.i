@@ -208,6 +208,12 @@ function Login({
     handleOverlayRegistreerClick();
   };
 
+  const [wachtwoordZichtbaar, setwachtwoordZichtbaar] = useState(false);
+  function ShowPassword() {
+    console.log("clicked");
+    setwachtwoordZichtbaar(!wachtwoordZichtbaar);
+  }
+
   return (
     <div className="pop-up">
       <button className="exit-button" onClick={handleOverlayLoginClick}>
@@ -233,6 +239,7 @@ function Login({
                 setErrorStyle(null);
                 setError(null);
               }}
+              data-cy="Gebruikersnaam"
             ></input>
           </div>
 
@@ -240,9 +247,16 @@ function Login({
             <label htmlFor="Wachtwoord" className={"inlog-label"}>
               Wachtwoord
             </label>
+            <button
+              type="button"
+              onClick={ShowPassword}
+              className="wachtwoord-button"
+            >
+              {wachtwoordZichtbaar ? <>onzichtbaar</> : <>zichtbaar</>}
+            </button>
             <input
               className="input-veld flex-center full-size"
-              type="password"
+              type={wachtwoordZichtbaar ? "new-password" : "password"}
               autoComplete="current-password"
               placeholder="Wachtwoord"
               id="Wachtwoord"
@@ -251,6 +265,7 @@ function Login({
                 setErrorStyle(null);
                 setError(null);
               }}
+              data-cy="Wachtwoord"
             ></input>
           </div>
 
@@ -266,9 +281,15 @@ function Login({
 
           <p className={errorStyle}>{error}</p>
           {isLoading ? (
-            <button className="inlog-button">Loading...</button>
+            <button className="inlog-button" data-cy="Loading">
+              Loading...
+            </button>
           ) : (
-            <button className="inlog-button" onClick={handleSubmit}>
+            <button
+              className="inlog-button"
+              onClick={handleSubmit}
+              data-cy="Login"
+            >
               Login
             </button>
           )}

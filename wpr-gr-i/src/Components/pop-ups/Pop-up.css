@@ -176,6 +176,7 @@ html {
 .flex-center{
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 .flex-column {
@@ -212,6 +213,7 @@ html {
 
 .inlog-label{ 
     font-size: 20px;
+    margin-right: 10px;
 }
 
 .inlog-label::before {
@@ -356,6 +358,32 @@ html {
 
 .keuze-holder > label {
     font-weight: 600;
+}
+
+.info-bedrijf {
+    height: 150px;
+}
+
+.welkom-bedrijf > *{
+    margin: 60px 50px;
+    line-height: 2rem;
+}
+
+.wachtwoord-button {
+    position: relative;
+    justify-self: center;
+    /* width: 100px; */
+    background-color: #2B50EC;
+    color: white;
+    border-radius: 25px;
+    border: 0;
+    padding: 5px 15px;
+    margin-top: -33px;
+    align-self: end;
+}
+
+.wachtwoord-button > span {
+    color:#B3B3B3
 }
 
 

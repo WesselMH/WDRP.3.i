@@ -41,7 +41,6 @@ const opdrachten = [
 ];
 
 function OpdrachtenBox() {
-  console.table(opdrachten);
   return (
     <>
       {opdrachten.map((opdracht) => (

@@ -9,7 +9,7 @@ describe("Aanmelden van een gebruiker 18+", () => {
     cy.contains("Bevestig account keuze").click()
 
     cy.contains("Ga verder").click();
-    cy.contains("Ga verder").click();
+    // cy.contains("Ga verder").click();
     // cy.get(`[data-cy="Voornaam"]`).type("Test");
     // cy.get(`[data-cy="Achternaam"]`).type("Gebruiker");
     // cy.get(`[data-cy="Wachtwoord"]`).type("Test1/");
