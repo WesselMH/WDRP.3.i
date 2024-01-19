@@ -3,53 +3,66 @@ import "./OpdrachtenPagina.css";
 import background from "../achtergrondfoto.jpg";
 import Header from "../Components/Header";
 import { Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import Opdracht from "../Components/Opdracht";
+import OpdrachtInformatie from "../Components/pop-ups/OpdrachtInformatie";
 
-const opdrachten = [
-  {
-    title: "Toegankelijkheidsbeoordeling 2023",
-    bedrijf: "Mediamarkt",
-    beschrijving:
-      "Deze enquête is ontworpen om inzicht te krijgen in uw ervaringen met de toegankelijkheid van onze producten/diensten/ruimtes. Neem alstublieft de tijd om de vragen eerlijk en gedetailleerd te beantwoorden. Uw input zal direct bijdragen aan het verbeteren van onze inspanningen op het gebied van inclusiviteit.",
-    datum: "12-12-12",
-    id: 1,
-  },
-  {
-    title: "Inclusie en Welzijn bij Mensen met Beperkingen",
-    bedrijf: "Bartiméus",
-    beschrijving:
-      "Onderzoek naar Levenskwaliteit bij Personen met een Beperking: Een analyse van sociale inclusie en dagelijkse uitdagingen, met het doel bij te dragen aan verbeterde maatschappelijke participatie en welzijn.",
-    datum: "12-12-12",
-    id: 2,
-  },
-  {
-    title: "Toegankelijkheid voor Mensen met Beperkingen",
-    bedrijf: "Accessibility Foundation",
-    beschrijving:
-      "Studie naar Kwaliteit van Leven bij Mensen met Beperkingen: Een diepgaand onderzoek naar de dagelijkse hindernissen en mogelijkheden tot verbetering. Het doel is waardevolle inzichten te vergaren ter bevordering van levenskwaliteit en inclusie voor deze individuen.",
-    datum: "12-12-12",
-    id: 3,
-  },
-  {
-    title: "Multimedia Toegankelijkheidsbeoordeling 2023",
-    bedrijf: "Albert Heijn",
-    beschrijving:
-      "Een internet interview om inzicht te krijgen in uw ervaringen met de toegankelijkheid van onze multimediacontent, platforms en services. ",
-    datum: "12-12-12",
-    id: 4,
-  },
-];
+function OpdrachtenBox({ opdrachten }) {
+  // console.table(opdrachten);
 
-function OpdrachtenBox() {
-  console.table(opdrachten);
+  const [loginOverlay, setLoginOverlay] = useState(false);
+  const handleOverlayLoginClick = () => {
+    // console.log("handleOverlayLoginClick")
+    setLoginOverlay(!loginOverlay);
+  };
+
   return (
     <>
       {opdrachten.map((opdracht) => (
-        <Opdracht key={opdracht.id} opdracht={opdracht} />
+        <Link to={opdracht.id}>
+          <Opdracht key={opdracht.id} opdracht={opdracht} />
+          <div>
+            {/* {loginOverlay && (
+              <div className="overlay">
+                <OpdrachtInformatie
+                  opdracht={opdracht}
+                  handleOverlayLoginClick={handleOverlayLoginClick}
+                />
+              </div>
+          )} */}
+          </div>
+        </Link>
       ))}
     </>
   );
 }
+
+// function OpdrachtenDetail({ opdracht }) {
+//   console.log(opdracht)
+
+//   const [loginOverlay, setLoginOverlay] = useState(false);
+//   const handleOverlayLoginClick = () => {
+//     console.log("handleOverlayLoginClick")
+//     setLoginOverlay(!loginOverlay);
+//   };
+//   return (
+//     <div>
+//       {loginOverlay && (
+//         <div className="overlay">
+//           {/* <OpdrachtInformatie
+//           // opdracht={opdrachten}
+//           handleOverlayLoginClick={handleOverlayLoginClick}
+//         /> */}
+//           <OpdrachtInformatie
+//             handleOverlayLoginClick={handleOverlayLoginClick}
+//           />
+//         </div>
+//       )}
+//     </div>
+//   )
+// }
 
 const buttons = [
   { Naam: "Beschikbare Opdrachten", href: "/iest" },
@@ -57,17 +70,44 @@ const buttons = [
 ];
 
 function OpdrachtenPagina() {
+
+  const [opdrachten, setOpdrachten] = useState([]);
+
+  //word geladen als de component eerst laad.
+  useEffect(() => {
+    fetch("http://localhost:5155/api/Onderzoek")
+      .then((results) => { return results.json(); })
+      //code to change the opdrachten array
+      .then(data => { setOpdrachten(data) })
+  },
+    []);
+
+  //   {
+  //     //Title, typeopdracht, omschrijving, datum, locatie
+  //      "titel": "Dit is een titel",
+  //      "beschrijving":"omschrijving",
+  //      "locatie":"",
+  //      "datum":"2024-01-14",
+  //      "soortOnderzoek":{
+  //          "id":"",
+  //          "opties":"optie"
+  //      }
+  //  }  
+
   return (
+    
     <div>
       <Header Titel={"Opdrachten"} Knoppen={buttons} />
-
+      <Routes>
+        <Route path=":id" element={<OpdrachtInformatie />} />
+      </Routes>
       <div
         className="opdrachtenPagina"
         style={{ backgroundImage: `url(${background})` }}
       >
         <div className="opdrachten-wrapper">
           <ul>
-            <OpdrachtenBox />
+            <OpdrachtenBox opdrachten={opdrachten} />
           </ul>
         </div>
       </div>
