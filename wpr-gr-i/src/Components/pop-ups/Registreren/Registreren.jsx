@@ -228,7 +228,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
 
       // Update the state with the new array list
       setAllKnoppen(updatedValues);
-      console.log("test");
+      // console.log("test");
     }
 
     if (value === "LeeftijdCheck") {
@@ -456,7 +456,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
             )
             .then(
               (response) => {
-                console.log(response);
+                // console.log(response);
                 handleOverlayRegistreerClick();
               },
               (error) => {

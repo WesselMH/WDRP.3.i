@@ -58,7 +58,7 @@ function Login({
       )
       .then(
         (response) => {
-          console.log(response);
+          // console.log(response);
         },
         (error) => {
           console.log(error);
@@ -149,7 +149,7 @@ function Login({
       await loginUser();
 
       let token = sessionStorage.getItem("token");
-      console.log(token);
+      // console.log(token);
       if (token !== "null") {
         if (
           jwtDecode(sessionStorage.getItem("token"))[
