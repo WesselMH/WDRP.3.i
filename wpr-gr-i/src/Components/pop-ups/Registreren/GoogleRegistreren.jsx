@@ -240,8 +240,8 @@ function GoogleRegistreren({
 
         await axios
           .post(
-            "http://localhost:5155/api/AaaAccount/google/aanmelden",
-            // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/ervaringsdeskundige/aanmelden"
+            // "http://localhost:5155/api/AaaAccount/google/aanmelden",
+            "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/google/aanmelden",
             {
               // ...inputValues,
               // Voornaam:
@@ -261,8 +261,8 @@ function GoogleRegistreren({
               benaderOpties,
               beperkingen,
               headers: {
-                "Access-Control-Allow-Origin": "http://localhost:5155/api/",
-                // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+                // "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+                "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
                 "Access-Control-Allow-Methods": "POST",
                 "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
                 "Content-Type": "application/json",
@@ -350,8 +350,8 @@ function GoogleRegistreren({
   async function loginGoogleUser() {
     // console.log(username, gebruikersnaam);
     await axios
-      .post("http://localhost:5155/api/AaaAccount/login", {
-        // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
+      // .post("http://localhost:5155/api/AaaAccount/login", {
+      .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
         Id,
         gebruikersNaam,
         wachtwoord,
