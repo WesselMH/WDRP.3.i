@@ -10,7 +10,7 @@ header{
 .inside-wrapper {
     display: flex;
     height: inherit;
-    width: 380px;
+    /* width: 380px; */
     align-items: center;
 }
 
