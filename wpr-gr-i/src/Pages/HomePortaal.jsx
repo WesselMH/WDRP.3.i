@@ -46,7 +46,8 @@ function HomePortaal() {
                 Opdrachten
               </Link>
               <Link to="" className="HomePortaal-Button">
-                Afgeronde opdrachten
+                Afgeronde
+                opdrachten
               </Link>
             </div>
             <div className="Newsfeed">
