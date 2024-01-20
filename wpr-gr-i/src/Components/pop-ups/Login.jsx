@@ -149,24 +149,28 @@ function Login({
       setisLoading(true);
       await loginUser();
 
-      if (
-        jwtDecode(sessionStorage.getItem("token"))[
-          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-        ] === "ervaringsDeskundige"
-      ) {
-        navigate("/HomePortaal");
-      } else if (
-        jwtDecode(sessionStorage.getItem("token"))[
-          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-        ] === "bedrijf"
-      ) {
-        navigate("/BedrijvenPortaal");
-      } else if (
-        jwtDecode(sessionStorage.getItem("token"))[
-          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-        ] === "beheerder"
-      ) {
-        navigate("/BeheerdersPortaal");
+      let token = sessionStorage.getItem("token");
+      console.log(token);
+      if (token !== "null") {
+        if (
+          jwtDecode(sessionStorage.getItem("token"))[
+            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          ] === "ervaringsDeskundige"
+        ) {
+          navigate("/HomePortaal");
+        } else if (
+          jwtDecode(sessionStorage.getItem("token"))[
+            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          ] === "bedrijf"
+        ) {
+          navigate("/BedrijvenPortaal");
+        } else if (
+          jwtDecode(sessionStorage.getItem("token"))[
+            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          ] === "beheerder"
+        ) {
+          navigate("/BeheerdersPortaal");
+        }
       }
     } else {
       setError("Vul de velden in.");
