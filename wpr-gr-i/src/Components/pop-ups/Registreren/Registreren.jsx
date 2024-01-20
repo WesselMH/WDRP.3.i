@@ -307,10 +307,13 @@ function Registreren({ handleOverlayRegistreerClick }) {
 
   async function handleRegistratie(e) {
     e.preventDefault();
-    console.log("clicked");
+    // console.log("clicked");
     if (areFieldsFilledForStep(currentStep, allInputValues[currentStep])) {
-      console.table(allInputValues);
-      if (progress === 1 && !isLoading) {
+      // console.table(allInputValues);
+      if (
+        progress === 1
+        // && !isLoading
+      ) {
         const Id = "";
         let gebruikersNaam;
         const wachtwoord = allInputValues[1].Wachtwoord;
@@ -318,8 +321,6 @@ function Registreren({ handleOverlayRegistreerClick }) {
         const EmailAccount = allInputValues[1].EmailAccount;
         const userName = EmailAccount;
         // const typeOnderzoekenLijst = multipleValuesHulpmiddelen.length !== 0 ? multipleValuesHulpmiddelen : null;
-        const benaderOpties =
-          multipleValuesBereik.length !== 0 ? multipleValuesBereik : null;
 
         // console.log(inputValuesVoogd);
 
@@ -330,21 +331,47 @@ function Registreren({ handleOverlayRegistreerClick }) {
             allInputValues[1].Voornaam + " " + allInputValues[1].Achternaam;
 
           const achternaam = allInputValues[1].Achternaam;
-          const gebruikersNaam = gebruiker;
+          gebruikersNaam = gebruiker;
           const postcode = allInputValues[1].PostCode;
           const telefoonnummer = allInputValues[1].TelefoonNummer;
           const voornaam = allInputValues[1].Voornaam;
           const geboorteDatum = allInputValues[1].geboorteDatum;
 
-          const voogd = allInputValues[2] !== null ? allInputValues[2] : null;
-          const hulpmiddelenLijst =
+          let voogd = allInputValues[2] !== null ? allInputValues[2] : null;
+          if (voogd) {
+            voogd = { ...voogd, Id: 0 };
+          }
+          
+          const hulpmiddelen =
             multipleValuesHulpmiddelen.length !== 0
               ? multipleValuesHulpmiddelen
               : null;
-          const beperkingenLijst =
+          if (hulpmiddelen) {
+            const losseHulpmiddelen = [...hulpmiddelen];
+            losseHulpmiddelen.forEach((element) => {
+              element["id"] = 0;
+            });
+          }
+
+          const beperkingen =
             multipleValuesBeperkingen.length !== 0
               ? multipleValuesBeperkingen
               : null;
+          if (beperkingen) {
+            const losseBeperkingen = [...beperkingen];
+            losseBeperkingen.forEach((element) => {
+              element["id"] = 0;
+            });
+          }
+
+          const benaderOpties =
+            multipleValuesBereik.length !== 0 ? multipleValuesBereik : null;
+          if (benaderOpties) {
+            const losseBenaderOpties = [...benaderOpties];
+            losseBenaderOpties.forEach((element) => {
+              element["id"] = 0;
+            });
+          }
 
           await axios
             .post(
@@ -367,9 +394,9 @@ function Registreren({ handleOverlayRegistreerClick }) {
                 EmailAccount,
                 geboorteDatum,
                 voogd,
-                hulpmiddelenLijst,
+                hulpmiddelen,
                 benaderOpties,
-                beperkingenLijst,
+                //: [{id: 0, beperking: beperkingen, ervaringsDeskundigen: null }],
                 headers: {
                   "Access-Control-Allow-Origin": "http://localhost:5155/api/",
                   // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
@@ -393,8 +420,8 @@ function Registreren({ handleOverlayRegistreerClick }) {
                 const errorsString = JSON.stringify(error.response.data.errors);
                 if (errorsString.includes("DuplicateUserName")) {
                   // alert("Er is al een account met dit email adres");
-                  setError("Er is al een account met dit email adres")
-                  setErrorStyle("error")
+                  setError("Er is al een account met dit email adres");
+                  setErrorStyle("error");
                 }
               }
             )
@@ -404,7 +431,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
         }
 
         if (accountKeuze === "Bedrijf") {
-          const gebruikersNaam = allInputValues[currentStep].Gebruikersnaam;
+          gebruikersNaam = allInputValues[currentStep].Gebruikersnaam;
           const URL = allInputValues[currentStep].URL;
           const locatie = allInputValues[currentStep].Locatie;
           const informatie = allInputValues[currentStep].Informatie;
@@ -522,14 +549,14 @@ function Registreren({ handleOverlayRegistreerClick }) {
       setErrorStyle("error");
       console.log("niet alle velden zijn ingevuld");
     }
-    console.table(allKnoppen);
+    // console.table(allKnoppen);
   };
 
   const gaTerug = () => {
     setProgress(progress - 1 / (aantalStappen - 1));
     setCurrentStep(Math.max(currentStep - 1, 0));
 
-    console.table(allKnoppen);
+    // console.table(allKnoppen);
   };
 
   const [multipleValuesBeperkingen, setMultipleValuesBeperkingen] = useState(

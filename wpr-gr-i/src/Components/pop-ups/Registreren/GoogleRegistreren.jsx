@@ -135,8 +135,6 @@ function GoogleRegistreren({
     // console.log(aantalStappen , allKnoppen.length)
   }
 
-  const [inputValues, setInputValues] = useState({});
-  const [inputValuesVoogd, setInputValuesVoogd] = useState({ Id: "" });
   const [errorStyle, setErrorStyle] = useState("hidden");
   const [error, setError] = useState(null);
 
@@ -175,11 +173,11 @@ function GoogleRegistreren({
   const userName = EmailAccount;
   const gebruikersNaam =
     googleUserGegevens.given_name + " " + googleUserGegevens.family_name;
-  const geboorteDatum = inputValues.geboorteDatum;
+  const geboorteDatum = allInputValues[1].geboorteDatum;
 
-  const postcode = inputValues.PostCode;
-  const telefoonnummer = inputValues.TelefoonNummer;
-  const voogd = inputValuesVoogd !== null ? inputValuesVoogd : null;
+  const postcode = allInputValues[1].PostCode;
+  const telefoonnummer = allInputValues[1].TelefoonNummer;
+  const voogd = allInputValues[2] !== null ? allInputValues[2] : null;
   const hulpmiddelenLijst =
     multipleValuesHulpmiddelen.length !== 0 ? multipleValuesHulpmiddelen : null;
   const beperkingenLijst =

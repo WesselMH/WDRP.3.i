@@ -60,6 +60,7 @@ function InvoerVeld({
                 type="button"
                 onClick={ShowPassword}
                 className="wachtwoord-button"
+                aria-label="Toggle knop zichtbaar maken wachtwoord"
               >
                 {wachtwoordZichtbaar ? <>onzichtbaar</> : <>zichtbaar</>}
               </button>
