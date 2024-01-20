@@ -200,7 +200,7 @@ function Login({
         setTryGoogle(true);
         // console.log(response.access_token);
 
-        console.log(googleAcountData);
+        // console.log(googleAcountData);
       } catch (err) {
         console.log(err);
       }
@@ -214,7 +214,7 @@ function Login({
 
   const [wachtwoordZichtbaar, setwachtwoordZichtbaar] = useState(false);
   function ShowPassword() {
-    console.log("clicked");
+    console.log("Showing password toggle");
     setwachtwoordZichtbaar(!wachtwoordZichtbaar);
   }
 

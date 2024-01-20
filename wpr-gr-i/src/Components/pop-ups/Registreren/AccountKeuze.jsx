@@ -21,12 +21,13 @@ function AccountKeuze({ knoppen, handleInputChange, inputValues, onClick }) {
                 onChange={handleRadioChange}
                 value={item.value}
                 data-cy={item.id}
+                aria-label={item.aria_label}
               ></input>
               <label htmlFor={item.value}>{item.label}</label>
             </div>
           );
         })}
-        <button onClick={() => onClick(selectedAccount)} className="confirm-button-keuze" data-cy={"bevestigKeuze"}>Bevestig account keuze</button>
+        <button onClick={() => onClick(selectedAccount)} className="confirm-button-keuze" data-cy={"bevestigKeuze"} aria-label="Bevestig de keuze in welke soort account u wilt toevoegen">Bevestig account keuze</button>
       </div>
     </>
   );
