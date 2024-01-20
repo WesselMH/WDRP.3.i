@@ -373,8 +373,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
                 headers: {
                   "Access-Control-Allow-Origin": "http://localhost:5155/api/",
                   // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
-                  "Access-Control-Allow-Methods":
-                    "POST",
+                  "Access-Control-Allow-Methods": "POST",
                   "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
                   "Content-Type": "application/json",
                 },
@@ -389,6 +388,14 @@ function Registreren({ handleOverlayRegistreerClick }) {
                 console.log(error);
                 // console.log(error.response.data);
                 // console.log(error.response.data.errors);
+
+                const errors = error.response.data.errors;
+                const errorsString = JSON.stringify(error.response.data.errors);
+                if (errorsString.includes("DuplicateUserName")) {
+                  // alert("Er is al een account met dit email adres");
+                  setError("Er is al een account met dit email adres")
+                  setErrorStyle("error")
+                }
               }
             )
             .finally(() => {
@@ -397,11 +404,10 @@ function Registreren({ handleOverlayRegistreerClick }) {
         }
 
         if (accountKeuze === "Bedrijf") {
-
-          const gebruikersNaam = allInputValues[currentStep].Gebruikersnaam
-          const URL = allInputValues[currentStep].URL
-          const locatie = allInputValues[currentStep].Locatie
-          const informatie = allInputValues[currentStep].Informatie
+          const gebruikersNaam = allInputValues[currentStep].Gebruikersnaam;
+          const URL = allInputValues[currentStep].URL;
+          const locatie = allInputValues[currentStep].Locatie;
+          const informatie = allInputValues[currentStep].Informatie;
 
           // alert("hoi je probeerd in te loggen")
           await axios
@@ -415,12 +421,12 @@ function Registreren({ handleOverlayRegistreerClick }) {
                 gebruikersNaam,
                 EmailAccount,
                 URL,
-                locatie,informatie,
+                locatie,
+                informatie,
                 headers: {
                   "Access-Control-Allow-Origin": "http://localhost:5155/api/",
                   // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
-                  "Access-Control-Allow-Methods":
-                    "POST",
+                  "Access-Control-Allow-Methods": "POST",
                   "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
                   "Content-Type": "application/json",
                 },
