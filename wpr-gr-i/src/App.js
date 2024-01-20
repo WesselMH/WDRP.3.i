@@ -16,6 +16,7 @@ import BijwerkenBedrijf from "./Components/pop-ups/BijwerkenBedrijf";
 import HomePortaal from "./Pages/HomePortaal";
 import UnauthorizedPagina from "./Pages/UnauthorizedPagina";
 import Loguit from "./Loguit";
+import OpdrachtInformatie from "./Pages/OpdrachtInformatie";
 
 function App() {
   const [token, setToken] = useState();
@@ -49,7 +50,9 @@ function App() {
         element={<BeheerOpdrachten />}
       />
       <Route path="/BedrijvenPortaal" element={<BedrijvenPortaal />} />
-      <Route path="/Opdrachten/*" element={<OpdrachtenPagina />} />
+      <Route path="/Opdrachten/" element={<OpdrachtenPagina />} />
+      <Route path="/Opdrachten/:id" element={<OpdrachtInformatie />} />
+
       {/* <Route path="/Login" element={<Login setGoogle={setGoogle} />} /> */}
       <Route path="/Registreren" element={<Registreren />} />
       <Route path="/HomePortaal/Bijwerken" element={<Bijwerken />} />

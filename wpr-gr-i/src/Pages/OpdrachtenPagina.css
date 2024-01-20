@@ -28,3 +28,28 @@
 
 }
 
+.opdracht-wrapper{
+    background-color: #ffffff85;
+    margin: 50px 240px;
+    border-radius: 15px;
+
+}
+.opdracht-details{
+    width: inherit;
+    padding: 25px;
+    border-radius: 15px;
+    font-weight: 400;
+}
+.opdracht-aanmelden, .opdracht-gedaan{
+    padding: 13px 60px; /* Adjusted padding for better responsiveness */
+    background-color: #2B50EC;
+    border: 1px #000000;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem; /* Use rem for font size for better responsiveness */
+    font-weight: 800;
+    color: #ffffff;
+    width: 40%;
+    text-align: center;
+    margin: 30px;
+}
