@@ -1,30 +1,49 @@
-function InvoerVeld({inputType, label, className, type, placeholder, id }) {
-  // label, className, type, placeholder, id
+import React, { useState } from "react";
 
-  if (inputType === 'textarea') {
-    return (
-      <div className="input-bundel">
-        <label htmlFor={id}>{label} </label>
+function InvoerVeld({
+  inputType,
+  label,
+  className,
+  type,
+  autoComplete,
+  placeholder,
+  id,
+  onChange,
+}) {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    setInputValue(value);
+
+    // Call the onChange prop with the updated value
+    onChange && onChange(value);
+  };
+
+  return (
+    <div className="input-bundel flex-column">
+      <label htmlFor={id}>{label} </label>
+      {inputType === "textarea" ? (
         <textarea
           className={className}
           type={type}
+          autoComplete={autoComplete}
           id={id}
           placeholder={placeholder}
+          value={inputValue}
+          onChange={handleInputChange}
         ></textarea>
-      </div>
-    );
-  } else 
-  
-
-  return (
-    <div className="input-bundel">
-      <label htmlFor={id}>{label} </label>
-      <input
-        className={className}
-        type={type}
-        id={id}
-        placeholder={placeholder}
-      ></input>
+      ) : (
+        <input
+          className={className}
+          type={type}
+          autoComplete={autoComplete}
+          id={id}
+          placeholder={placeholder}
+          value={inputValue}
+          onChange={handleInputChange}
+        ></input>
+      )}
     </div>
   );
 }

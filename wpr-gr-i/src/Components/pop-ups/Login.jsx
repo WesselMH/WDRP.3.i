@@ -5,70 +5,162 @@ import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import GoogleLogo from "../../google.svg";
 import { useEffect, useState } from "react";
+import MicrosoftLogo from "../../Microsoft_logo.png";
 
-let help;
-// const navigate = useNavigate();
-
-async function loginUser(id, username, gebruikersnaam, wachtwoord) {
-  // console.log(username, gebruikersnaam);
-  await axios
-    .post("http://localhost:5155/api/AaaAccount/login", {
-      // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
-      id,
-      gebruikersnaam,
-      wachtwoord,
-      username,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then(
-      (response) => {
-        // console.log(response.data.token);
-        help = response.data.token;
-        // return response.data;
-        const decodedToken = jwtDecode(response.data.token);
-        const role =
-          decodedToken[
-            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-          ];
-        const exp = decodedToken["exp"] * 1000;
-        //console.log(help);
-
-        sessionStorage.setItem("authenticated", true);
-        sessionStorage.setItem("role", role);
-        sessionStorage.setItem("exp", exp);
-        sessionStorage.setItem(
-          "userName",
-          decodedToken[
-            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
-          ]
-        );
-        sessionStorage.setItem("id", decodedToken["id"]);
-
-        // navigate("/HomePortaal");
-      },
-      (error) => {
-        console.log(error);
-        return error;
-      }
-    );
-}
-
-function Login({ setGoogle }) {
-  const [username, setUserName] = useState();
-  const [wachtwoord, setPassword] = useState();
+function Login({
+  setGoogle,
+  handleOverlayLoginClick,
+  handleOverlayRegistreerClick,
+  handleOverlayGoogleRegistreerClick,
+  setGoogleUser,
+  setGoogleToken,
+}) {
+  const [username, setUserName] = useState(null);
+  const [wachtwoord, setPassword] = useState(null);
   const [gebruikersnaam, setgebruikersNaam] = useState();
-  const id = 0;
+  const id = "";
+
+  const [errorStyle, setErrorStyle] = useState("hidden");
+  const [error, setError] = useState(null);
+  const [isLoading, setisLoading] = useState(false);
+
+  const [googleWachtwoord, setGoogleWachtwoord] = useState();
+  const [googleUsername, setGoogleUsername] = useState();
+  const [tryGoogle, setTryGoogle] = useState(false);
+
+  const navigate = useNavigate();
 
   //zoek even uit hoe je dit doet als ze correct ingelogd zijn
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (tryGoogle) {
+      loginGoogleUser(id, googleUsername, googleUsername, googleWachtwoord);
+    }
+  }, [tryGoogle]);
+
+  async function loginGoogleUser(id, username, gebruikersnaam, wachtwoord) {
+    //verander eerst nog het ww naar de nieuwe token
+    // !TODO
+    // await axios
+    //   .put("http://localhost:5155/api/AaaAccountController/google/wachtwoordupdate", {
+    //   // .put("https://wpr-i-backend.azurewebsites.net/AaaAccountController/google/wachtwoordupdate", {
+    //
+    //     id,
+    //     wachtwoord,
+    //   })
+    //   .then(
+    //     (response) => {
+    //       console.log(response);
+    //     },
+    //     (error) => {
+    //       console.log(error);
+    //     }
+    //   );
+
+    // console.log(username, gebruikersnaam);
+    await axios
+      .post("http://localhost:5155/api/AaaAccount/login", {
+        // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
+        id,
+        gebruikersnaam,
+        wachtwoord,
+        username,
+        headers: {
+          "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+          // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
+          "Content-Type": "application/json",
+        },
+      })
+      .then(
+        (response) => {
+          // console.log(response.data.token);
+          const token = response.data.token;
+
+          sessionStorage.setItem("token", token);
+          sessionStorage.setItem("exp", jwtDecode(token)["exp"] * 1000);
+        },
+        (error) => {
+          //fout response gebruiker
+          console.log(error);
+          handleOverlayLoginClick();
+          handleOverlayGoogleRegistreerClick();
+        }
+      )
+      .finally(() => setisLoading(false));
+  }
+  async function loginUser(id, username, gebruikersnaam, wachtwoord) {
+    // console.log(username, gebruikersnaam);
+    await axios
+      .post("http://localhost:5155/api/AaaAccount/login", {
+        // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
+        id,
+        gebruikersnaam,
+        wachtwoord,
+        username,
+        headers: {
+          "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+          // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
+          "Content-Type": "application/json",
+        },
+      })
+      .then(
+        (response) => {
+          // console.log(response.data.token);
+          const token = response.data.token;
+
+          sessionStorage.setItem("token", token);
+          sessionStorage.setItem("exp", jwtDecode(token)["exp"] * 1000);
+        },
+        (error) => {
+          //fout response gebruiker
+          console.log(error);
+          let errorMassage = JSON.stringify(error.response.data);
+          if (errorMassage.includes('"status":400')) {
+            errorMassage = JSON.parse(errorMassage).errors;
+          }
+          // console.log(errorMassage);
+          // console.log(error.response.data);
+          setError(error.response.data);
+          setErrorStyle("error");
+        }
+      )
+      .finally(() => setisLoading(false));
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (username !== null && wachtwoord !== null) {
+      setisLoading(true);
+      await loginUser(id, username, gebruikersnaam, wachtwoord);
 
-    await loginUser(id, username, gebruikersnaam, wachtwoord);
-    // console.log(help);
+      if (
+        jwtDecode(sessionStorage.getItem("token"))[
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+        ] === "ervaringsDeskundige"
+      ) {
+        navigate("/HomePortaal");
+      } else if (
+        jwtDecode(sessionStorage.getItem("token"))[
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+        ] === "bedrijf"
+      ) {
+        navigate("/BedrijvenPortaal");
+      } else if (
+        jwtDecode(sessionStorage.getItem("token"))[
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+        ] === "beheerder"
+      ) {
+        navigate("/BeheerdersPortaal");
+      }
+    } else {
+      setError("Vul de velden in.");
+      setErrorStyle("error");
+    }
+
+    // console.log(response);
   };
 
   const login = useGoogleLogin({
@@ -82,75 +174,141 @@ function Login({ setGoogle }) {
             },
           }
         );
-        sessionStorage.setItem("authenticated", true);
-        sessionStorage.setItem("role", "ervaringsDeskundige");
-        //kan je gebruiken om meer calls te doen naar google api's voor deze gebruiker
-        // console.log(response.access_token);
-
-        // console.log(data);
-        // loginGoogleUser(data.data);
 
         const googleAcountData = data.data;
+        setGoogleWachtwoord(response.access_token);
+        setGoogleToken(response.access_token);
+        setGoogleUsername(googleAcountData.email);
+        setGoogleUser(googleAcountData);
+        setTryGoogle(true);
+        // console.log(response.access_token);
 
-        //hierdoor wordt de data naar App gestuurd en kan je het nog gebruiken bij het aanmaken/registreren van de beperkingen bij de google user
-        setGoogle(googleAcountData);
-        //voor nu zet in het ook in sessie strorage zodat we kunnen kiezen hoe we het pakken (tenzij het op de andere manier niet kan)
-        //dit is alleen niet veilig omdat een hacker dan de sub code kan bekijken in de browser geschiedenis
-        sessionStorage.setItem(
-          "googleAccount",
-          JSON.stringify(googleAcountData)
-        );
-
-        // console.log(data.data);
+        console.log(googleAcountData);
       } catch (err) {
         console.log(err);
       }
     },
   });
 
+  const redirectAanmelden = () => {
+    handleOverlayLoginClick();
+    handleOverlayRegistreerClick();
+  };
+
   return (
     <div className="pop-up">
-      <Link to={-1} className="exit-button">
+      <button className="exit-button" onClick={handleOverlayLoginClick}>
         x
-      </Link>
-      <div className="Titel">Login</div>
-      <form className="button-holder" onSubmit={handleSubmit}>
-        <input
-          className="input-veld flex-center full-size"
-          type="text"
-          placeholder="Gebruikersnaam"
-          id="Gebruikersnaam"
-          onChange={(e) => {
-            setUserName(e.target.value);
-            setgebruikersNaam(e.target.value);
-          }}
-        ></input>
-        <input
-          className="input-veld flex-center full-size"
-          type="text"
-          placeholder="Wachtwoord"
-          id="Wachtwoord"
-          onChange={(e) => setPassword(e.target.value)}
-        ></input>
+      </button>
+      {/* <div className="Titel">Login</div> */}
+      <div className="button-holder flex-row">
+        <form className="left flex-column">
+          <div className="inlog-bundel full-size">
+            {/* <label htmlFor="Gebruikersnaam className="inlog-label">Email</label> */}
+            <label htmlFor="Gebruikersnaam" className="inlog-label">
+              Gebruikersnaam
+            </label>
+            <input
+              className="input-veld flex-center full-size"
+              type="text"
+              autoComplete="username"
+              placeholder="voorbeeld@email.com"
+              id="Gebruikersnaam"
+              onChange={(e) => {
+                setUserName(e.target.value);
+                setgebruikersNaam(e.target.value);
+                setErrorStyle(null);
+                setError(null);
+              }}
+            ></input>
+          </div>
 
-        <Link to="/WW vergeten" className="ww-vergeten">
-          Wachtwoord vergeten?
-        </Link>
+          <div className="inlog-bundel full-size">
+            <label htmlFor="Wachtwoord" className={"inlog-label"}>
+              Wachtwoord
+            </label>
+            <input
+              className="input-veld flex-center full-size"
+              type="password"
+              autoComplete="current-password"
+              placeholder="Wachtwoord"
+              id="Wachtwoord"
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setErrorStyle(null);
+                setError(null);
+              }}
+            ></input>
+          </div>
 
-        <button className="inlog-button full-size">Login</button>
+          <div className="flex-row">
+            {/* <div>
+              <input type="checkbox" id="onthoudMij"></input>
+              <label htmlFor="onthoudMij">Onthoud mij?</label>
+            </div> */}
+            <Link to="/WW vergeten" className="ww-vergeten">
+              Wachtwoord vergeten?
+            </Link>
+          </div>
 
-        <button
-          className="inlog-button full-size google-button"
-          onClick={() => login()}
-        >
-          <img src={GoogleLogo} alt=""></img>
-          Google Login
-        </button>
+          <p className={errorStyle}>{error}</p>
+          {isLoading ? (
+            <button className="inlog-button">Loading...</button>
+          ) : (
+            <button className="inlog-button" onClick={handleSubmit}>
+              Login
+            </button>
+          )}
+        </form>
 
-        <Link to="/" className="full-size">
-          <button className="inlog-button">Login met Microsoft</button>
-        </Link>
-      </form>
+        <hr className="divider"></hr>
+
+        <div className="right flex-column">
+          <p>Of login met</p>
+          {isLoading ? (
+            <button className="inlog-button google-button full-size">
+              <img src={GoogleLogo} alt=""></img>
+              Loading...
+            </button>
+          ) : (
+            <button
+              className="inlog-button google-button full-size"
+              onClick={() => {
+                setisLoading(true);
+                login();
+              }}
+            >
+              <img src={GoogleLogo} alt=""></img>
+              Google Login
+            </button>
+          )}
+
+          {isLoading ? (
+            <button className="inlog-button microsoft-button full-size">
+              <img src={MicrosoftLogo} alt="" />
+              Loading...
+            </button>
+          ) : (
+            <button
+              className="inlog-button microsoft-button full-size"
+              onClick={() => navigate("/")}
+            >
+              <img src={MicrosoftLogo} alt="" />
+              Microsoft Login
+            </button>
+          )}
+
+          <p>Nog geen account?</p>
+
+          {isLoading ? (
+            <button className="inlog-button">Loading...</button>
+          ) : (
+            <button className="inlog-button" onClick={redirectAanmelden}>
+              Registreren
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

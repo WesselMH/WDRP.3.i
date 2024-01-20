@@ -8,7 +8,7 @@ function Header({ Titel, Knoppen }) {
     <header>
       <div className="inside-wrapper">
         <Link to={"/"} className="img-wrapper">
-          <img className="logo" src={Logo} alt="Logo Accessibility" />
+          <img className="logo" src={Logo} alt="Terug naar Voor pagina" />
         </Link>
         <div className="header-component Titel">{Titel}</div>
       </div>

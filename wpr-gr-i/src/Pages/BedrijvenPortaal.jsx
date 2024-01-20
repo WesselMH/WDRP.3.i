@@ -6,7 +6,7 @@ import BedrijvenItem from "../Components/BedrijvenItem";
 import "./BedrijvenPortaal.css";
 import background from "./backgroundWithGradient.png";
 import { Link, Navigate } from "react-router-dom";
-import Loguit from "../Loguit";
+import { jwtDecode } from "jwt-decode";
 
 const opdracht = [
   { title: 'Toegankelijkheid voor Mensen met Beperkingen', bedrijf: 'Accessibility Foundation', beschrijving: "Studie naar Kwaliteit van Leven bij Mensen met Beperkingen: Een diepgaand onderzoek naar de dagelijkse hindernissen en mogelijkheden tot verbetering. Het doel is waardevolle inzichten te vergaren ter bevordering van levenskwaliteit en inclusie voor deze individuen.", datum: "12-12-12", id: 1 },
@@ -43,20 +43,26 @@ const InboxButton =
   ;
 
 function BedrijvenPortaal() {
-  const [authenticated, setauthenticated] = useState(sessionStorage.getItem("authenticated"));
-  const [role, setRole] = useState(sessionStorage.getItem("role"));
+  const [token, setToken] = useState(sessionStorage.getItem("token"));
+  const [role, setRole] = useState("");
 
   useEffect(() => {
-    const loggedInUser = sessionStorage.getItem("authenticated");
-    const loggedInUserrole = sessionStorage.getItem("role");
+    const loggedInUser = sessionStorage.getItem("token");
 
-    if (loggedInUser) {
-      setauthenticated(loggedInUser);
+    if (loggedInUser !== "null") {
+      const loggedInUserrole =
+        jwtDecode(loggedInUser)[
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+        ];
+      // console.log(loggedInUserrole);
+      // console.log(loggedInUserrole);
+      // setToken(loggedInUser);
       setRole(loggedInUserrole);
     }
-  }, [authenticated, role]);
+    // console.log(role);
+  }, []);
 
-  // console.log(authenticated, role);
+  // console.log(token, role);
 
   if (authenticated && role === "bedrijf") {
     return (
