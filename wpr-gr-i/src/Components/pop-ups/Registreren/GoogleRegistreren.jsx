@@ -7,28 +7,7 @@ import HulpmiddelenRegistreren from "./HulpmiddelenRegistreren";
 import BereikRegistratie from "./BereikRegistratie";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-
-function InvoerVelden({ knoppen, handleInputChange, inputValues }) {
-  return (
-    <>
-      {knoppen.map((knop) => {
-        return (
-          <InvoerVeld
-            key={knop.index}
-            label={knop.label}
-            className="input-veld"
-            type={knop.type}
-            placeholder={knop.placeholder}
-            id={knop.id}
-            onChange={(value) => handleInputChange(knop.id, value)}
-            value={inputValues[knop.id] || ""}
-            data_cy={knop.data_cy}
-          />
-        );
-      })}
-    </>
-  );
-}
+import InvoerVelden from "./InvoerVelden";
 
 function GoogleRegistreren({
   handleOverlayGoogleRegistreerClick,
@@ -64,6 +43,30 @@ function GoogleRegistreren({
       ],
     },
   ]);
+
+  const [progress, setProgress] = useState(0);
+  const [tekst, setTekst] = useState("Ga verder");
+  const [aantalStappen, setAantalStappen] = useState(allKnoppen.length);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [allInputValues, setAllInputValues] = useState(
+    new Array(aantalStappen).fill({})
+  );
+
+  const [isLoading, setisLoading] = useState(false);
+
+  useEffect(() => {
+    if (progress >= 1) {
+      if (isLoading) {
+        setTekst("Loading...");
+      } else {
+        setTekst("Registreer");
+      }
+    } else {
+      setTekst("Ga verder");
+    }
+    setAantalStappen(allKnoppen.length - 1);
+    setProgress(currentStep / aantalStappen);
+  }, [isLoading, progress, aantalStappen, allKnoppen.length, currentStep]);
 
   function updateAllKnoppen(value) {
     const KnoppenLijstLeeftijd = {
@@ -178,57 +181,53 @@ function GoogleRegistreren({
   const postcode = allInputValues[1].PostCode;
   const telefoonnummer = allInputValues[1].TelefoonNummer;
   const voogd = allInputValues[2] !== null ? allInputValues[2] : null;
-  const hulpmiddelenLijst =
+  const hulpmiddelen =
     multipleValuesHulpmiddelen.length !== 0 ? multipleValuesHulpmiddelen : null;
-  const beperkingenLijst =
+  if (hulpmiddelen) {
+    const losseHulpmiddelen = [...hulpmiddelen];
+    losseHulpmiddelen.forEach((element) => {
+      element["id"] = 0;
+    });
+  }
+
+  const beperkingen =
     multipleValuesBeperkingen.length !== 0 ? multipleValuesBeperkingen : null;
+  if (beperkingen) {
+    const losseBeperkingen = [...beperkingen];
+    losseBeperkingen.forEach((element) => {
+      element["id"] = 0;
+    });
+  }
+
   const benaderOpties =
     multipleValuesBereik.length !== 0 ? multipleValuesBereik : null;
+  if (benaderOpties) {
+    const losseBenaderOpties = [...benaderOpties];
+    losseBenaderOpties.forEach((element) => {
+      element["id"] = 0;
+    });
+  }
 
-    let geboorteGecheckt = false;
+  let geboorteGecheckt = false;
 
-    const handleInputChange = (id, value) => {
-      setAllInputValues((prevValues) => {
-        const updatedValues = [...prevValues];
-        updatedValues[currentStep] = {
-          ...updatedValues[currentStep],
-          [id]: value,
-        };
-        return updatedValues;
-      });
-      if (currentStep === 1 && !geboorteGecheckt) {
-        if (checkGeboorteDatum()) {
-          updateAllKnoppen("LeeftijdCheck");
-          geboorteGecheckt = true;
-        }
+  const handleInputChange = (id, value) => {
+    setAllInputValues((prevValues) => {
+      const updatedValues = [...prevValues];
+      updatedValues[currentStep] = {
+        ...updatedValues[currentStep],
+        [id]: value,
+      };
+      return updatedValues;
+    });
+    if (currentStep === 1 && !geboorteGecheckt) {
+      if (checkGeboorteDatum()) {
+        updateAllKnoppen("LeeftijdCheck");
+        geboorteGecheckt = true;
       }
-      setErrorStyle(null);
-      setError(null);
-    };
-
-  const [progress, setProgress] = useState(0);
-  const [tekst, setTekst] = useState("Ga verder");
-  const [aantalStappen, setAantalStappen] = useState(allKnoppen.length);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [allInputValues, setAllInputValues] = useState(
-    new Array(aantalStappen).fill({})
-  );
-
-  const [isLoading, setisLoading] = useState(false);
-
-  useEffect(() => {
-    if (progress >= 1) {
-      if (isLoading) {
-        setTekst("Loading...");
-      } else {
-        setTekst("Registreer");
-      }
-    } else {
-      setTekst("Ga verder");
     }
-    setAantalStappen(allKnoppen.length - 1);
-    setProgress(currentStep / aantalStappen);
-  }, [isLoading, progress, aantalStappen, allKnoppen.length, currentStep]);
+    setErrorStyle(null);
+    setError(null);
+  };
 
   async function handleRegistratie(e) {
     e.preventDefault();
@@ -258,9 +257,9 @@ function GoogleRegistreren({
               EmailAccount,
               geboorteDatum,
               voogd,
-              hulpmiddelenLijst,
+              hulpmiddelen,
               benaderOpties,
-              beperkingenLijst,
+              beperkingen,
               headers: {
                 "Access-Control-Allow-Origin": "http://localhost:5155/api/",
                 // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
@@ -343,8 +342,8 @@ function GoogleRegistreren({
       // setProgress(currentStep / aantalStappen);
       return true;
     }
-    
-    geboorteGecheckt = false
+
+    geboorteGecheckt = false;
     return false;
   };
 

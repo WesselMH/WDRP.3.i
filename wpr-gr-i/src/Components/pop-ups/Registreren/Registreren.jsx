@@ -310,10 +310,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
     // console.log("clicked");
     if (areFieldsFilledForStep(currentStep, allInputValues[currentStep])) {
       // console.table(allInputValues);
-      if (
-        progress === 1
-        // && !isLoading
-      ) {
+      if (progress === 1 && !isLoading) {
         const Id = "";
         let gebruikersNaam;
         const wachtwoord = allInputValues[1].Wachtwoord;
@@ -341,7 +338,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           if (voogd) {
             voogd = { ...voogd, Id: 0 };
           }
-          
+
           const hulpmiddelen =
             multipleValuesHulpmiddelen.length !== 0
               ? multipleValuesHulpmiddelen
@@ -396,7 +393,6 @@ function Registreren({ handleOverlayRegistreerClick }) {
                 voogd,
                 hulpmiddelen,
                 benaderOpties,
-                //: [{id: 0, beperking: beperkingen, ervaringsDeskundigen: null }],
                 headers: {
                   "Access-Control-Allow-Origin": "http://localhost:5155/api/",
                   // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
@@ -408,7 +404,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
             )
             .then(
               (response) => {
-                console.log(response);
+                // console.log(response);
                 handleOverlayRegistreerClick();
               },
               (error) => {

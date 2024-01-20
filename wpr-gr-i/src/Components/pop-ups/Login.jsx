@@ -98,7 +98,7 @@ function Login({
           }
         )
         .finally(() => setisLoading(false));
-    }, 5000);
+    }, 1000);
 
     // console.log(username, gebruikersnaam);
   }
