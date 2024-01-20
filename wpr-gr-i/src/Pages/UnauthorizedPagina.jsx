@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 const headerButtons = [
   { Naam: "Bedrijven portaal", href: "/BedrijvenPortaal" },
-  { Naam: "beheerdersportaal", href: "/" },
+  { Naam: "beheerdersportaal", href: "/BeheerdersPortaal" },
   { Naam: "inloggen", href: "/" },
 ];
 

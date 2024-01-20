@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, useSearchParams } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import VoorPagina from "./Pages/VoorPagina";
 import BeheerHome from "./Pages/BeheerHome";
 import BeheerBedrijven from "./Pages/Beheerdersportaal/BeheerBedrijven";
 import BeheerDeskundigen from "./Pages/Beheerdersportaal/BeheerDeskundigen";
-import BeheeBeheerOpdrachtenrHome from "./Pages/Beheerdersportaal/BeheerOpdrachten";
+import BeheerOpdrachten from "./Pages/Beheerdersportaal/BeheerOpdrachten";
 import BedrijvenPortaal from "./Pages/BedrijvenPortaal";
 import OpdrachtenPagina from "./Pages/OpdrachtenPagina";
 import GeenPagina from "./Pages/GeenPagina";
 import Login from "./Components/pop-ups/Login";
-import Registreren from "./Components/pop-ups/Registreren";
+import Registreren from "./Components/pop-ups/Registreren/Registreren";
 import Bijwerken from "./Components/pop-ups/Bijwerken";
 import BijwerkenBedrijf from "./Components/pop-ups/BijwerkenBedrijf";
 import HomePortaal from "./Pages/HomePortaal";
 import UnauthorizedPagina from "./Pages/UnauthorizedPagina";
 import Loguit from "./Loguit";
+import OpdrachtPlaatsen from "./Pages/OpdrachtPlaatsen";
 
 function App() {
   const [token, setToken] = useState();
@@ -46,12 +47,12 @@ function App() {
       />
       <Route
         path="/BeheerdersPortaal/Opdrachten"
-        element={<BeheeBeheerOpdrachtenrHome />}
+        element={<BeheerOpdrachten />}
       />
       <Route path="/BedrijvenPortaal" element={<BedrijvenPortaal />} />
       <Route path="/Opdrachten" element={<OpdrachtenPagina />} />
       {/* <Route path="/Login" element={<Login setGoogle={setGoogle} />} /> */}
-      {/* <Route path="/Registreren" element={<Registreren />} /> */}
+      <Route path="/Registreren" element={<Registreren />} />
       <Route path="/HomePortaal/Bijwerken" element={<Bijwerken />} />
       <Route
         path="/BedrijvenPortaal/Bijwerken"
@@ -60,6 +61,7 @@ function App() {
       <Route path="/Unauthorized" element={<UnauthorizedPagina />} />
       <Route path="*" element={<GeenPagina />} />
       <Route path="/HomePortaal" element={<HomePortaal />} />
+      <Route path="/OpdrachtPlaatsen" element={<OpdrachtPlaatsen />}/>
     </Routes>
   );
 }

@@ -153,4 +153,9 @@ body {
   
     text-align: center;
   }
+
+  .overlay{
+    width: 100%;
+    /* height: 100%; */
+  }
 }

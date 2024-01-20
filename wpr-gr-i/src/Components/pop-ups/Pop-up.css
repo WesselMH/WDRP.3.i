@@ -40,6 +40,7 @@ html {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    margin-top: 20px;
     column-gap: 20px;
     /* margin: 25px; */
     /* font-size: 1rem; */
@@ -100,6 +101,7 @@ html {
     font-size: 1rem;
     background-color: #2B50EC;
     color: white;
+    cursor: pointer;
 }
 
 .google-button {
@@ -145,6 +147,7 @@ html {
     color: black;
     border: 2px solid #111329;
     font-size: 30px;
+    cursor: pointer;
 }
 
 .locked-input {
@@ -173,6 +176,7 @@ html {
 .flex-center{
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 .flex-column {
@@ -190,7 +194,7 @@ html {
     width: 45%;
     /* flex-grow: 1; */
     align-items: center;
-    height: inherit;
+    /* height: inherit; */
     justify-content: center;
     gap: 15px;
 
@@ -201,13 +205,16 @@ html {
     width: 45%;
     /* flex-grow: 1; */
     align-items: center;
-    height: inherit;
+    /* height: inherit; */
     justify-content: center;
     gap: 15px;
 
 }
 
-.inlog-label{ }
+.inlog-label{ 
+    font-size: 20px;
+    margin-right: 10px;
+}
 
 .inlog-label::before {
     content: "";
@@ -226,10 +233,13 @@ html {
     font-size: 14px;
 }
 
+.hidden {
+    display: none;
+}
+
 .registreer-wrapper {
     display: flex;
     flex-direction: column;
-    height: 500px;
     align-items: center;
     justify-content: space-between;
     padding-bottom: 10px;
@@ -244,8 +254,24 @@ html {
     font-weight: 600;
     background-color: #2B50EC;
     color: white;
-    height: 50px;
+    padding: 10px 0px;
     bottom: 0;
+    cursor: pointer;
+}
+
+.confirm-button-keuze {
+    border-radius: 25px;
+    /* width: 40%; */
+    font-size: 24px;
+    border: 0;
+    /* text-transform: uppercase; */
+    font-weight: 600;
+    background-color: #2B50EC;
+    color: white;
+    margin-top: 30px;
+    padding: 10px 20px;
+    bottom: 0;
+    cursor: pointer;
 }
 
 .progress-bar{
@@ -253,11 +279,17 @@ html {
     gap: 10px;
 }
 
+.progress-bar > div {
+    gap: 20px;
+}
+
 .selecter-wrapper {
     height: 100%;
     width: 100%;
     align-items: center;
     justify-content: space-between;
+    padding: 20px 0px;
+
 }
 
 .selecter-wrapper > div {
@@ -294,4 +326,108 @@ html {
 
 .selecter-lijst input {
     margin-right: 10px;
+}
+
+.keuze-wrapper {
+    padding: 40px 0px;
+}
+.keuze-wrapper > h2 {
+    margin-bottom: 30px;
+}
+
+.inside-keuze-wrapper {
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+.keuze-holder {
+    display: flex;
+    gap: 15px;
+    border: 2px solid #111329;
+    padding: 10px 30px;
+    border-radius: 25px;
+    background-color: #F6F6F6;
+    color: gray;
+}
+.keuze-holder input:checked + label
+/* ,.keuze-holder input:hover + label */
+{
+    color: #111329;
+    /* background-color: #111329; */
+}
+
+.keuze-holder > label {
+    font-weight: 600;
+}
+
+.info-bedrijf {
+    height: 150px;
+}
+
+.welkom-bedrijf > *{
+    margin: 60px 50px;
+    line-height: 2rem;
+}
+
+.wachtwoord-button {
+    position: relative;
+    justify-self: center;
+    /* width: 100px; */
+    background-color: #2B50EC;
+    color: white;
+    border-radius: 25px;
+    border: 0;
+    padding: 5px 15px;
+    margin-top: -33px;
+    align-self: end;
+}
+
+.wachtwoord-button > span {
+    color:#B3B3B3
+}
+
+
+@media screen and (max-width: 600px){
+
+    .pop-up{
+        /* height: 100%; */
+        width: 100%;
+    }
+
+    .button-holder{
+        flex-direction: column;
+        /* flex-flow: column-reverse; */
+        height: 100%;
+        margin: 30px 0px  ;
+        padding: 0;
+        gap: 2rem;
+        justify-content: center;
+    }
+
+    .divider {
+        /* display: none; */
+        height: 1px;
+    }
+
+    .button-holder > * {
+        width: 100%;
+    }
+
+    .input-bundel {
+        font-weight: 200;
+        font-size: 16px;
+    }
+
+    .input-veld {
+        padding: 10px 10px;
+    }
+
+    .registreer-wrapper{
+        height: inherit;
+    }
+
+    .confirm-button {
+        font-size: 18px;
+        font-weight: 400;
+    }
 }
