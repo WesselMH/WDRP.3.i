@@ -64,7 +64,7 @@ function OpdrachtInformatie() {
         { Naam: "Terug", href: "/Opdrachten" }
     ];
 
-    const date = opdracht.datum.split('T');
+    // const date = opdracht.datum.split('T');
 
     //blijkt dat gerealateerde objecten later worden opgevraagt?
     //werkt niet voor een of ander reden.
@@ -89,7 +89,7 @@ function OpdrachtInformatie() {
                             <strong className="opdracht-omschrijving">{"Beschijving opdracht:"}</strong>
                             <p className="opdracht-omschrijving">{opdracht.beschrijving}</p><br />
                             <strong className="opdracht-omschrijving">{"Datum opdracht:"}</strong>
-                            <p className="opdracht-omschrijving">{date[0]}</p><br />
+                            <p className="opdracht-omschrijving">{opdracht.datum}</p><br />
                             <strong className="opdracht-omschrijving">{"Locatie:"}</strong>
                             <p className="opdracht-omschrijving">{opdracht.locatie}</p><br />
                             <strong className="opdracht-omschrijving">{"Beloning:"}</strong>
