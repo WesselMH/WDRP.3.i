@@ -48,6 +48,9 @@ function HomePortaal() {
               <Link to="" className="HomePortaal-Button">
                 Afgeronde opdrachten
               </Link>
+              <Link to="" className="HomePortaal-Button">
+                Chat
+              </Link>
             </div>
             <div className="Newsfeed">
               <iframe

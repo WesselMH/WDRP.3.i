@@ -6,10 +6,10 @@
 }
 
 .HomePortaal-Button{
+    text-align: center;
     background-color: #2B50EC;
     cursor: pointer;
     color: #FFF;
-    text-align: center;
     font-family: Poppins;
     font-size: 35px;
     font-style: normal;
@@ -18,13 +18,11 @@
     border: none;
     text-decoration: none;
     width: 400px;
-    height: 100px;
-    margin: 5%;
+    margin: 2%;
     padding: 2%;
     border-radius: 16px;
-    justify-content: center;
-    vertical-align: middle;
 }
+
 
 .HomePortaal-Button-Container{
     display: flex;
