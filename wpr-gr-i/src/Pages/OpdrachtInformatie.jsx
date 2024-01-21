@@ -6,23 +6,28 @@ import { jwtDecode } from "jwt-decode";
 import background from "../achtergrondfoto.jpg";
 import Header from "../Components/Header";
 
-
-function OpdrachtInformatie() {
+ function OpdrachtInformatie() {
     var urlArray = window.location.pathname.split('/');
     const [opdracht, setOpdracht] = useState([]);
+    const [error, setError] = useState();
 
+    
     useEffect(() => {
-        fetch("http://localhost:5155/api/Onderzoek/" + urlArray[2])
-            .then((results) => { return results.json(); })
-            //code to change the opdrachten array
-            .then(data => { setOpdracht(data) })
+        async function getOnderzoek(){
+            await fetch("http://localhost:5155/api/Onderzoek/" + urlArray[2])
+                .then((results) => { return results.json(); })
+                //code to change the opdrachten array
+                .then(data => { setOpdracht(data) })
+        }
+        getOnderzoek();
     },
         []);
-
+    
     function postSubscribe(decodedToken) {
         const id = decodedToken.id;
         const gebruikersnaam = decodedToken.name;
-        //Moet modal/popup navigeerbaar maken met tab. volgens docent.
+        //feedback docent
+        //Moet navigeerbaar maken met tab.
         // Boolean "opdracht gedaan" in ErvaringsDeskundigeOnderzoek/tussentabel zodat bedrijf kan zien wie klaar is met onderzoek.
         axios.post(` http://localhost:5155/api/ErvaringsDeskundige/AddOnderzoek/${urlArray[2]}`, {
             //id opdracht
@@ -51,6 +56,7 @@ function OpdrachtInformatie() {
             })
             .catch(function (error) {
                 console.log(error);
+                setError(error.response.data);
             });
     }
 
@@ -64,11 +70,12 @@ function OpdrachtInformatie() {
         { Naam: "Terug", href: "/Opdrachten" }
     ];
 
-    // const date = opdracht.datum.split('T');
-
-    //blijkt dat gerealateerde objecten later worden opgevraagt?
-    //werkt niet voor een of ander reden.
-    // const bedrijfNaam = opdracht.uitvoerder.gebruikersNaam;
+    // var date = opdracht?.datum?.split('T');
+    
+    // console.log(opdracht);
+    // console.log(opdracht?.soortOnderzoek);
+    // console.log(opdracht?.soortOnderzoek?.opties);
+    // const soortOnderzoek = {opdracht.map(s => x.opties)}
 
     return (
         <>
@@ -82,23 +89,28 @@ function OpdrachtInformatie() {
                     <div className="opdracht-wrapper">
                         <div className="opdracht-header">
                             <h1 className="opdracht-titel">{opdracht.titel}</h1>
-                            <h2 className="opdracht-opdrachtgever">{"uitvoerder"}</h2>
-                            {/* <h2 className="opdracht-opdrachtgever">{opdracht.uitvoerder.gebruikersNaam}</h2> */}
+                            <h2 className="opdracht-opdrachtgever">{opdracht && opdracht.uitvoerder && opdracht.uitvoerder.gebruikersNaam}</h2>
+                            {/* <h2 className="opdracht-opdrachtgever">{opdracht?.uitvoerder?.gebruikersNaam}</h2> */}
                         </div>
                         <div className="opdracht-details">
                             <strong className="opdracht-omschrijving">{"Beschijving opdracht:"}</strong>
                             <p className="opdracht-omschrijving">{opdracht.beschrijving}</p><br />
                             <strong className="opdracht-omschrijving">{"Datum opdracht:"}</strong>
                             <p className="opdracht-omschrijving">{opdracht.datum}</p><br />
+                            {/* <p className="opdracht-omschrijving">{date[0]}</p><br /> */}
                             <strong className="opdracht-omschrijving">{"Locatie:"}</strong>
                             <p className="opdracht-omschrijving">{opdracht.locatie}</p><br />
                             <strong className="opdracht-omschrijving">{"Beloning:"}</strong>
                             <p className="opdracht-omschrijving">{opdracht.beloning}</p><br />
                             <strong className="opdracht-omschrijving">{"Soort onderzoek:"}</strong>
-                            <p className="opdracht-omschrijving">{opdracht.soortOnderzoek}</p><br />
-                            {/* <p className="opdracht-omschrijving">{opdracht.soortOnderzoek.opties}</p><br /> */}
+                            {/* <div>
+                                {opdracht.soortOnderzoek.map(soortOnderzoek => (<p>{soortOnderzoek.opties}</p>))}
+                            </div> */}
+                            {/* <p className="opdracht-omschrijving">{opdracht && opdracht.soortOnderzoek && opdracht.soortOnderzoek.opties}</p><br /> */}
+                            <p className="opdracht-omschrijving">{opdracht?.soortOnderzoek?.opties}</p><br />
                             <button className="opdracht-aanmelden" onClick={() => { getGebruiker() }}>Aanmelden</button>
-                            <button className="opdracht-gedaan" onClick={() => { }}>Gedaan</button>
+                            <button className="opdracht-gedaan" onClick={() => { }}>Gedaan</button><br />
+                            <strong className="opdracht-error">{error}</strong>
                         </div>
                     </div>
                 </div>

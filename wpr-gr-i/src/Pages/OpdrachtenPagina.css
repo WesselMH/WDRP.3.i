@@ -40,6 +40,11 @@
     border-radius: 15px;
     font-weight: 400;
 }
+
+.opdracht-error{
+    color:red;
+    width: fit-content;
+}
 .opdracht-aanmelden, .opdracht-gedaan{
     padding: 13px 60px; /* Adjusted padding for better responsiveness */
     background-color: #2B50EC;
@@ -53,3 +58,7 @@
     text-align: center;
     margin: 30px;
 }
+
+.opdracht-aanmelden:active, .opdracht-gedaan:active{
+    background-color:#131B56;
+  }
