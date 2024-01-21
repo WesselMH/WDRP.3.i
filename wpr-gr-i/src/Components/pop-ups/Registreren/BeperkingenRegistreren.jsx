@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 
 function BeperkingenRegistreren({ selectedValues, onChange }) {
   const [options, setOptions] = useState([]);
+  const [isLoading, setisLoading] = useState([]);
 
   useEffect(() => {
     haalDataOp();
   }, []);
 
   async function haalDataOp() {
+    setisLoading(true);
     await axios
       .get("http://localhost:5155/api/BeperkingOptie")
       // .get("https://wpr-i-backend.azurewebsites.net/api/BeperkingOptie")
@@ -22,15 +24,16 @@ function BeperkingenRegistreren({ selectedValues, onChange }) {
           console.log(error);
         }
       )
-      .finally(() => {});
+      .finally(() => {
+        setisLoading(false);
+      });
   }
 
   const handleCheckboxChange = (value) => {
-    const updatedValues = selectedValues.includes(value)
-      ? selectedValues.filter((v) => v !== value)
+    const updatedValues = selectedValues.some((v) => v.id === value.id)
+      ? selectedValues.filter((v) => v.id !== value.id)
       : [...selectedValues, value];
     onChange(updatedValues);
-    // console.log(updatedValues);
   };
 
   return (
@@ -39,20 +42,26 @@ function BeperkingenRegistreren({ selectedValues, onChange }) {
       <div className="selecter-lijst">
         <h3>Beperkingen</h3>
         <div>
-          {options.map((item) => {
-            return (
-              <div key={item.id}>
-                <input
-                  type="checkbox"
-                  id={item.beperking}
-                  checked={selectedValues.includes(item.beperking)}
-                  onChange={() => handleCheckboxChange(item.beperking)}
-                  name={item.beperking}
-                ></input>
-                <label htmlFor={item.beperking}>{item.beperking}</label>
-              </div>
-            );
-          })}
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <>
+              {options.map((item) => {
+                return (
+                  <div key={item.id}>
+                    <input
+                      type="checkbox"
+                      id={item.beperking}
+                      checked={selectedValues.some((v) => v.id === item.id)}
+                      onChange={() => handleCheckboxChange(item)}
+                      name={item.beperking}
+                    ></input>
+                    <label htmlFor={item.beperking}>{item.beperking}</label>
+                  </div>
+                );
+              })}
+            </>
+          )}
         </div>
       </div>
     </div>
