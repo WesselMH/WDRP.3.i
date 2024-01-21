@@ -40,56 +40,69 @@ function Login({
   async function loginGoogleUser(id, username, gebruikersnaam, wachtwoord) {
     //verander eerst nog het ww naar de nieuwe token
     // !TODO
-    // await axios
-    //   .put("http://localhost:5155/api/AaaAccountController/google/wachtwoordupdate", {
-    //   // .put("https://wpr-i-backend.azurewebsites.net/AaaAccountController/google/wachtwoordupdate", {
-    //
-    //     id,
-    //     wachtwoord,
-    //   })
-    //   .then(
-    //     (response) => {
-    //       console.log(response);
-    //     },
-    //     (error) => {
-    //       console.log(error);
-    //     }
-    //   );
-
-    // console.log(username, gebruikersnaam);
+    // console.log(wachtwoord);
     await axios
-      .post("http://localhost:5155/api/AaaAccount/login", {
-        // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
-        id,
-        gebruikersnaam,
-        wachtwoord,
-        username,
-        headers: {
-          "Access-Control-Allow-Origin": "http://localhost:5155/api/",
-          // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
-          "Content-Type": "application/json",
-        },
-      })
-      .then(
-        (response) => {
-          // console.log(response.data.token);
-          const token = response.data.token;
+      .put(
+        `http://localhost:5155/api/AaaAccount/google/wachtwoordupdate/${username}`,
 
-          sessionStorage.setItem("token", token);
-          sessionStorage.setItem("exp", jwtDecode(token)["exp"] * 1000);
-        },
-        (error) => {
-          //fout response gebruiker
-          console.log(error);
-          handleOverlayLoginClick();
-          handleOverlayGoogleRegistreerClick();
+        // .put("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/google/wachtwoordupdate/" + {username}, {
+        '"' + wachtwoord + '"',
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+            // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+            "Access-Control-Allow-Methods": "PUT",
+            "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
+            "Content-Type": "application/json",
+          },
         }
       )
-      .finally(() => setisLoading(false));
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+
+    setTimeout(async () => {
+      await axios
+        .post("http://localhost:5155/api/AaaAccount/login", {
+          // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
+          id,
+          gebruikersnaam,
+          wachtwoord,
+          username,
+          headers: {
+            "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+            // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+            "Access-Control-Allow-Methods": "POST",
+            "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
+            "Content-Type": "application/json",
+          },
+        })
+        .then(
+          (response) => {
+            // console.log(response.data.token);
+            const token = response.data.token;
+
+            sessionStorage.setItem("token", token);
+            sessionStorage.setItem("exp", jwtDecode(token)["exp"] * 1000);
+          },
+          (error) => {
+            //fout response gebruiker
+            console.log(error);
+            handleOverlayLoginClick();
+            handleOverlayGoogleRegistreerClick();
+          }
+        )
+        .finally(() => setisLoading(false));
+    }, 1000);
+
+    // console.log(username, gebruikersnaam);
   }
-  async function loginUser(id, username, gebruikersnaam, wachtwoord) {
+  async function loginUser() {
     // console.log(username, gebruikersnaam);
     await axios
       .post("http://localhost:5155/api/AaaAccount/login", {
@@ -101,7 +114,7 @@ function Login({
         headers: {
           "Access-Control-Allow-Origin": "http://localhost:5155/api/",
           // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          "Access-Control-Allow-Methods": "POST",
           "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
           "Content-Type": "application/json",
         },
@@ -134,26 +147,30 @@ function Login({
     e.preventDefault();
     if (username !== null && wachtwoord !== null) {
       setisLoading(true);
-      await loginUser(id, username, gebruikersnaam, wachtwoord);
+      await loginUser();
 
-      if (
-        jwtDecode(sessionStorage.getItem("token"))[
-          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-        ] === "ervaringsDeskundige"
-      ) {
-        navigate("/HomePortaal");
-      } else if (
-        jwtDecode(sessionStorage.getItem("token"))[
-          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-        ] === "bedrijf"
-      ) {
-        navigate("/BedrijvenPortaal");
-      } else if (
-        jwtDecode(sessionStorage.getItem("token"))[
-          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-        ] === "beheerder"
-      ) {
-        navigate("/BeheerdersPortaal");
+      let token = sessionStorage.getItem("token");
+      console.log(token);
+      if (token !== "null") {
+        if (
+          jwtDecode(sessionStorage.getItem("token"))[
+            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          ] === "ervaringsDeskundige"
+        ) {
+          navigate("/HomePortaal");
+        } else if (
+          jwtDecode(sessionStorage.getItem("token"))[
+            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          ] === "bedrijf"
+        ) {
+          navigate("/BedrijvenPortaal");
+        } else if (
+          jwtDecode(sessionStorage.getItem("token"))[
+            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          ] === "beheerder"
+        ) {
+          navigate("/BeheerdersPortaal");
+        }
       }
     } else {
       setError("Vul de velden in.");
@@ -183,7 +200,7 @@ function Login({
         setTryGoogle(true);
         // console.log(response.access_token);
 
-        console.log(googleAcountData);
+        // console.log(googleAcountData);
       } catch (err) {
         console.log(err);
       }
@@ -194,6 +211,12 @@ function Login({
     handleOverlayLoginClick();
     handleOverlayRegistreerClick();
   };
+
+  const [wachtwoordZichtbaar, setwachtwoordZichtbaar] = useState(false);
+  function ShowPassword() {
+    console.log("Showing password toggle");
+    setwachtwoordZichtbaar(!wachtwoordZichtbaar);
+  }
 
   return (
     <div className="pop-up">
@@ -220,6 +243,7 @@ function Login({
                 setErrorStyle(null);
                 setError(null);
               }}
+              data-cy="Gebruikersnaam"
             ></input>
           </div>
 
@@ -227,9 +251,16 @@ function Login({
             <label htmlFor="Wachtwoord" className={"inlog-label"}>
               Wachtwoord
             </label>
+            <button
+              type="button"
+              onClick={ShowPassword}
+              className="wachtwoord-button"
+            >
+              {wachtwoordZichtbaar ? <>onzichtbaar</> : <>zichtbaar</>}
+            </button>
             <input
               className="input-veld flex-center full-size"
-              type="password"
+              type={wachtwoordZichtbaar ? "new-password" : "password"}
               autoComplete="current-password"
               placeholder="Wachtwoord"
               id="Wachtwoord"
@@ -238,6 +269,7 @@ function Login({
                 setErrorStyle(null);
                 setError(null);
               }}
+              data-cy="Wachtwoord"
             ></input>
           </div>
 
@@ -253,9 +285,15 @@ function Login({
 
           <p className={errorStyle}>{error}</p>
           {isLoading ? (
-            <button className="inlog-button">Loading...</button>
+            <button className="inlog-button" data-cy="Loading">
+              Loading...
+            </button>
           ) : (
-            <button className="inlog-button" onClick={handleSubmit}>
+            <button
+              className="inlog-button"
+              onClick={handleSubmit}
+              data-cy="Login"
+            >
               Login
             </button>
           )}

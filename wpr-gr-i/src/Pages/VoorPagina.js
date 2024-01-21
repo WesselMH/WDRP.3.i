@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import "./VoorPagina.css";
 import background from "./backgroundWithGradient.png";
 import Login from "../Components/pop-ups/Login";
-import Registreren from "../Components/pop-ups/Registreren";
-import GoogleRegistreren from "../Components/pop-ups/GoogleRegistreren";
+import Registreren from "../Components/pop-ups/Registreren/Registreren";
+import GoogleRegistreren from "../Components/pop-ups/Registreren/GoogleRegistreren";
 
 function VoorPagina() {
   const [loginOverlay, setLoginOverlay] = useState(false);
