@@ -427,10 +427,10 @@ function Registreren({ handleOverlayRegistreerClick }) {
         }
 
         if (accountKeuze === "Bedrijf") {
-          gebruikersNaam = allInputValues[currentStep].Gebruikersnaam;
-          const URL = allInputValues[currentStep].URL;
-          const locatie = allInputValues[currentStep].Locatie;
-          const informatie = allInputValues[currentStep].Informatie;
+          gebruikersNaam = allInputValues[1].EmailAccount;
+          const URL = allInputValues[1].URL;
+          const locatie = allInputValues[1].Locatie;
+          const informatie = allInputValues[1].Informatie;
 
           // alert("hoi je probeerd in te loggen")
           await axios
