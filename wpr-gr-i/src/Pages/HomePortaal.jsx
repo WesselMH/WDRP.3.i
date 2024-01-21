@@ -46,8 +46,10 @@ function HomePortaal() {
                 Opdrachten
               </Link>
               <Link to="" className="HomePortaal-Button">
-                Afgeronde
-                opdrachten
+                Afgeronde opdrachten
+              </Link>
+              <Link to="" className="HomePortaal-Button">
+                Chat
               </Link>
             </div>
             <div className="Newsfeed">
