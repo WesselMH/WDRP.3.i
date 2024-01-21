@@ -13,8 +13,8 @@ function BeperkingenRegistreren({ selectedValues, onChange }) {
   async function haalDataOp() {
     setisLoading(true);
     await axios
-      // .get("http://localhost:5155/api/BeperkingOptie")
-      .get("https://wpr-i-backend.azurewebsites.net/api/BeperkingOptie")
+      .get("http://localhost:5155/api/BeperkingOptie")
+      // .get("https://wpr-i-backend.azurewebsites.net/api/BeperkingOptie")
       .then(
         (response) => {
           setOptions(response.data);

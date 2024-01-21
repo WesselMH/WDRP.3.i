@@ -372,8 +372,8 @@ function Registreren({ handleOverlayRegistreerClick }) {
 
           await axios
             .post(
-              // "http://localhost:5155/api/AaaAccount/ervaringsdeskundige/aanmelden",
-              "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/ervaringsdeskundige/aanmelden",
+              "http://localhost:5155/api/AaaAccount/ervaringsdeskundige/aanmelden",
+              // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/ervaringsdeskundige/aanmelden",
               {
                 // ...inputValues,
                 // Voornaam:
@@ -434,8 +434,8 @@ function Registreren({ handleOverlayRegistreerClick }) {
           // alert("hoi je probeerd in te loggen")
           await axios
             .post(
-              // "http://localhost:5155/api/AaaAccount/bedrijf/aanmelden",
-              "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/bedrijf/aanmelden",
+              "http://localhost:5155/api/AaaAccount/bedrijf/aanmelden",
+              // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/bedrijf/aanmelden",
               {
                 Id,
                 userName,

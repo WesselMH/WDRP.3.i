@@ -43,8 +43,8 @@ function Login({
     // console.log(wachtwoord);
     await axios
       .put(
-        // `http://localhost:5155/api/AaaAccount/google/wachtwoordupdate/${username}`,
-        `https://wpr-i-backend.azurewebsites.net/api/AaaAccount/google/wachtwoordupdate/${username}`, 
+        `http://localhost:5155/api/AaaAccount/google/wachtwoordupdate/${username}`,
+        // `https://wpr-i-backend.azurewebsites.net/api/AaaAccount/google/wachtwoordupdate/${username}`, 
         '"' + wachtwoord + '"',
         {
           headers: {
@@ -67,15 +67,15 @@ function Login({
 
     setTimeout(async () => {
       await axios
-        // .post("http://localhost:5155/api/AaaAccount/login", {
-          .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
+        .post("http://localhost:5155/api/AaaAccount/login", {
+          // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
           id,
           gebruikersnaam,
           wachtwoord,
           username,
           headers: {
-            // "Access-Control-Allow-Origin": "http://localhost:5155/api/",
-            "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+            "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+            // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
             "Access-Control-Allow-Methods": "POST",
             "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
             "Content-Type": "application/json",
@@ -104,15 +104,15 @@ function Login({
   async function loginUser() {
     // console.log(username, gebruikersnaam);
     await axios
-      // .post("http://localhost:5155/api/AaaAccount/login", {
-        .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
+      .post("http://localhost:5155/api/AaaAccount/login", {
+        // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
         id,
         gebruikersnaam,
         wachtwoord,
         username,
         headers: {
-          // "Access-Control-Allow-Origin": "http://localhost:5155/api/",
-          "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+          "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+          // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
           "Access-Control-Allow-Methods": "POST",
           "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
           "Content-Type": "application/json",
