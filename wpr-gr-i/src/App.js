@@ -2,21 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import VoorPagina from "./Pages/VoorPagina";
-import BeheerHome from "./Pages/BeheerHome";
+import BeheerHome from "./Pages/Beheerdersportaal/BeheerHome";
 import BeheerBedrijven from "./Pages/Beheerdersportaal/BeheerBedrijven";
 import BeheerDeskundigen from "./Pages/Beheerdersportaal/BeheerDeskundigen";
 import BeheerOpdrachten from "./Pages/Beheerdersportaal/BeheerOpdrachten";
 import BedrijvenPortaal from "./Pages/BedrijvenPortaal";
-import OpdrachtenPagina from "./Pages/OpdrachtenPagina";
-import GeenPagina from "./Pages/GeenPagina";
+import OpdrachtenPagina from "./Pages/Opdrachten/OpdrachtenPagina";
+import GeenPagina from "./Pages/OverigePaginas/GeenPagina";
 import Login from "./Components/pop-ups/Login";
 import Registreren from "./Components/pop-ups/Registreren/Registreren";
 import Bijwerken from "./Components/pop-ups/Bijwerken";
 import BijwerkenBedrijf from "./Components/pop-ups/BijwerkenBedrijf";
 import HomePortaal from "./Pages/HomePortaal";
-import UnauthorizedPagina from "./Pages/UnauthorizedPagina";
+import UnauthorizedPagina from "./Pages/OverigePaginas/UnauthorizedPagina";
 import Loguit from "./Loguit";
-import OpdrachtPlaatsen from "./Pages/OpdrachtPlaatsen";
+import OpdrachtPlaatsen from "./Pages/Opdrachten/OpdrachtPlaatsen";
 
 function App() {
   const [token, setToken] = useState();
@@ -61,7 +61,10 @@ function App() {
       <Route path="/Unauthorized" element={<UnauthorizedPagina />} />
       <Route path="*" element={<GeenPagina />} />
       <Route path="/HomePortaal" element={<HomePortaal />} />
-      <Route path="/OpdrachtPlaatsen" element={<OpdrachtPlaatsen />}/>
+      <Route
+        path="/BedrijvenPortaal/OpdrachtPlaatsen"
+        element={<OpdrachtPlaatsen />}
+      />
     </Routes>
   );
 }

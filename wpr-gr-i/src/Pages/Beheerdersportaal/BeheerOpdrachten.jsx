@@ -1,6 +1,5 @@
 import Header from "../../Components/Header.jsx";
-import "../Beheer.css";
-import { Link } from "react-router-dom";
+import "./Beheer.css";
 import background from "./../backgroundWithGradient.png";
 
 const Knoppen = [

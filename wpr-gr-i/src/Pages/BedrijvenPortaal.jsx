@@ -29,13 +29,14 @@ const listOpdrachten = opdracht.map((opdracht) => (
 
 const headerButtons = [
   { Naam: "Profiel updaten", href: "/BedrijvenPortaal/Bijwerken" },
-  { Naam: "Opdracht plaatsen", href: "/BedrijvenProtaal/NieuweOpdracht" },
+  { Naam: "Opdracht plaatsen", href: "/BedrijvenPortaal/OpdrachtPlaatsen" },
   { Naam: "Uitloggen", href: "/" },
 ];
 
 function BedrijvenPortaal() {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
   const [role, setRole] = useState("");
+  const [plaatsenOverlay, setPlaatsenOverlay] = useState(false);
 
   useEffect(() => {
     const loggedInUser = sessionStorage.getItem("token");
@@ -53,25 +54,29 @@ function BedrijvenPortaal() {
     // console.log(role);
   }, []);
 
+  const handleOverlayPlaatsenClick = () => {
+    setPlaatsenOverlay(!plaatsenOverlay);
+  };
+
   // console.log(token, role);
 
   if (token !== "null") {
     if (role.includes("bedrijf")) {
-      return (
-        <>
-          <Header Titel={"Bedrijven portaal"} Knoppen={headerButtons} />
-          <div
-            className="bedrijvenportaal"
-            style={{ backgroundImage: `url(${background})` }}
-          >
-            <ul className="listOpdracht">
-              <h2>Open Opdrachten</h2>
-              {listOpdrachten}
-            </ul>
-          </div>
-        </>
-      );
-    } 
+  return (
+    <>
+      <Header Titel={"Bedrijven portaal"} Knoppen={headerButtons} />
+      <div
+        className="bedrijvenportaal"
+        style={{ backgroundImage: `url(${background})` }}
+      >
+        <ul className="listOpdracht">
+          <h2>Open Opdrachten</h2>
+          {listOpdrachten}
+        </ul>
+      </div>
+    </>
+  );
+    }
   } else {
     return <Navigate replace to="/Unauthorized" />;
   }
