@@ -45,7 +45,7 @@ function HomePortaal() {
               <Link to="/opdrachten" className="HomePortaal-Button">
                 Opdrachten
               </Link>
-              <Link to="" className="HomePortaal-Button">
+              <Link to="/opdrachtenaangemeld" className="HomePortaal-Button">
                 Afgeronde opdrachten
               </Link>
               <Link to="" className="HomePortaal-Button">

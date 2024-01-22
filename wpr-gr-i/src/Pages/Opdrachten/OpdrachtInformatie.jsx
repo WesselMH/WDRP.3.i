@@ -84,7 +84,7 @@ function OpdrachtInformatie() {
       });
   }
 
-  const buttons = [{ Naam: "Terug", href: "/Opdrachten" }];
+  const buttons = [{ Naam: "Terug", href: -1 }];
 
   // var date = opdracht?.datum?.split('T');
 

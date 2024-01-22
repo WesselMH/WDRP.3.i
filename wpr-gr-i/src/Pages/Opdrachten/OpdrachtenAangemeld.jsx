@@ -4,15 +4,22 @@ import { useEffect, useState } from "react";
 import background from "../../achtergrondfoto.jpg";
 import Header from "../../Components/Header";
 import Opdracht from "../../Components/Opdracht";
+import { jwtDecode } from "jwt-decode";
+
 
 const buttons = [
-  { Naam: "Aangemelde Opdrachten", href: "/opdrachtenaangemeld" },
+  { Naam: "Alle Opdrachten", href: "/opdrachten" },
   { Naam: "Homeportaal", href: "/HomePortaal" },
   { Naam: "Uitloggen", href: "/" },
 ];
 
-function OpdrachtenPagina() {
+function OpdrachtenAangemeld() {
+
   const [opdrachten, setOpdrachten] = useState([]);
+  const loggedInUser = sessionStorage.getItem("token");
+  const loggedInUserrole = jwtDecode(loggedInUser)
+  const userId = loggedInUserrole.id;
+  console.log(userId);
 
   function OpdrachtenBox() {
     return (
@@ -26,7 +33,7 @@ function OpdrachtenPagina() {
 
   //word geladen als de component eerst laad.
   useEffect(() => {
-    fetch("http://localhost:5155/api/Onderzoek")
+    fetch(`http://localhost:5155/api/ErvaringsDeskundige/Onderzoeken?id=${userId}`)
       .then((results) => {
         return results.json();
       })
@@ -36,23 +43,9 @@ function OpdrachtenPagina() {
       });
   }, []);
 
-
-
-  //   {
-  //     //Title, typeopdracht, omschrijving, datum, locatie
-  //      "titel": "Dit is een titel",
-  //      "beschrijving":"omschrijving",
-  //      "locatie":"",
-  //      "datum":"2024-01-14",
-  //      "soortOnderzoek":{
-  //          "id":"",
-  //          "opties":"optie"
-  //      }
-  //  }
-
   return (
     <div>
-      <Header Titel={"Opdrachten"} Knoppen={buttons} />
+      <Header Titel={"Aangemelde Opdrachten"} Knoppen={buttons} />
       <div
         className="opdrachtenPagina"
         style={{ backgroundImage: `url(${background})` }}
@@ -67,4 +60,4 @@ function OpdrachtenPagina() {
   );
 }
 
-export default OpdrachtenPagina;
+export default OpdrachtenAangemeld;
