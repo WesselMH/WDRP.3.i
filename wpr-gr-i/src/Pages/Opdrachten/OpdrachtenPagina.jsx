@@ -1,22 +1,9 @@
 import React from "react";
 import "./OpdrachtenPagina.css";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import background from "../../achtergrondfoto.jpg";
 import Header from "../../Components/Header";
 import Opdracht from "../../Components/Opdracht";
-
-function OpdrachtenBox({ opdrachten }) {
-  return (
-    <>
-      {opdrachten.map((opdracht) => (
-        <Link to={`/Opdrachten/${opdracht.id}`}>
-          <Opdracht key={opdracht.id} opdracht={opdracht} />
-        </Link>
-      ))}
-    </>
-  );
-}
 
 const buttons = [
   { Naam: "Beschikbare Opdrachten", href: "/iest" },
@@ -25,6 +12,16 @@ const buttons = [
 
 function OpdrachtenPagina() {
   const [opdrachten, setOpdrachten] = useState([]);
+
+  function OpdrachtenBox() {
+    return (
+      <>
+        {opdrachten.map((opdracht) => (
+            <Opdracht key={opdracht.id} opdracht={opdracht} />
+        ))}
+      </>
+    );
+  }
 
   //word geladen als de component eerst laad.
   useEffect(() => {
@@ -59,7 +56,7 @@ function OpdrachtenPagina() {
       >
         <div className="opdrachten-wrapper">
           <ul>
-            <OpdrachtenBox opdrachten={opdrachten} />
+            <OpdrachtenBox />
           </ul>
         </div>
       </div>
