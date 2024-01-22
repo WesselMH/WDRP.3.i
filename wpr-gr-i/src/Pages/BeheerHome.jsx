@@ -39,8 +39,7 @@ function Beheer() {
   function Bedrijven () {
     navigate("/BeheerdersPortaal/Bedrijven")
   }
-
-  if (authenticated && role.includes("beheerder")) {
+  // if (authenticated && role.includes("beheerder")) {
     return (
       <>
         {" "}
@@ -71,8 +70,8 @@ function Beheer() {
         </div>
       </>
     );
-  } else {
-    return <Navigate replace to="/Unauthorized" />;
-  }
+  // } else {
+  //   return <Navigate replace to="/Unauthorized" />;
+  // }
 }
 export default Beheer;
