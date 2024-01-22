@@ -66,6 +66,8 @@ function App() {
         path="/BedrijvenPortaal/OpdrachtPlaatsen"
         element={<OpdrachtPlaatsen />}
       />
+      <Route path="/Clickstream"
+      element={<ClickStream />}/>
     </Routes>
   );
 }
