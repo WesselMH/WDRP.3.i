@@ -16,6 +16,7 @@ import BijwerkenBedrijf from "./Components/pop-ups/BijwerkenBedrijf";
 import HomePortaal from "./Pages/HomePortaal";
 import UnauthorizedPagina from "./Pages/OverigePaginas/UnauthorizedPagina";
 import Loguit from "./Loguit";
+import OpdrachtInformatie from "./Pages/Opdrachten/OpdrachtInformatie";
 import OpdrachtPlaatsen from "./Pages/Opdrachten/OpdrachtPlaatsen";
 import ClickStream from "./Pages/Bedrijf/ClickstreamInfo";
 
@@ -51,7 +52,9 @@ function App() {
         element={<BeheerOpdrachten />}
       />
       <Route path="/BedrijvenPortaal" element={<BedrijvenPortaal />} />
-      <Route path="/Opdrachten" element={<OpdrachtenPagina />} />
+      <Route path="/Opdrachten/" element={<OpdrachtenPagina />} />
+      <Route path="/Opdrachten/:id" element={<OpdrachtInformatie />} />
+
       {/* <Route path="/Login" element={<Login setGoogle={setGoogle} />} /> */}
       <Route path="/Registreren" element={<Registreren />} />
       <Route path="/HomePortaal/Bijwerken" element={<Bijwerken />} />
@@ -66,6 +69,7 @@ function App() {
         path="/BedrijvenPortaal/OpdrachtPlaatsen"
         element={<OpdrachtPlaatsen />}
       />
+      <Route path="/Clickstream" element={<ClickStream />} />
     </Routes>
   );
 }
