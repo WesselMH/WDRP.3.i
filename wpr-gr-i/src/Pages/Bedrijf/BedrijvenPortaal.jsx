@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Header from "../Components/Header";
+import Header from "../../Components/Header";
 import "./BedrijvenPortaal.css";
-import background from "./backgroundWithGradient.png";
+import background from "../backgroundWithGradient.png";
 import { Link, Navigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
@@ -29,13 +29,15 @@ const listOpdrachten = opdracht.map((opdracht) => (
 
 const headerButtons = [
   { Naam: "Profiel updaten", href: "/BedrijvenPortaal/Bijwerken" },
-  { Naam: "Opdracht plaatsen", href: "/BedrijvenProtaal/NieuweOpdracht" },
+  { Naam: "Opdracht plaatsen", href: "/BedrijvenPortaal/OpdrachtPlaatsen" },
+  { Naam: "Tracking info", href: "/Clickstream" },
   { Naam: "Uitloggen", href: "/" },
 ];
 
 function BedrijvenPortaal() {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
   const [role, setRole] = useState("");
+  const [plaatsenOverlay, setPlaatsenOverlay] = useState(false);
 
   useEffect(() => {
     const loggedInUser = sessionStorage.getItem("token");
@@ -52,6 +54,10 @@ function BedrijvenPortaal() {
     }
     // console.log(role);
   }, []);
+
+  const handleOverlayPlaatsenClick = () => {
+    setPlaatsenOverlay(!plaatsenOverlay);
+  };
 
   // console.log(token, role);
 
@@ -71,7 +77,7 @@ function BedrijvenPortaal() {
           </div>
         </>
       );
-    } 
+    }
   } else {
     return <Navigate replace to="/Unauthorized" />;
   }

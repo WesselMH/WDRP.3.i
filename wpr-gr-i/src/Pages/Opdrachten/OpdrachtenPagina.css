@@ -62,3 +62,7 @@
 .opdracht-aanmelden:active, .opdracht-gedaan:active{
     background-color:#131B56;
   }
+
+.float-left {
+    flex-grow: 1;
+}

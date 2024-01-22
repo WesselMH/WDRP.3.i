@@ -241,7 +241,7 @@ function GoogleRegistreren({
         await axios
           .post(
             "http://localhost:5155/api/AaaAccount/google/aanmelden",
-            // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/ervaringsdeskundige/aanmelden"
+            // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/google/aanmelden",
             {
               // ...inputValues,
               // Voornaam:
@@ -351,7 +351,7 @@ function GoogleRegistreren({
     // console.log(username, gebruikersnaam);
     await axios
       .post("http://localhost:5155/api/AaaAccount/login", {
-        // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
+      // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
         Id,
         gebruikersNaam,
         wachtwoord,

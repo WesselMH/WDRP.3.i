@@ -44,13 +44,12 @@ function Login({
     await axios
       .put(
         `http://localhost:5155/api/AaaAccount/google/wachtwoordupdate/${username}`,
-
-        // .put("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/google/wachtwoordupdate/" + {username}, {
+        // `https://wpr-i-backend.azurewebsites.net/api/AaaAccount/google/wachtwoordupdate/${username}`, 
         '"' + wachtwoord + '"',
         {
           headers: {
-            "Access-Control-Allow-Origin": "http://localhost:5155/api/",
-            // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+            // "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+            "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
             "Access-Control-Allow-Methods": "PUT",
             "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
             "Content-Type": "application/json",
@@ -59,7 +58,7 @@ function Login({
       )
       .then(
         (response) => {
-          console.log(response);
+          // console.log(response);
         },
         (error) => {
           console.log(error);
@@ -150,7 +149,7 @@ function Login({
       await loginUser();
 
       let token = sessionStorage.getItem("token");
-      console.log(token);
+      // console.log(token);
       if (token !== "null") {
         if (
           jwtDecode(sessionStorage.getItem("token"))[
