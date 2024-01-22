@@ -228,7 +228,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
 
       // Update the state with the new array list
       setAllKnoppen(updatedValues);
-      console.log("test");
+      // console.log("test");
     }
 
     if (value === "LeeftijdCheck") {
@@ -373,8 +373,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           await axios
             .post(
               "http://localhost:5155/api/AaaAccount/ervaringsdeskundige/aanmelden",
-
-              // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/ervaringsdeskundige/aanmelden"
+              // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/ervaringsdeskundige/aanmelden",
               {
                 // ...inputValues,
                 // Voornaam:
@@ -394,8 +393,8 @@ function Registreren({ handleOverlayRegistreerClick }) {
                 hulpmiddelen,
                 benaderOpties,
                 headers: {
-                  "Access-Control-Allow-Origin": "http://localhost:5155/api/",
-                  // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+                  // "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+                  "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
                   "Access-Control-Allow-Methods": "POST",
                   "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
                   "Content-Type": "application/json",
@@ -436,7 +435,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           await axios
             .post(
               "http://localhost:5155/api/AaaAccount/bedrijf/aanmelden",
-              // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/bedrijf/aanmelden"
+              // "https://wpr-i-backend.azurewebsites.net/api/AaaAccount/bedrijf/aanmelden",
               {
                 Id,
                 userName,
@@ -447,8 +446,8 @@ function Registreren({ handleOverlayRegistreerClick }) {
                 locatie,
                 informatie,
                 headers: {
-                  "Access-Control-Allow-Origin": "http://localhost:5155/api/",
-                  // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+                  // "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+                  "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
                   "Access-Control-Allow-Methods": "POST",
                   "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
                   "Content-Type": "application/json",
@@ -457,7 +456,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
             )
             .then(
               (response) => {
-                console.log(response);
+                // console.log(response);
                 handleOverlayRegistreerClick();
               },
               (error) => {

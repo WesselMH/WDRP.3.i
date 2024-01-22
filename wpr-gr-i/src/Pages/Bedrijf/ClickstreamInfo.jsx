@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Header from "../Components/Header";
+import Header from "../../Components/Header";
 import { Link, Navigate } from "react-router-dom";
-import background from "./backgroundWithGradient.png";
+import background from "../backgroundWithGradient.png";
 import "./ClickstreamInfo.css";
 // import ReactGA from "react-ga4";
 

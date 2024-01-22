@@ -1,9 +1,25 @@
+import TypeOpdrachtenGet from "../../../Pages/Opdrachten/TypeOpdrachtenGet";
 import InvoerVeld from "../Invoerveld";
 
-function InvoerVelden({ knoppen, handleInputChange, inputValues }) {
+function InvoerVelden({
+  knoppen,
+  handleInputChange,
+  inputValues,
+  multipleValuesCategorie,
+  handleMultipleValuesChangeCatergorie,
+}) {
   return (
     <>
       {knoppen.map((knop) => {
+        if (knop.TypeInvoerVeld === "select") {
+          return (
+            <TypeOpdrachtenGet
+              key={knop.index}
+              selectedValues={multipleValuesCategorie}
+              onChange={handleMultipleValuesChangeCatergorie}
+            />
+          );
+        }
         return (
           <InvoerVeld
             key={knop.index}

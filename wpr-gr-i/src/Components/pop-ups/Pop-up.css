@@ -78,6 +78,7 @@ html {
     padding: 10px 20px;
     background-color: #F6F6F6;
     font-weight: bold;
+    user-select: none;
     /* color: #B3B3B3; */
     /* opacity: .8; */
 }
@@ -384,6 +385,10 @@ html {
 
 .wachtwoord-button > span {
     color:#B3B3B3
+}
+
+textarea {
+    resize: none;
 }
 
 

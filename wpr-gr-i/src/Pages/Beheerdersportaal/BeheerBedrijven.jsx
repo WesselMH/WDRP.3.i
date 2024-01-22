@@ -1,5 +1,5 @@
 import Header from "../../Components/Header.jsx";
-import "../Beheer.css";
+import "./Beheer.css";
 import background from "./../backgroundWithGradient.png";
 
 const Knoppen = [

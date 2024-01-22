@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Header from "../Components/Header.jsx";
+import Header from "../../Components/Header.jsx";
 import "./Beheer.css";
 import { Navigate, useNavigate } from "react-router-dom";
-import background from "./backgroundWithGradient.png";
+import background from "./../backgroundWithGradient.png";
 import { jwtDecode } from "jwt-decode";
 
 // import { DeskundigePage } from './BeheerDeskundige'
@@ -24,13 +24,13 @@ function Beheer() {
     // console.log(loggedInUser);
 
     if (loggedInUser !== "null") {
-    const loggedInUserrole =
-      jwtDecode(loggedInUser)[
-        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-      ];
-    // console.log(loggedInUserrole);
-    // setToken(loggedInUser);
-    setRole(loggedInUserrole);
+      const loggedInUserrole =
+        jwtDecode(loggedInUser)[
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+        ];
+      // console.log(loggedInUserrole);
+      // setToken(loggedInUser);
+      setRole(loggedInUserrole);
     }
   }, []);
 
@@ -76,7 +76,8 @@ function Beheer() {
           </div>
         </>
       );
-    } 
+    }
+    //TODO else maken met boy ga naar je goede pagina je bent wel ingelogd
   } else {
     return <Navigate replace to="/Unauthorized" />;
     // console.log("p1");
