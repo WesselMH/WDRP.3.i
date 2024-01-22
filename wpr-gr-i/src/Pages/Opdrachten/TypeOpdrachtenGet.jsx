@@ -1,8 +1,7 @@
 import axios from "axios";
-import "./../Pop-up.css";
 import { useEffect, useState } from "react";
 
-function BeperkingenRegistreren({ selectedValues, onChange }) {
+function TypeOpdrachtenGet({ selectedValues, onChange }) {
   const [options, setOptions] = useState([]);
   const [isLoading, setisLoading] = useState([]);
 
@@ -13,8 +12,8 @@ function BeperkingenRegistreren({ selectedValues, onChange }) {
   async function haalDataOp() {
     setisLoading(true);
     await axios
-      .get("http://localhost:5155/api/BeperkingOptie")
-      // .get("https://wpr-i-backend.azurewebsites.net/api/BeperkingOptie")
+      .get("http://localhost:5155/api/Categorie")
+    //   .get("https://wpr-i-backend.azurewebsites.net/api/Categorie")
       .then(
         (response) => {
           setOptions(response.data);
@@ -37,10 +36,9 @@ function BeperkingenRegistreren({ selectedValues, onChange }) {
   };
 
   return (
-    <div>
-      <h2>Selecteer uw beperking</h2>
+    <div className="">
       <div className="selecter-lijst">
-        <h3>Beperkingen</h3>
+        <h3>Type onderzoek</h3>
         <div>
           {isLoading ? (
             <p>Loading...</p>
@@ -48,15 +46,21 @@ function BeperkingenRegistreren({ selectedValues, onChange }) {
             <>
               {options.map((item) => {
                 return (
-                  <div key={item.id}>
+                  <div
+                    className="flex-row full-size keuze-holder"
+                    key={item.id}
+                  >
                     <input
-                      type="checkbox"
-                      id={item.beperking}
+                      type="radio"
+                      id={item.opties}
                       checked={selectedValues.some((v) => v.id === item.id)}
+                      name={"Categorie"}
                       onChange={() => handleCheckboxChange(item)}
-                      name={item.beperking}
+                      value={item.opties}
+                      data-cy={item.id}
+                      aria-label={item.aria_label}
                     ></input>
-                    <label htmlFor={item.beperking}>{item.beperking}</label>
+                    <label htmlFor={item.opties}>{item.opties}</label>
                   </div>
                 );
               })}
@@ -68,4 +72,4 @@ function BeperkingenRegistreren({ selectedValues, onChange }) {
   );
 }
 
-export default BeperkingenRegistreren;
+export default TypeOpdrachtenGet;

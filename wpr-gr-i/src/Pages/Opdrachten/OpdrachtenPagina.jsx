@@ -1,9 +1,8 @@
 import React from "react";
 import "./OpdrachtenPagina.css";
-import background from "../achtergrondfoto.jpg";
-import Header from "../Components/Header";
-import { Link } from "react-router-dom";
-import Opdracht from "../Components/Opdracht";
+import background from "../../achtergrondfoto.jpg";
+import Header from "../../Components/Header";
+import Opdracht from "../../Components/Opdracht";
 
 const opdrachten = [
   {
@@ -41,7 +40,6 @@ const opdrachten = [
 ];
 
 function OpdrachtenBox() {
-  console.table(opdrachten);
   return (
     <>
       {opdrachten.map((opdracht) => (

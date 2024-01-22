@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./GeenPagina.css";
-import Header from "../Components/Header";
+import Header from "../../Components/Header";
 import { useEffect } from "react";
 
 const headerButtons = [

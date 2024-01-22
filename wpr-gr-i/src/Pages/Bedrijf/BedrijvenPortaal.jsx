@@ -4,7 +4,7 @@ import BedrijvenOpdracht from "../Components/BedrijvenOpdracht";
 import BedrijvenBerichten from "../Components/BedrijvenBerichten";
 import BedrijvenItem from "../Components/BedrijvenItem";
 import "./BedrijvenPortaal.css";
-import background from "./backgroundWithGradient.png";
+import background from "../backgroundWithGradient.png";
 import { Link, Navigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
@@ -30,7 +30,8 @@ const listBerichten = berichten.map((berichten) => (
 
 const headerButtons = [
   { Naam: "Profiel updaten", href: "/BedrijvenPortaal/Bijwerken" },
-  { Naam: "Opdracht plaatsen", href: "/BedrijvenPortaal/NieuweOpdracht" },
+  { Naam: "Opdracht plaatsen", href: "/BedrijvenPortaal/OpdrachtPlaatsen" },
+  { Naam: "Tracking info", href: "/Clickstream" },
   { Naam: "Uitloggen", href: "/" },
 ];
 
@@ -45,6 +46,7 @@ const InboxButton =
 function BedrijvenPortaal() {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
   const [role, setRole] = useState("");
+  const [plaatsenOverlay, setPlaatsenOverlay] = useState(false);
 
   useEffect(() => {
     const loggedInUser = sessionStorage.getItem("token");
@@ -52,7 +54,7 @@ function BedrijvenPortaal() {
     if (loggedInUser !== "null") {
       const loggedInUserrole =
         jwtDecode(loggedInUser)[
-          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
         ];
       // console.log(loggedInUserrole);
       // console.log(loggedInUserrole);
@@ -62,25 +64,30 @@ function BedrijvenPortaal() {
     // console.log(role);
   }, []);
 
+  const handleOverlayPlaatsenClick = () => {
+    setPlaatsenOverlay(!plaatsenOverlay);
+  };
+
   // console.log(token, role);
 
-  if (authenticated && role === "bedrijf") {
-    return (
-      <>
-        <Header Titel={"Bedrijven portaal"} Knoppen={headerButtons} />
-        <div
-          className="bedrijvenportaal"
-          style={{ backgroundImage: `url(${background})` }}
-        >
-          {BedrijvenItem("Open Opdrachten", listOpdrachten)}
-          {BedrijvenItem("Berichten", InboxButton, listBerichten)}
-          {BedrijvenItem("Chat", InboxButton, listBerichten)}
-        </div>
-      </>
-    );  
-  } else {
-    return <Navigate replace to="/Unauthorized" />;
+  if (token !== "null") {
+    if (role.includes("bedrijf")) {
+      return (
+        <>
+          <Header Titel={"Bedrijven portaal"} Knoppen={headerButtons} />
+          <div
+            className="bedrijvenportaal"
+            style={{ backgroundImage: `url(${background})` }}
+          >
+            {BedrijvenItem("Open Opdrachten", listOpdrachten)}
+            {BedrijvenItem("Berichten", InboxButton, listBerichten)}
+            {BedrijvenItem("Chat", InboxButton, listBerichten)}
+          </div>
+        </>
+      );
+    } else {
+      return <Navigate replace to="/Unauthorized" />;
+    }
   }
 }
-
 export default BedrijvenPortaal;
