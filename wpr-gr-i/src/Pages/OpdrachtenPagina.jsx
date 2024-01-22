@@ -12,7 +12,7 @@ function OpdrachtenBox({ opdrachten }) {
   return (
     <>
       {opdrachten.map((opdracht) => (
-        <Link to={opdracht.id}>
+        <Link to={`/Opdrachten/${opdracht.id}`}>
           <Opdracht key={opdracht.id} opdracht={opdracht} />
         </Link>
       ))}

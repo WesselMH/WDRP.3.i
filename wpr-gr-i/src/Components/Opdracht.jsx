@@ -11,7 +11,7 @@ function Opdracht({ opdracht }) {
           <div className="opdracht">
             <div className="opdracht-header">
               <h1 className="opdracht-titel">{opdracht.titel}</h1>
-              <h2 className="opdracht-opdrachtgever">{opdracht.uitvoerder.gebruikersNaam}</h2>
+              <h2 className="opdracht-opdrachtgever">{opdracht.uitvoerder?.gebruikersNaam}</h2>
               {/* <h2 className="opdracht-opdrachtgever">uitvoerder gebruikersNaam</h2> */}
 
             </div>

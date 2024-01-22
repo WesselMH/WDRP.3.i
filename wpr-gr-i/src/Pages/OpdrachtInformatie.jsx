@@ -71,11 +71,6 @@ import Header from "../Components/Header";
     ];
 
     // var date = opdracht?.datum?.split('T');
-    
-    // console.log(opdracht);
-    // console.log(opdracht?.soortOnderzoek);
-    // console.log(opdracht?.soortOnderzoek?.opties);
-    // const soortOnderzoek = {opdracht.map(s => x.opties)}
 
     return (
         <>
@@ -103,9 +98,6 @@ import Header from "../Components/Header";
                             <strong className="opdracht-omschrijving">{"Beloning:"}</strong>
                             <p className="opdracht-omschrijving">{opdracht.beloning}</p><br />
                             <strong className="opdracht-omschrijving">{"Soort onderzoek:"}</strong>
-                            {/* <div>
-                                {opdracht.soortOnderzoek.map(soortOnderzoek => (<p>{soortOnderzoek.opties}</p>))}
-                            </div> */}
                             {/* <p className="opdracht-omschrijving">{opdracht && opdracht.soortOnderzoek && opdracht.soortOnderzoek.opties}</p><br /> */}
                             <p className="opdracht-omschrijving">{opdracht?.soortOnderzoek?.opties}</p><br />
                             <button className="opdracht-aanmelden" onClick={() => { getGebruiker() }}>Aanmelden</button>
