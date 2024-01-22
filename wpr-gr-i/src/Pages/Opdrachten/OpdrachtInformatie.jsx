@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
@@ -10,6 +10,7 @@ function OpdrachtInformatie() {
   var urlArray = window.location.pathname.split("/");
   const [opdracht, setOpdracht] = useState([]);
   const [error, setError] = useState();
+  const navigate = useNavigate();
 
   async function getOnderzoek() {
     // await fetch("http://localhost:5155/api/Onderzoek/" + urlArray[2])
@@ -75,6 +76,7 @@ function OpdrachtInformatie() {
       )
       .then(function (response) {
         // console.log(response);
+        navigate("/Opdrachten")
       })
       .catch(function (error) {
         console.log(error);
