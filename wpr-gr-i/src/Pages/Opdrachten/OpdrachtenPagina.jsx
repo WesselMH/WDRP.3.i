@@ -7,7 +7,6 @@ import Header from "../../Components/Header";
 import Opdracht from "../../Components/Opdracht";
 
 function OpdrachtenBox({ opdrachten }) {
-
   return (
     <>
       {opdrachten.map((opdracht) => (
@@ -25,17 +24,19 @@ const buttons = [
 ];
 
 function OpdrachtenPagina() {
-
   const [opdrachten, setOpdrachten] = useState([]);
 
   //word geladen als de component eerst laad.
   useEffect(() => {
     fetch("http://localhost:5155/api/Onderzoek")
-      .then((results) => { return results.json(); })
+      .then((results) => {
+        return results.json();
+      })
       //code to change the opdrachten array
-      .then(data => { setOpdrachten(data) })
-  },
-    []);
+      .then((data) => {
+        setOpdrachten(data);
+      });
+  }, []);
 
   //   {
   //     //Title, typeopdracht, omschrijving, datum, locatie
@@ -47,7 +48,7 @@ function OpdrachtenPagina() {
   //          "id":"",
   //          "opties":"optie"
   //      }
-  //  }  
+  //  }
 
   return (
     <div>

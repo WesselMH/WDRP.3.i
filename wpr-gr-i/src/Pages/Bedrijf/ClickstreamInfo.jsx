@@ -178,7 +178,7 @@ function ClickStream() {
               </li>
               <li>Klik op "Stroom maken" om het proces te voltooien.</li>
             </ol>
-            <button className="stream-button" ck={prevStep}>Vorige</button>
+            <button className="stream-button" onClick={prevStep}>Vorige</button>
             <button className="stream-button" onClick={nextStep}>Volgende</button>
           </div>
           <div

@@ -16,7 +16,7 @@ import BijwerkenBedrijf from "./Components/pop-ups/BijwerkenBedrijf";
 import HomePortaal from "./Pages/HomePortaal";
 import UnauthorizedPagina from "./Pages/OverigePaginas/UnauthorizedPagina";
 import Loguit from "./Loguit";
-import OpdrachtInformatie from "./Pages/OpdrachtInformatie";
+import OpdrachtInformatie from "./Pages/Opdrachten/OpdrachtInformatie";
 import OpdrachtPlaatsen from "./Pages/Opdrachten/OpdrachtPlaatsen";
 import ClickStream from "./Pages/Bedrijf/ClickstreamInfo";
 
@@ -69,8 +69,7 @@ function App() {
         path="/BedrijvenPortaal/OpdrachtPlaatsen"
         element={<OpdrachtPlaatsen />}
       />
-      <Route path="/Clickstream"
-      element={<ClickStream />}/>
+      <Route path="/Clickstream" element={<ClickStream />} />
     </Routes>
   );
 }
