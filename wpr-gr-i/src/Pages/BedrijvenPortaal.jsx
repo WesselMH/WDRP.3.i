@@ -30,6 +30,7 @@ const listOpdrachten = opdracht.map((opdracht) => (
 const headerButtons = [
   { Naam: "Profiel updaten", href: "/BedrijvenPortaal/Bijwerken" },
   { Naam: "Opdracht plaatsen", href: "/BedrijvenProtaal/NieuweOpdracht" },
+  { Naam: "Tracking info", href: "/Clickstream" },
   { Naam: "Uitloggen", href: "/" },
 ];
 

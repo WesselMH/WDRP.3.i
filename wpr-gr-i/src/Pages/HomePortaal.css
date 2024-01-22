@@ -9,30 +9,23 @@
     background-color: #2B50EC;
     cursor: pointer;
     color: #FFF;
-    text-align: center;
-    font-family: Poppins;
-    font-size: 35px;
-    font-style: normal;
+    font-size: 24px;
     font-weight: 500;
-    line-height: 40px; /* 80% */
-    border: none;
     text-decoration: none;
     width: 400px;
-    height: 100px;
-    margin: 5%;
-    padding: 2%;
-    border-radius: 16px;
-    justify-content: center;
-    vertical-align: middle;
+    padding: 15px;
+    border-radius: 25px;
 }
+
 
 .HomePortaal-Button-Container{
     display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: 350px;
-        
+    padding: 100px 50px;        
 }
 
 .Newsfeed{

@@ -17,6 +17,7 @@ import HomePortaal from "./Pages/HomePortaal";
 import UnauthorizedPagina from "./Pages/UnauthorizedPagina";
 import Loguit from "./Loguit";
 import OpdrachtPlaatsen from "./Pages/OpdrachtPlaatsen";
+import ClickStream from "./Pages/ClickstreamInfo";
 
 function App() {
   const [token, setToken] = useState();
@@ -62,6 +63,7 @@ function App() {
       <Route path="*" element={<GeenPagina />} />
       <Route path="/HomePortaal" element={<HomePortaal />} />
       <Route path="/OpdrachtPlaatsen" element={<OpdrachtPlaatsen />}/>
+      <Route path="/Clickstream" element={<ClickStream/>}/>
     </Routes>
   );
 }
