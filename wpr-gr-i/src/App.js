@@ -6,7 +6,7 @@ import BeheerHome from "./Pages/Beheerdersportaal/BeheerHome";
 import BeheerBedrijven from "./Pages/Beheerdersportaal/BeheerBedrijven";
 import BeheerDeskundigen from "./Pages/Beheerdersportaal/BeheerDeskundigen";
 import BeheerOpdrachten from "./Pages/Beheerdersportaal/BeheerOpdrachten";
-import BedrijvenPortaal from "./Pages/BedrijvenPortaal";
+import BedrijvenPortaal from "./Pages/Bedrijf/BedrijvenPortaal";
 import OpdrachtenPagina from "./Pages/Opdrachten/OpdrachtenPagina";
 import GeenPagina from "./Pages/OverigePaginas/GeenPagina";
 import Login from "./Components/pop-ups/Login";
@@ -17,7 +17,7 @@ import HomePortaal from "./Pages/HomePortaal";
 import UnauthorizedPagina from "./Pages/OverigePaginas/UnauthorizedPagina";
 import Loguit from "./Loguit";
 import OpdrachtPlaatsen from "./Pages/Opdrachten/OpdrachtPlaatsen";
-import ClickStream from "./Pages/ClickstreamInfo";
+import ClickStream from "./Pages/Bedrijf/ClickstreamInfo";
 
 function App() {
   const [token, setToken] = useState();

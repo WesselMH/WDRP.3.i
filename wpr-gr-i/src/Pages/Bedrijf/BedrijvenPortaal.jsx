@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Header from "../Components/Header";
+import Header from "../../Components/Header";
 import "./BedrijvenPortaal.css";
-import background from "./backgroundWithGradient.png";
+import background from "../backgroundWithGradient.png";
 import { Link, Navigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
@@ -63,20 +63,20 @@ function BedrijvenPortaal() {
 
   if (token !== "null") {
     if (role.includes("bedrijf")) {
-  return (
-    <>
-      <Header Titel={"Bedrijven portaal"} Knoppen={headerButtons} />
-      <div
-        className="bedrijvenportaal"
-        style={{ backgroundImage: `url(${background})` }}
-      >
-        <ul className="listOpdracht">
-          <h2>Open Opdrachten</h2>
-          {listOpdrachten}
-        </ul>
-      </div>
-    </>
-  );
+      return (
+        <>
+          <Header Titel={"Bedrijven portaal"} Knoppen={headerButtons} />
+          <div
+            className="bedrijvenportaal"
+            style={{ backgroundImage: `url(${background})` }}
+          >
+            <ul className="listOpdracht">
+              <h2>Open Opdrachten</h2>
+              {listOpdrachten}
+            </ul>
+          </div>
+        </>
+      );
     }
   } else {
     return <Navigate replace to="/Unauthorized" />;
