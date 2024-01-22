@@ -17,6 +17,7 @@ import HomePortaal from "./Pages/HomePortaal";
 import UnauthorizedPagina from "./Pages/OverigePaginas/UnauthorizedPagina";
 import Loguit from "./Loguit";
 import OpdrachtPlaatsen from "./Pages/Opdrachten/OpdrachtPlaatsen";
+import ClickStream from "./Pages/ClickstreamInfo";
 
 function App() {
   const [token, setToken] = useState();
