@@ -14,26 +14,27 @@ import { jwtDecode } from "jwt-decode";
 //   { title: 'Toegankelijkheidsbeoordeling 2023', bedrijf: 'Mediamarkt', beschrijving: "Deze enquête is ontworpen om inzicht te krijgen in uw ervaringen met de toegankelijkheid van onze producten/diensten/ruimtes. Neem alstublieft de tijd om de vragen eerlijk en gedetailleerd te beantwoorden. Uw input zal direct bijdragen aan het verbeteren van onze inspanningen op het gebied van inclusiviteit.", datum: "12-12-12", href: "/Opdrachten", id: 3 },
 // ];
 
-function listOpdrachten(opdrachten){
-  console.log("listOpdrachten")
+function listOpdrachten(opdrachten) {
+  console.log("listOpdrachten");
 
-  console.log(opdrachten)
-  return (
-    opdrachten.map((opdracht) => (
-      <BedrijvenOpdracht key={opdracht.id} opdracht={opdracht} />
-    ))
-  )
+  console.log(opdrachten);
+  return opdrachten.map((opdracht) => (
+    <BedrijvenOpdracht key={opdracht.id} opdracht={opdracht} />
+  ));
 }
 
 const berichten = [
   { onderwerp: "Bericht onderwerp", afzender: "Afzender", id: 1 },
-  { onderwerp: "Vragen betreft onderzoek \"inclusie en welzijn\"", afzender: "Phil Collins", id: 2 }
+  {
+    onderwerp: 'Vragen betreft onderzoek "inclusie en welzijn"',
+    afzender: "Phil Collins",
+    id: 2,
+  },
 ];
 
 const listBerichten = berichten.map((berichten) => (
   <BedrijvenBerichten key={berichten.id} berichten={berichten} />
 ));
-
 
 const headerButtons = [
   { Naam: "Profiel updaten", href: "/BedrijvenPortaal/Bijwerken" },
@@ -42,14 +43,13 @@ const headerButtons = [
   { Naam: "Uitloggen", href: "/" },
 ];
 
-const InboxButton =
+const InboxButton = (
   <Link to={""}>
     <div className="bedrijvenInbox">
       <p>Postvak IN: {berichten.length}</p>
     </div>
   </Link>
-  ;
-
+);
 function BedrijvenPortaal() {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
   const [role, setRole] = useState("");
@@ -62,7 +62,7 @@ function BedrijvenPortaal() {
     if (loggedInUser !== "null") {
       const loggedInUserrole =
         jwtDecode(loggedInUser)[
-        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
         ];
       // console.log(loggedInUserrole);
       // console.log(loggedInUserrole);
@@ -73,16 +73,19 @@ function BedrijvenPortaal() {
   }, []);
 
   useEffect(() => {
-        async function getOnderzoek(){
-          console.log("getOnderzoek")
-            await fetch("http://localhost:5155/api/Onderzoek/")
-                .then((results) => { return results.json(); })
-                //code to change the opdrachten array
-                .then(data => { setOpdrachten(data) })
-        }
-        getOnderzoek();
-    },
-        []);
+    async function getOnderzoek() {
+      console.log("getOnderzoek");
+      await fetch("http://localhost:5155/api/Onderzoek/")
+        .then((results) => {
+          return results.json();
+        })
+        //code to change the opdrachten array
+        .then((data) => {
+          setOpdrachten(data);
+        });
+    }
+    getOnderzoek();
+  }, []);
 
   const handleOverlayPlaatsenClick = () => {
     setPlaatsenOverlay(!plaatsenOverlay);
@@ -90,8 +93,8 @@ function BedrijvenPortaal() {
 
   // console.log(token, role);
 
-  // if (token !== "null") {
-  //   if (role.includes("bedrijf")) {
+  if (token !== "null") {
+    if (role.includes("bedrijf")) {
       return (
         <>
           <Header Titel={"Bedrijven portaal"} Knoppen={headerButtons} />
@@ -105,9 +108,9 @@ function BedrijvenPortaal() {
           </div>
         </>
       );
-    // } else {
-    //   return <Navigate replace to="/Unauthorized" />;
-    // }
-  // }
+    } else {
+      return <Navigate replace to="/Unauthorized" />;
+    }
+  }
 }
 export default BedrijvenPortaal;

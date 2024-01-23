@@ -64,7 +64,7 @@ function HomePortaal() {
           </div>
         </>
       );
-    } 
+    }
   } else {
     return <Navigate replace to="/Unauthorized" />;
   }
