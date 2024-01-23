@@ -106,8 +106,6 @@ function Login({
     await axios
       .post("http://localhost:5155/api/AaaAccount/login", {
         // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
-        id,
-        gebruikersnaam,
         wachtwoord,
         username,
         headers: {
