@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import background from "../../achtergrondfoto.jpg";
 import Header from "../../Components/Header";
 import Opdracht from "../../Components/Opdracht";
+import axios from "axios";
 
 const buttons = [
-  { Naam: "Aangemelde Opdrachten", href: "/opdrachtenaangemeld" },
+  { Naam: "terug", href: "/opdrachtenaangemeld" },
   { Naam: "Homeportaal", href: "/HomePortaal" },
   { Naam: "Uitloggen", href: "/" },
 ];
@@ -18,37 +19,32 @@ function OpdrachtenPagina() {
     return (
       <>
         {opdrachten.map((opdracht) => (
-            <Opdracht key={opdracht.id} opdracht={opdracht} />
+          <Opdracht key={opdracht.id} opdracht={opdracht} />
         ))}
       </>
     );
   }
 
+  const getOnderzoeken = async () => {
+    await axios.get(
+      "http://localhost:5155/api/Onderzoek",
+      {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      }
+    ).then((response)=> {
+      console.log(response)
+      setOpdrachten(response.data)
+    },(error) => {
+      console.log(error)
+    });
+  };
+
   //word geladen als de component eerst laad.
   useEffect(() => {
-    fetch("http://localhost:5155/api/Onderzoek")
-      .then((results) => {
-        return results.json();
-      })
-      //code to change the opdrachten array
-      .then((data) => {
-        setOpdrachten(data);
-      });
+    getOnderzoeken();
   }, []);
-
-
-
-  //   {
-  //     //Title, typeopdracht, omschrijving, datum, locatie
-  //      "titel": "Dit is een titel",
-  //      "beschrijving":"omschrijving",
-  //      "locatie":"",
-  //      "datum":"2024-01-14",
-  //      "soortOnderzoek":{
-  //          "id":"",
-  //          "opties":"optie"
-  //      }
-  //  }
 
   return (
     <div>

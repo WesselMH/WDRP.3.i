@@ -13,16 +13,6 @@ function OpdrachtInformatie() {
   const navigate = useNavigate();
 
   async function getOnderzoek() {
-    // await fetch("http://localhost:5155/api/Onderzoek/" + urlArray[2])
-    //   .then((results) => {
-    //     return results.json();
-    //   })
-    //   //code to change the opdrachten array
-    //   .then((data) => {
-    //     setOpdracht(data);
-
-    //     console.table(opdracht);
-    //   });
     await axios.get(`http://localhost:5155/api/Onderzoek/${urlArray[2]}`).then(
       (response) => {
         // console.log(response.data);

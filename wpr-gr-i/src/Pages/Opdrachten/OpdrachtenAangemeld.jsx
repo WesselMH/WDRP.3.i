@@ -5,6 +5,7 @@ import background from "../../achtergrondfoto.jpg";
 import Header from "../../Components/Header";
 import Opdracht from "../../Components/Opdracht";
 import { jwtDecode } from "jwt-decode";
+import axios from "axios";
 
 
 const buttons = [
@@ -30,17 +31,24 @@ function OpdrachtenAangemeld() {
       </>
     );
   }
-
+  const getOnderzoeken = async () => {
+    await axios.get(
+      "http://localhost:5155/api/ErvaringsDeskundige/Onderzoeken",
+      {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      }
+    ).then((response)=> {
+      console.log(response)
+      setOpdrachten(response.data)
+    },(error) => {
+      console.log(error)
+    });;
+  };
   //word geladen als de component eerst laad.
   useEffect(() => {
-    fetch(`http://localhost:5155/api/ErvaringsDeskundige/Onderzoeken?id=${userId}`)
-      .then((results) => {
-        return results.json();
-      })
-      //code to change the opdrachten array
-      .then((data) => {
-        setOpdrachten(data);
-      });
+      getOnderzoeken()
   }, []);
 
   return (
@@ -54,6 +62,7 @@ function OpdrachtenAangemeld() {
           <ul>
             <OpdrachtenBox />
           </ul>
+          <button onClick={getOnderzoeken}>debug knopje want werkt niet</button>
         </div>
       </div>
     </div>

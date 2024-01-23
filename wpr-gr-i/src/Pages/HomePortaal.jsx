@@ -63,10 +63,10 @@ function HomePortaal() {
               url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
             </style>
             <div className="HomePortaal-Button-Container">
-              <Link to="/opdrachten" className="HomePortaal-Button">
+              <Link to="/opdrachtenaangemeld" className="HomePortaal-Button">
                 Opdrachten
               </Link>
-              <Link to="/opdrachtenaangemeld" className="HomePortaal-Button">
+              <Link to="" className="HomePortaal-Button">
                 Afgeronde opdrachten
               </Link>
               <Link to="" className="HomePortaal-Button">
