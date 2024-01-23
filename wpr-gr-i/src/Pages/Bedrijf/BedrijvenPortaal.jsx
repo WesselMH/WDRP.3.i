@@ -108,9 +108,9 @@ function BedrijvenPortaal() {
           </div>
         </>
       );
-    } else {
-      return <Navigate replace to="/Unauthorized" />;
     }
+  } else {
+    return <Navigate replace to="/Unauthorized" />;
   }
 }
 export default BedrijvenPortaal;
