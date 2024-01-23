@@ -1,6 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import InvoerVelden from "../../Components/pop-ups/Registreren/InvoerVelden";
 import axios, { all } from "axios";
 
@@ -139,12 +139,12 @@ function OpdrachtPlaatsen({}) {
     const Id = 0;
 
     if (
-      areFieldsFilledForStep(opdrachtValues)
-      // true
+      // areFieldsFilledForStep(opdrachtValues)
+      true
     ) {
       if (!isLoading) {
         setisLoading(true);
-        
+
         if (multipleValuesCategorie) {
           const losseCategorieen = [...multipleValuesCategorie];
           losseCategorieen.forEach((element) => {
@@ -208,45 +208,52 @@ function OpdrachtPlaatsen({}) {
       console.log("niet alle velden zijn ingevuld");
     }
   };
-  // if (token !== "null") {
-  //   if (role.includes("bedrijf")) {
-  return (
-    <div className="pop-up">
-      {/* <button className="exit-button" onClick={handleOverlayPlaatsenClick}>
+
+  const dontSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  if (token !== "null") {
+    if (role.includes("bedrijf")) {
+      return (
+        <div className="pop-up">
+          {/* <button className="exit-button" onClick={handleOverlayPlaatsenClick}>
         x
       </button> */}
-      <Link to={-1} className="exit-button">
-        x
-      </Link>
-      <h1 className="Titel">Opdracht plaatsen</h1>
+          <Link to={-1} className="exit-button">
+            x
+          </Link>
+          <h1 className="Titel">Opdracht plaatsen</h1>
 
-      <form className="Opdracht-wrapper" onSubmit={Upload}>
-        <div className="input-holder">
-          <InvoerVelden
-            knoppen={knoppen}
-            handleInputChange={handleInputChange}
-            inputValues={opdrachtValues || {}}
-            handleMultipleValuesChangeCatergorie={
-              handleMultipleValuesChangeCategorie
-            }
-            multipleValuesCategorie={multipleValuesCategorie}
-          />
+          <form className="Opdracht-wrapper" onSubmit={dontSubmit}>
+            <div className="input-holder">
+              <InvoerVelden
+                knoppen={knoppen}
+                handleInputChange={handleInputChange}
+                inputValues={opdrachtValues || {}}
+                handleMultipleValuesChangeCatergorie={
+                  handleMultipleValuesChangeCategorie
+                }
+                multipleValuesCategorie={multipleValuesCategorie}
+              />
+            </div>
+
+            <p style={{ fontSize: "20px" }} className={errorStyle}>
+              {error}
+            </p>
+
+            <div className="full-size flex-center">
+              <button className="confirm-button" onClick={Upload}>
+                {tekst}
+              </button>
+            </div>
+          </form>
         </div>
-
-        <p style={{ fontSize: "20px" }} className={errorStyle}>
-          {error}
-        </p>
-
-        <div className="full-size flex-center">
-          <button className="confirm-button">{tekst}</button>
-        </div>
-      </form>
-    </div>
-  );
-  //   }
-  // } else {
-  //   return <Navigate replace to="/Unauthorized" />;
-  // }
+      );
+    }
+  } else {
+    return <Navigate replace to="/Unauthorized" />;
+  }
 }
 
 export default OpdrachtPlaatsen;

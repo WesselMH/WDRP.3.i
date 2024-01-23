@@ -139,8 +139,8 @@ function ClickStream() {
               Ga verder met het Toevoegen van een datastroom om gegevens te gaan
               verzamelen.
             </p>
-            <button onClick={prevStep}>Vorige</button>
-            <button onClick={nextStep}>Volgende</button>
+            <button className="stream-button" onClick={prevStep}>Vorige</button>
+            <button className="stream-button" onClick={nextStep}>Volgende</button>
           </div>
           <div
             className={`step ${currentStep === 3 ? "active" : ""}`}
@@ -178,8 +178,8 @@ function ClickStream() {
               </li>
               <li>Klik op "Stroom maken" om het proces te voltooien.</li>
             </ol>
-            <button onClick={prevStep}>Vorige</button>
-            <button onClick={nextStep}>Volgende</button>
+            <button className="stream-button" onClick={prevStep}>Vorige</button>
+            <button className="stream-button" onClick={nextStep}>Volgende</button>
           </div>
           <div
             className={`step ${currentStep === 4 ? "active" : ""}`}
@@ -228,7 +228,7 @@ function ClickStream() {
                 controleren of je gegevens ontvangt.
               </li>
             </ol>
-            <button onClick={prevStep}>Vorige</button>
+            <button className="stream-button" onClick={prevStep}>Vorige</button>
           </div>
           {/* Voeg meer stappen toe zoals hierboven */}
         </div>

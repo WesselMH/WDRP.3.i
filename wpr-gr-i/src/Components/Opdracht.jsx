@@ -6,13 +6,16 @@ function Opdracht({ opdracht }) {
   return (
     <>
       <li className="opdracht-component">
-        <Link to={""}>
+        <Link to={`/Opdrachten/${opdracht.id}`}>
           {/* hier moet nog de link komen */}
 
           <div className="opdracht">
             <div className="opdracht-header">
-              <h1 className="opdracht-titel">{opdracht.title}</h1>
-              <h2 className="opdracht-opdrachtgever">{opdracht.bedrijf}</h2>
+              <h1 className="opdracht-titel">{opdracht.titel}</h1>
+              <h2 className="opdracht-opdrachtgever">
+                {opdracht.uitvoerder?.gebruikersNaam}
+              </h2>
+              {/* <h2 className="opdracht-opdrachtgever">uitvoerder gebruikersNaam</h2> */}
             </div>
             <p className="opdracht-omschrijving">{opdracht.beschrijving}</p>
           </div>

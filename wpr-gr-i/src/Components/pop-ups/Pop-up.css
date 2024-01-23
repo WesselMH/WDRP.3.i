@@ -260,6 +260,10 @@ html {
     cursor: pointer;
 }
 
+.confirm-button:hover {
+    background-color: #111329;
+}
+
 .confirm-button-keuze {
     border-radius: 25px;
     /* width: 40%; */
