@@ -9,7 +9,7 @@ function BedrijvenOpdracht({ opdracht }) {
         <div className="bedrijvenOpdracht">
             <Link to={`/BedrijvenPortaal/${opdracht.id}`}>
                 <li key={opdracht.id}>
-                    <strong>{opdracht.titel}</strong>
+                    <h4>{opdracht.titel}</h4>
                     <p>{opdracht.beschrijving}</p>
                 </li>
             </Link>

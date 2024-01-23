@@ -1,12 +1,8 @@
 .bedrijvenportaal {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 30px;
 }
 
 .bedrijvenItem {
@@ -15,11 +11,12 @@
     align-items: center;
 
     width: 400px;
-    height: fit-content;
+    /* height: fit-content; */
     background-color: #c9c9c970;
     border-radius: 15px;
-    margin: 50px;
-    overflow: visible;
+    /* margin: 50px; */
+    overflow: hidden;
+    padding: 20px;
 }
 
 .bedrijvenItem a {
@@ -29,13 +26,11 @@
 
 .bedrijvenItemHeader {
     width: inherit;
-    height: 100px;
     background-color: #2B50EC;
-    border-top-right-radius: 15px;
-    border-top-left-radius: 15px;
     color: #ffffff;
     text-align: center;
     padding: 30px;
+    margin-top: -20px;
 }
 
 .bedrijvenOpdracht li {
@@ -49,12 +44,8 @@
 }
 
 .bedrijvenInbox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 300px;
-    height: 80px;
+    text-align: center;
+    padding: 20px;
     background-color: #131B56;
     border-radius: 12px;
     margin-top: 20px;

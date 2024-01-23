@@ -44,7 +44,7 @@ const headerButtons = [
 ];
 
 const InboxButton = (
-  <Link to={""}>
+  <Link to={""} className="full-size">
     <div className="bedrijvenInbox">
       <p>Postvak IN: {berichten.length}</p>
     </div>
@@ -99,7 +99,7 @@ function BedrijvenPortaal() {
         <>
           <Header Titel={"Bedrijven portaal"} Knoppen={headerButtons} />
           <div
-            className="bedrijvenportaal"
+            className="App bedrijvenportaal"
             style={{ backgroundImage: `url(${background})` }}
           >
             {BedrijvenItem("Open Opdrachten", listOpdrachten(opdrachten))}
