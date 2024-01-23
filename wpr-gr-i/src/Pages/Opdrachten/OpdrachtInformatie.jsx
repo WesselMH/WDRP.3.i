@@ -50,33 +50,23 @@ function OpdrachtInformatie() {
     //Moet navigeerbaar maken met tab.
     // Boolean "opdracht gedaan" in ErvaringsDeskundigeOnderzoek/tussentabel zodat bedrijf kan zien wie klaar is met onderzoek.
     axios
-      .post(
+      .put(
         ` http://localhost:5155/api/ErvaringsDeskundige/AddOnderzoek/${urlArray[2]}`,
+        null,
         {
-          //id opdracht
-          //id gebruiker
-          Id: id,
-          gebruikersNaam: "string",
-          wachtwoord: "string",
-          emailAccount: "string",
-          voornaam: "string",
-          achternaam: "string",
-          geboorteDatum: "2024-01-16",
-          postCode: "string",
-          telefoonNummer: "string",
-
           headers: {
             "Access-Control-Allow-Origin": "http://localhost:5155/api/",
             // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
-            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+            "Access-Control-Allow-Methods": "Put",
             "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
             "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
           },
         }
       )
       .then(function (response) {
         // console.log(response);
-        navigate("/Opdrachten")
+        navigate("/Opdrachten");
       })
       .catch(function (error) {
         console.log(error);
