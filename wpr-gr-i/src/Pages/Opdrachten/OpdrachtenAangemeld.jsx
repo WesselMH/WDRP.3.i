@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import background from "../../achtergrondfoto.jpg";
 import Header from "../../Components/Header";
 import Opdracht from "../../Components/Opdracht";
-import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 
@@ -17,10 +16,6 @@ const buttons = [
 function OpdrachtenAangemeld() {
 
   const [opdrachten, setOpdrachten] = useState([]);
-  const loggedInUser = sessionStorage.getItem("token");
-  const loggedInUserrole = jwtDecode(loggedInUser)
-  const userId = loggedInUserrole.id;
-  console.log(userId);
 
   function OpdrachtenBox() {
     return (
@@ -40,13 +35,13 @@ function OpdrachtenAangemeld() {
         },
       }
     ).then((response)=> {
-      console.log(response)
+      // console.log(response)
       setOpdrachten(response.data)
     },(error) => {
       console.log(error)
     });;
   };
-  //word geladen als de component eerst laad.
+  
   useEffect(() => {
       getOnderzoeken()
   }, []);
@@ -62,7 +57,6 @@ function OpdrachtenAangemeld() {
           <ul>
             <OpdrachtenBox />
           </ul>
-          <button onClick={getOnderzoeken}>debug knopje want werkt niet</button>
         </div>
       </div>
     </div>
