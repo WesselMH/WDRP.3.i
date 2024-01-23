@@ -14,7 +14,12 @@ function BeheerBedrijven({}) {
     const BedrLijst = async () => {
       try {
         const responseBedr = await axios.get(
-          "http://localhost:5155/api/Bedrijf"
+          "http://localhost:5155/api/Bedrijf",
+          {
+            headers: {
+              Authorization: 'Bearer ${sessionStorage.getItem("token")}',
+            },
+          }
         );
         console.log(responseBedr.data);
         setBedr(responseBedr.data);

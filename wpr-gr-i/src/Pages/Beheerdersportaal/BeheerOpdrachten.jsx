@@ -14,7 +14,12 @@ function BeheerOnderzoeken({}) {
     const OndLijst = async () => {
       try {
         const responseOpdr = await axios.get(
-          "http://localhost:5155/api/Onderzoek"
+          "http://localhost:5155/api/Onderzoek",
+          {
+            headers: {
+              Authorization: 'Bearer ${sessionStorage.getItem("token")}',
+            },
+          }
         );
         console.log(responseOpdr.data);
         setOnd(responseOpdr.data);
