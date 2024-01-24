@@ -6,7 +6,6 @@ import Login from "../Components/pop-ups/Login";
 import Registreren from "../Components/pop-ups/Registreren/Registreren";
 import GoogleRegistreren from "../Components/pop-ups/Registreren/GoogleRegistreren";
 import ReactGA from "react-ga4";
-import { useLocation } from "react-router-dom";
 
 
 function VoorPagina() {
@@ -15,10 +14,8 @@ function VoorPagina() {
   const [registreerGoogleOverlay, setRegistreerGoogleOverlay] = useState(false);
   const [googleUser, setGoogleUser] = useState();
   const [googleToken, setGoogleToken] = useState();
-  // const location = useLocation();
 
   useEffect(() => {
-    // ReactGA.send({ hitType: "pageview", page: location.pathname, title: "Hoofd Pagina" });
     ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Hoofd Pagina" })
   })
 
