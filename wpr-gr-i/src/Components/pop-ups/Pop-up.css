@@ -66,6 +66,13 @@ html {
     text-transform: uppercase;
     font-weight: 600;
 }
+.input-bundel2 {
+    /* flex-grow: 1; */
+    width: 47%;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
 
 .inlog-bundel{
 
@@ -348,11 +355,13 @@ html {
 .keuze-holder {
     display: flex;
     gap: 15px;
-    border: 2px solid #111329;
-    padding: 10px 30px;
+    border: 2px solid #B3B3B3;
+    text-transform: none;
+    padding: 5px 20px;
     border-radius: 25px;
     background-color: #F6F6F6;
     color: gray;
+    margin-bottom: 3px;
 }
 .keuze-holder input:checked + label
 /* ,.keuze-holder input:hover + label */
