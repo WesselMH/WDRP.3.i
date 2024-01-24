@@ -15,10 +15,11 @@ function VoorPagina() {
   const [registreerGoogleOverlay, setRegistreerGoogleOverlay] = useState(false);
   const [googleUser, setGoogleUser] = useState();
   const [googleToken, setGoogleToken] = useState();
-  const location = useLocation();
+  // const location = useLocation();
 
   useEffect(() => {
-    ReactGA.send({ hitType: "pageview", page: location.pathname, title: "Hoofd Pagina" });
+    // ReactGA.send({ hitType: "pageview", page: location.pathname, title: "Hoofd Pagina" });
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Hoofd Pagina" })
   })
 
   const handleOverlayLoginClick = () => {
@@ -35,6 +36,11 @@ function VoorPagina() {
   };
 
   const handleOverlayGoogleRegistreerClick = () => {
+    ReactGA.event({
+      category: 'Google Login Click',
+      action: 'Login Button Click',
+      label: 'VoorPagina',
+    });
     setRegistreerGoogleOverlay(!registreerGoogleOverlay);
   };
 

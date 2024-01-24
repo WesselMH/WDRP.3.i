@@ -5,6 +5,8 @@ import background from "../../achtergrondfoto.jpg";
 import Header from "../../Components/Header";
 import Opdracht from "../../Components/Opdracht";
 import axios from "axios";
+import ReactGA from 'react-ga4'
+
 
 const buttons = [
   { Naam: "terug", href: "/opdrachtenaangemeld" },
@@ -45,6 +47,8 @@ function OpdrachtenPagina() {
 
   //word geladen als de component eerst laad.
   useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Opdracht Pagina" })
+
     getOnderzoeken();
   }, []);
 

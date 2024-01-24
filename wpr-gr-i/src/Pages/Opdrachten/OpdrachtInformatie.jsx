@@ -5,6 +5,8 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import background from "../../achtergrondfoto.jpg";
 import Header from "../../Components/Header";
+import ReactGA from 'react-ga4'
+
 
 function OpdrachtInformatie() {
   var urlArray = window.location.pathname.split("/");
@@ -27,6 +29,8 @@ function OpdrachtInformatie() {
   }
 
   useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Opdracht Informatie" })
+
     getOnderzoek();
   }, []);
 

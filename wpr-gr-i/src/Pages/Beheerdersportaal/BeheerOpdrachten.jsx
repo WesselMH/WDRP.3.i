@@ -4,6 +4,8 @@ import "./Beheer.css";
 import { Link } from "react-router-dom";
 import background from "./../backgroundWithGradient.png";
 import axios from "axios";
+import ReactGA from "react-ga4";
+
 
 const Knoppen = [
   { Naam: "Terug naar beheerdersportaal home", href: "/BeheerdersPortaal" },
@@ -12,6 +14,8 @@ const Knoppen = [
 function BeheerOnderzoeken({}) {
   const [Ond, setOnd] = useState([]);
   useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Chat" })
+
     const OndLijst = async () => {
       try {
         const responseOpdr = await axios.get(
