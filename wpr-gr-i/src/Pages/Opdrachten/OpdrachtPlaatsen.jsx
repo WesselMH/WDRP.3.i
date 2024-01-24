@@ -46,48 +46,48 @@ function OpdrachtPlaatsen() {
       );
   }
 
-  const Upload = async (data) => {
-    await axios
-      .post(
-        "http://localhost:5155/api/Onderzoek",
-        // "https://wpr-i-backend.azurewebsites.net/api/Onderzoek",
-        {
-          Id: 0,
-          ...data,
-          CheckedDoorBeheerder: false,
-        },
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "http://localhost:5155/api/",
-            // "Access-Control-Allow-Origin":
-            //   "https://wpr-i-backend.azurewebsites.net/api/",
-            "Access-Control-Allow-Methods": "POST",
-            "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-          },
-        }
-      )
-      .then(
-        (response) => {},
-        (error) => {
-          console.log(error);
-        }
-      );
-  };
-
   const onSubmit = async (data) => {
     try {
-      Upload(data);
-      navigate("/BedrijvenPortaal");
-      // throw new Error();
+      await axios
+        .post(
+          "http://localhost:5155/api/Onderzoek",
+          // "https://wpr-i-backend.azurewebsites.net/api/Onderzoek",
+          {
+            Id: 0,
+            ...data,
+            CheckedDoorBeheerder: false,
+          },
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+              // "Access-Control-Allow-Origin":
+              //   "https://wpr-i-backend.azurewebsites.net/api/",
+              "Access-Control-Allow-Methods": "POST",
+              "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+          }
+        )
+        .then(
+          (response) => {
+            navigate("/BedrijvenPortaal");
+          },
+          (error) => {
+            console.log(error);
+            // const errorMessage = JSON.stringify(error.data.errors)
+            // throw new Error(errorMessage)
+            // return error;
+          }
+        );
+      throw new Error();
       // console.log(data);
     } catch (error) {
       setError("titel", {
         message: "test",
       });
       setError("root", {
-        message: "error",
+        message: error,
       });
     }
   };
@@ -190,8 +190,8 @@ function OpdrachtPlaatsen() {
                       })}
                     </>
                   )}
-                  {errors.categorie && (
-                    <p className="error">{errors.categorie.message}</p>
+                  {errors.soortonderzoek && (
+                    <p className="error">{errors.soortonderzoek.message}</p>
                   )}
                 </div>
               </div>
@@ -239,8 +239,8 @@ function OpdrachtPlaatsen() {
                   className="input-veld info-bedrijf"
                   id="omschrijving"
                 />
-                {errors.omschrijving && (
-                  <p className="error">{errors.omschrijving.message}</p>
+                {errors.beschrijving && (
+                  <p className="error">{errors.beschrijving.message}</p>
                 )}
               </div>
             </div>
