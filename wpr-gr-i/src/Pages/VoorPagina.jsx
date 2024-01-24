@@ -5,6 +5,8 @@ import background from "./backgroundWithGradient.png";
 import Login from "../Components/pop-ups/Login";
 import Registreren from "../Components/pop-ups/Registreren/Registreren";
 import GoogleRegistreren from "../Components/pop-ups/Registreren/GoogleRegistreren";
+import reactga from "react-ga4";
+
 
 function VoorPagina() {
   const [loginOverlay, setLoginOverlay] = useState(false);
