@@ -20,12 +20,16 @@ function VoorPagina() {
   })
 
   const handleOverlayLoginClick = () => {
+    // Track login button click event
     ReactGA.event({
       category: 'Button Click',
       action: 'Login Button Click',
       label: 'VoorPagina',
     });
+
     setLoginOverlay(!loginOverlay);
+
+    window.gtag('set', { 'dimension1': 'Logged In' }); 
   };
 
   const handleOverlayRegistreerClick = () => {
@@ -33,12 +37,18 @@ function VoorPagina() {
   };
 
   const handleOverlayGoogleRegistreerClick = () => {
+    // Track Google login button click event
     ReactGA.event({
-      category: 'Google Login Click',
-      action: 'Login Button Click',
+      category: 'Button Click',
+      action: 'Google Login Button Click',
       label: 'VoorPagina',
     });
+
+    // Assume the user is logged in after successful Google login
     setRegistreerGoogleOverlay(!registreerGoogleOverlay);
+
+    // Track user login status in Google Analytics 4 custom dimension using gtag
+    window.gtag('set', { 'dimension1': 'Logged In' }); // Use the appropriate dimension index
   };
 
   return (

@@ -18,6 +18,23 @@ function HomePortaal() {
   const location = useLocation();
 
   const [userData, SetUserData] = useState("");
+ 
+  const chatButtonHandler = () => {
+    ReactGA.event({
+      category: 'Button Click',
+      action: 'Chat Button Click',
+      label: 'HomePortaal',
+    });
+  };
+
+  const AfgerondeButtonHandler = () => {
+    ReactGA.event({
+      category: 'Button Click',
+      action: 'Afgeronde Opdrachten Button Click',
+      label: 'HomePortaal',
+    });
+  }
+
   const userInfo = async () => {
     await axios
       .get("http://localhost:5155/api/ErvaringsDeskundige/user/getMyInfo", {
@@ -65,13 +82,13 @@ function HomePortaal() {
               url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
             </style>
             <div className="HomePortaal-Button-Container">
-              <Link to="/opdrachtenaangemeld" className="HomePortaal-Button">
+              <Link to="/opdrachtenaangemeld" className="HomePortaal-Button" >
                 Opdrachten
               </Link>
-              <Link to="" className="HomePortaal-Button">
+              <Link to="" className="HomePortaal-Button" onClick={AfgerondeButtonHandler}>
                 Afgeronde opdrachten
               </Link>
-              <Link to="" className="HomePortaal-Button">
+              <Link to="" className="HomePortaal-Button" onClick={chatButtonHandler}>
                 Chat
               </Link>
             </div>
