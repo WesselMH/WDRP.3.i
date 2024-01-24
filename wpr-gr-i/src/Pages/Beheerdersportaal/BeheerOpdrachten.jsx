@@ -18,7 +18,7 @@ function BeheerOnderzoeken({}) {
           "http://localhost:5155/api/Onderzoek",
           {
             headers: {
-              Authorization: 'Bearer ${sessionStorage.getItem("token")}',
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
             },
           }
         );

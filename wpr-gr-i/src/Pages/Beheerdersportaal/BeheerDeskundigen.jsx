@@ -16,7 +16,7 @@ function BeheerDeskundige({}) {
           "http://localhost:5155/api/ErvaringsDeskundige",
           {
             headers: {
-              Authorization: 'Bearer ${sessionStorage.getItem("token")}',
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
             },
           }
         );

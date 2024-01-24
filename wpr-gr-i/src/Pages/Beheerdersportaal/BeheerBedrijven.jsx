@@ -17,7 +17,7 @@ function BeheerBedrijven({}) {
           "http://localhost:5155/api/Bedrijf",
           {
             headers: {
-              Authorization: 'Bearer ${sessionStorage.getItem("token")}',
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
             },
           }
         );

@@ -30,7 +30,7 @@ function Chat() {
       try {
         const response = await axios.get("http://localhost:5155/api/Chat", {
           headers: {
-            Authorization: 'Bearer ${sessionStorage.getItem("token")}',
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
           },
         });
         console.log(response.data);
@@ -53,7 +53,7 @@ function Chat() {
           {/* {Allegesp.map((gesp) => ( */}
           {/* <div>{gesp.andere}</div> */}
           {/* ))} */}
-          <button className="Gesprek"></button>
+          {/* <button className="Gesprek"></button> */}
         </div>
         {Gesprek.map((gesp) => (
           <div>
