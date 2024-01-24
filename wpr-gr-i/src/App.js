@@ -17,7 +17,7 @@ import HomePortaal from "./Pages/HomePortaal";
 import UnauthorizedPagina from "./Pages/OverigePaginas/UnauthorizedPagina";
 import Loguit from "./Loguit";
 import OpdrachtInformatie from "./Pages/Opdrachten/OpdrachtInformatie";
-import OpdrachtPlaatsen2 from "./Pages/Opdrachten/OpdrachtPlaatsen2";
+import OpdrachtPlaatsen from "./Pages/Opdrachten/OpdrachtPlaatsen";
 import ClickStream from "./Pages/Bedrijf/ClickstreamInfo";
 
 function App() {
@@ -66,8 +66,8 @@ function App() {
       <Route path="*" element={<GeenPagina />} />
       <Route path="/HomePortaal" element={<HomePortaal />} />
       <Route
-        path="/BedrijvenPortaal/OpdrachtPlaatsen2"
-        element={<OpdrachtPlaatsen2 />}
+        path="/BedrijvenPortaal/OpdrachtPlaatsen"
+        element={<OpdrachtPlaatsen />}
       />
       <Route path="/Clickstream" element={<ClickStream />} />
     </Routes>
