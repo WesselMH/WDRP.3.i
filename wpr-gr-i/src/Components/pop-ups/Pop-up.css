@@ -78,6 +78,7 @@ html {
     padding: 10px 20px;
     background-color: #F6F6F6;
     font-weight: bold;
+    user-select: none;
     /* color: #B3B3B3; */
     /* opacity: .8; */
 }
@@ -176,6 +177,7 @@ html {
 .flex-center{
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 .flex-column {
@@ -212,6 +214,7 @@ html {
 
 .inlog-label{ 
     font-size: 20px;
+    margin-right: 10px;
 }
 
 .inlog-label::before {
@@ -229,6 +232,10 @@ html {
     color: red;
     font-weight: bold;
     font-size: 14px;
+}
+
+.hidden {
+    display: none;
 }
 
 .registreer-wrapper {
@@ -253,6 +260,25 @@ html {
     cursor: pointer;
 }
 
+.confirm-button:hover {
+    background-color: #111329;
+}
+
+.confirm-button-keuze {
+    border-radius: 25px;
+    /* width: 40%; */
+    font-size: 24px;
+    border: 0;
+    /* text-transform: uppercase; */
+    font-weight: 600;
+    background-color: #2B50EC;
+    color: white;
+    margin-top: 30px;
+    padding: 10px 20px;
+    bottom: 0;
+    cursor: pointer;
+}
+
 .progress-bar{
     align-items: center;
     gap: 10px;
@@ -267,6 +293,8 @@ html {
     width: 100%;
     align-items: center;
     justify-content: space-between;
+    padding: 20px 0px;
+
 }
 
 .selecter-wrapper > div {
@@ -304,6 +332,69 @@ html {
 .selecter-lijst input {
     margin-right: 10px;
 }
+
+.keuze-wrapper {
+    padding: 40px 0px;
+}
+.keuze-wrapper > h2 {
+    margin-bottom: 30px;
+}
+
+.inside-keuze-wrapper {
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+.keuze-holder {
+    display: flex;
+    gap: 15px;
+    border: 2px solid #111329;
+    padding: 10px 30px;
+    border-radius: 25px;
+    background-color: #F6F6F6;
+    color: gray;
+}
+.keuze-holder input:checked + label
+/* ,.keuze-holder input:hover + label */
+{
+    color: #111329;
+    /* background-color: #111329; */
+}
+
+.keuze-holder > label {
+    font-weight: 600;
+}
+
+.info-bedrijf {
+    height: 150px;
+}
+
+.welkom-bedrijf > *{
+    margin: 60px 50px;
+    line-height: 2rem;
+}
+
+.wachtwoord-button {
+    position: relative;
+    justify-self: center;
+    /* width: 100px; */
+    background-color: #2B50EC;
+    color: white;
+    border-radius: 25px;
+    border: 0;
+    padding: 5px 15px;
+    margin-top: -33px;
+    align-self: end;
+}
+
+.wachtwoord-button > span {
+    color:#B3B3B3
+}
+
+textarea {
+    resize: none;
+}
+
 
 @media screen and (max-width: 600px){
 

@@ -1,0 +1,62 @@
+.Clickstream{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;    
+}
+
+.tutorial-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+}
+
+.step h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.step p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.step ol {
+    list-style-type: decimal;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.step ol li {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #ffffff;
+}
+
+.stream-button {
+    background-color: #2B50EC;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.stream-button:hover {
+    background-color: #45a049;
+}
+

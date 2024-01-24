@@ -2,13 +2,16 @@
 import React, { useState } from "react";
 import "./VoorPagina.css";
 import background from "./backgroundWithGradient.png";
-import { Link } from "react-router-dom";
 import Login from "../Components/pop-ups/Login";
-import Registreren from "../Components/pop-ups/Registreren";
+import Registreren from "../Components/pop-ups/Registreren/Registreren";
+import GoogleRegistreren from "../Components/pop-ups/Registreren/GoogleRegistreren";
 
 function VoorPagina() {
   const [loginOverlay, setLoginOverlay] = useState(false);
   const [registreerOverlay, setRegistreerOverlay] = useState(false);
+  const [registreerGoogleOverlay, setRegistreerGoogleOverlay] = useState(false);
+  const [googleUser, setGoogleUser] = useState();
+  const [googleToken, setGoogleToken] = useState();
 
   const handleOverlayLoginClick = () => {
     setLoginOverlay(!loginOverlay);
@@ -16,6 +19,10 @@ function VoorPagina() {
 
   const handleOverlayRegistreerClick = () => {
     setRegistreerOverlay(!registreerOverlay);
+  };
+
+  const handleOverlayGoogleRegistreerClick = () => {
+    setRegistreerGoogleOverlay(!registreerGoogleOverlay);
   };
 
   return (
@@ -75,6 +82,11 @@ function VoorPagina() {
           <Login
             handleOverlayLoginClick={handleOverlayLoginClick}
             handleOverlayRegistreerClick={handleOverlayRegistreerClick}
+            handleOverlayGoogleRegistreerClick={
+              handleOverlayGoogleRegistreerClick
+            }
+            setGoogleUser={setGoogleUser}
+            setGoogleToken={setGoogleToken}
           />
         </div>
       )}
@@ -82,6 +94,17 @@ function VoorPagina() {
         <div className="overlay">
           <Registreren
             handleOverlayRegistreerClick={handleOverlayRegistreerClick}
+          />
+        </div>
+      )}
+      {registreerGoogleOverlay && (
+        <div className="overlay">
+          <GoogleRegistreren
+            handleOverlayGoogleRegistreerClick={
+              handleOverlayGoogleRegistreerClick
+            }
+            googleUser={googleUser}
+            googleToken={googleToken}
           />
         </div>
       )}
