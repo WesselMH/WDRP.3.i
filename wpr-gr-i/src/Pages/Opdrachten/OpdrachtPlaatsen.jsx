@@ -7,12 +7,7 @@ import { useForm } from "react-hook-form";
 function OpdrachtPlaatsen() {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
   const [role, setRole] = useState("");
-  const [opdrachtValues, setOpdrachtValues] = useState({});
   const [options, setOptions] = useState([]);
-
-  // const [errorStyle, setErrorStyle] = useState("hidden");
-  // const [error, setError] = useState(null);
-  // const [isLoading, setisLoading] = useState(false);
 
   const {
     register,
@@ -20,12 +15,6 @@ function OpdrachtPlaatsen() {
     setError,
     formState: { errors, isSubmitting, isLoading },
   } = useForm({ defaultValues: haalDataOp });
-
-  // const [multipleValuesCategorie, setMultipleValuesCategorie] = useState([]);
-  // const handleMultipleValuesChangeCategorie = (newValues) => {
-  //   setMultipleValuesCategorie(newValues);
-  //   console.log(multipleValuesCategorie);
-  // };
 
   const navigate = useNavigate();
 
@@ -43,7 +32,6 @@ function OpdrachtPlaatsen() {
   }, []);
 
   async function haalDataOp() {
-    // setisLoading(true);
     await axios
       .get("http://localhost:5155/api/Categorie")
       //.get("https://wpr-i-backend.azurewebsites.net/api/Categorie")
@@ -55,10 +43,7 @@ function OpdrachtPlaatsen() {
         (error) => {
           console.log(error);
         }
-      )
-      .finally(() => {
-        // setisLoading(false);
-      });
+      );
   }
 
   const Upload = async (data) => {
