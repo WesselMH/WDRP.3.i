@@ -23,7 +23,7 @@ import OpdrachtenAangemeld from "./Pages/Opdrachten/OpdrachtenAangemeld";
 import Chat from "./Pages/Chat";
 import ReactGA from "react-ga4";
 
-ReactGA.initialize("your GA measurement id");
+ReactGA.initialize("G-B951RLLBYX");
 
 
 function App() {

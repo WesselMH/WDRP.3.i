@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import background from "./backgroundWithGradient.png";
 import "./HomePortaal.css";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
+import ReactGA from 'react-ga4'
 
 const headerButtons = [
   { Naam: "Profiel updaten", href: "/BedrijvenPortaal/Bijwerken" },
@@ -14,6 +15,7 @@ const headerButtons = [
 function HomePortaal() {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
   const [role, setRole] = useState("");
+  const location = useLocation();
 
   const [userData, SetUserData] = useState("");
   const userInfo = async () => {
@@ -37,7 +39,7 @@ function HomePortaal() {
 
   useEffect(() => {
     const loggedInUser = sessionStorage.getItem("token");
-
+    ReactGA.send({ hitType: "pageview", page: location.pathname, title: "Hoofd Pagina" });
     if (loggedInUser !== "null") {
       const loggedInUserrole =
         jwtDecode(loggedInUser)[
