@@ -1,160 +1,41 @@
+import { useEffect, useState } from "react";
 import Header from "../../Components/Header.jsx";
 import "./Beheer.css";
 import background from "./../backgroundWithGradient.png";
+import axios from "axios";
 
 const Knoppen = [
   { Naam: "Terug naar beheerdersportaal home", href: "/BeheerdersPortaal" },
 ];
+function BeheerDeskundige({}) {
+  const [Desk, setDesk] = useState([]);
+  useEffect(() => {
+    const DeskLijst = async () => {
+      try {
+        const responseDesk = await axios.get(
+          "http://localhost:5155/api/ErvaringsDeskundige",
+          {
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+          }
+        );
+        console.log(responseDesk.data);
+        setDesk(responseDesk.data);
+        // console.log(Desk);
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+    DeskLijst();
+  }, []);
 
-const Desk = [
-  {
-    ID: "1",
-    Voornaam: "Wessel",
-    Achternaam: "Horsthuis",
-    GeboorteDatum: "28-02-2003",
-    Email: "asd@asd.com",
-    TelefoonNummer: "0612345678",
-    PostCode: "2492NE",
-    Beperking: "NULL",
-    Hulpmiddelen: "NULL",
-    Benadering: "NULL",
-  },
-  {
-    ID: "2",
-    Voornaam: "Wessel",
-    Achternaam: "Horsthuis",
-    GeboorteDatum: "28-02-2003",
-    Email: "asd@asd.com",
-    TelefoonNummer: "0612345678",
-    PostCode: "2492NE",
-    Beperking: "NULL",
-    Hulpmiddelen: "NULL",
-    Benadering: "NULL",
-  },
-  {
-    ID: "3",
-    Voornaam: "Wessel",
-    Achternaam: "Horsthuis",
-    GeboorteDatum: "28-02-2003",
-    Email: "asd@asd.com",
-    TelefoonNummer: "0612345678",
-    PostCode: "2492NE",
-    Beperking: "NULL",
-    Hulpmiddelen: "NULL",
-    Benadering: "NULL",
-  },
-  {
-    ID: "4",
-    Voornaam: "Wessel",
-    Achternaam: "Horsthuis",
-    GeboorteDatum: "28-02-2003",
-    Email: "asd@asd.com",
-    TelefoonNummer: "0612345678",
-    PostCode: "2492NE",
-    Beperking: "NULL",
-    Hulpmiddelen: "NULL",
-    Benadering: "NULL",
-  },
-  {
-    ID: "5",
-    Voornaam: "Wessel",
-    Achternaam: "Horsthuis",
-    GeboorteDatum: "28-02-2003",
-    Email: "asd@asd.com",
-    TelefoonNummer: "0612345678",
-    PostCode: "2492NE",
-    Beperking: "NULL",
-    Hulpmiddelen: "NULL",
-    Benadering: "NULL",
-  },
-  {
-    ID: "6",
-    Voornaam: "Wessel",
-    Achternaam: "Horsthuis",
-    GeboorteDatum: "28-02-2003",
-    Email: "asd@asd.com",
-    TelefoonNummer: "0612345678",
-    PostCode: "2492NE",
-    Beperking: "NULL",
-    Hulpmiddelen: "NULL",
-    Benadering: "NULL",
-  },
-  {
-    ID: "7",
-    Voornaam: "Wessel",
-    Achternaam: "Horsthuis",
-    GeboorteDatum: "28-02-2003",
-    Email: "asd@asd.com",
-    TelefoonNummer: "0612345678",
-    PostCode: "2492NE",
-    Beperking: "NULL",
-    Hulpmiddelen: "NULL",
-    Benadering: "NULL",
-  },
-];
-
-const ListDeskundigen = Desk.map((Desk) => (
-  <>
-    <div className="BeheerItem">
-      <p className="BeheerInhoud">{Desk.ID}</p>
-      <p className="BeheerInhoud">{Desk.Voornaam}</p>
-      <p className="BeheerInhoud">{Desk.Achternaam}</p>
-      <p className="BeheerInhoud">{Desk.GeboorteDatum}</p>
-      <p className="BeheerInhoud">{Desk.Email}</p>
-      <p className="BeheerInhoud">{Desk.TelefoonNummer}</p>
-      <p className="BeheerInhoud">{Desk.PostCode}</p>
-      <p className="BeheerInhoud">{Desk.Beperking}</p>
-      <p className="BeheerInhoud">{Desk.Hulpmiddelen}</p>
-      <p className="BeheerInhoud">{Desk.Benadering}</p>
-    </div>
-  </>
-));
-
-function BeheerDeskundigen({}) {
-  function ListDeskundigenRow() {
-    return (
-      <>
-        {Desk.map((item) => {
-          return (
-            <tr className="">
-              <td className="BeheerInhoud">{item.ID}</td>
-              <td className="BeheerInhoud">{item.Voornaam}</td>
-              <td className="BeheerInhoud">{item.Achternaam}</td>
-              <td className="BeheerInhoud">{item.GeboorteDatum}</td>
-              <td className="BeheerInhoud">{item.Email}</td>
-              <td className="BeheerInhoud">{item.TelefoonNummer}</td>
-              <td className="BeheerInhoud">{item.PostCode}</td>
-              <td className="BeheerInhoud">{item.Beperking}</td>
-              <td className="BeheerInhoud">{item.Hulpmiddelen}</td>
-              <td className="BeheerInhoud">{item.Benadering}</td>
-            </tr>
-          );
-        })}
-        ;
-      </>
-    );
-  }
   return (
     <>
       <Header
         Titel={"Lijst van ervaringsdeskundige"}
         Knoppen={Knoppen}
       ></Header>
-      {/* <ul className="BeheerLijst">
-        <div className="TitelBeheerLijst">
-          <strong>ID</strong>
-          <strong>Voornaam</strong>
-          <strong>Achternaam</strong>
-          <strong>GeboorteDatum</strong>
-          <strong>Email</strong>
-          <strong>TelefoonNummer</strong>
-          <strong>PostCode</strong>
-          <strong>Beperking</strong>
-          <strong>Hulpmiddelen</strong>
-          <strong>Benadering</strong>
-        </div>
-        <div className="BeheerItems">{ListDeskundigen}</div>
-      </ul> */}
       <div className="App" style={{ backgroundImage: `url(${background})` }}>
         <style>
           {`
@@ -177,11 +58,24 @@ function BeheerDeskundigen({}) {
             </tr>
           </thead>
           <tbody>
-            <ListDeskundigenRow />{" "}
+            {Desk.map((deskundige) => (
+              <tr key={deskundige.id}>
+                <td className="BeheerInhoud">{deskundige.id}</td>
+                <td className="BeheerInhoud">{deskundige.gebruikersNaam}</td>
+                <td className="BeheerInhoud">{deskundige.achternaam}</td>
+                <td className="BeheerInhoud">{deskundige.geboorteDatum}</td>
+                <td className="BeheerInhoud">{deskundige.email}</td>
+                <td className="BeheerInhoud">{deskundige.telefoonNummer}</td>
+                <td className="BeheerInhoud">{deskundige.postCode}</td>
+                <td className="BeheerInhoud">{deskundige.beperking}</td>
+                <td className="BeheerInhoud">{deskundige.hulpmiddelen}</td>
+                <td className="BeheerInhoud">{deskundige.benadering}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
     </>
   );
 }
-export default BeheerDeskundigen;
+export default BeheerDeskundige;

@@ -20,6 +20,7 @@ import OpdrachtInformatie from "./Pages/Opdrachten/OpdrachtInformatie";
 import OpdrachtPlaatsen from "./Pages/Opdrachten/OpdrachtPlaatsen";
 import ClickStream from "./Pages/Bedrijf/ClickstreamInfo";
 import OpdrachtenAangemeld from "./Pages/Opdrachten/OpdrachtenAangemeld";
+import Chat from "./Pages/Chat";
 
 function App() {
   const [token, setToken] = useState();
@@ -57,6 +58,7 @@ function App() {
       <Route path="/OpdrachtenAangemeld/" element={<OpdrachtenAangemeld />} />
 
       <Route path="/Opdrachten/:id" element={<OpdrachtInformatie />} />
+      <Route path="/Chat" element={<Chat />} />
 
       {/* <Route path="/Login" element={<Login setGoogle={setGoogle} />} /> */}
       <Route path="/Registreren" element={<Registreren />} />
