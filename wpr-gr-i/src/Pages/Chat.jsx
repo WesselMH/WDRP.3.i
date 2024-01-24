@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import "./Chat.css";
 import axios from "axios";
+import Login from "../Components/pop-ups/Login";
 
-const Knoppen = [];
+const Knoppen = [{ Naam: "Voorpagina", href: "../" }];
 
 function Chat() {
-  const [Tekst, setTekst] = useState();
+  const [Tekst, setTekst] = useState("");
   const [Gesprek, setGesprek] = useState([]);
   const [Allegesp, setAllegesp] = useState([]);
   const [Verzender, setVerzender] = useState();
@@ -16,14 +17,27 @@ function Chat() {
   // setVerzender(sessionStorage.getItem("token"));
   // const berichtToevoegen = ChatBerichten;
 
-  // async function NieuweChat(Tekst) {
-  //   await axios.post("http://localhost:5155/api/Chat", {
-  //     id,
-  //     Verzender,
-  //     Ontvanger,
-  //     Tekst,
-  //   });
-  // }
+  async function NieuweChat() {
+    // setVerzender(sessionStorage.getItem("Token"));
+    // setOntvanger(sessionStorage.getItem("Token"));
+    console.log("Dit is de id:" + id);
+    // console.log("Dit is de verzender:" + Verzender);
+    // console.log("Dit is de ontvanger:" + Ontvanger);
+    console.log("Dit is de Tekst:" + Tekst);
+    await axios.post("http://localhost:5155/api/Chat", {
+      // id,
+      // Verzender,
+      // Ontvanger,
+      Tekst,
+      headers: {
+        "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+        // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+        "Access-Control-Allow-Methods": "POST",
+        "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
+        "Content-Type": "application/json",
+      },
+    });
+  }
 
   useEffect(() => {
     const ChatGesprekken = async () => {
@@ -48,12 +62,12 @@ function Chat() {
         Titel={"Chat van " + sessionStorage.getItem("userName")}
         Knoppen={Knoppen}
       ></Header>
+
       <div style={{ height: "79vh" }}>
         <div className="GesprekkenLijst">
           {/* {Allegesp.map((gesp) => ( */}
           {/* <div>{gesp.andere}</div> */}
           {/* ))} */}
-          {/* <button className="Gesprek"></button> */}
         </div>
         {Gesprek.map((gesp) => (
           <div>
@@ -64,7 +78,16 @@ function Chat() {
         ))}
 
         <p>Hallo: </p>
-        {/* <input value={Tekst} onChange={(e) => setTekst(e.target.value)} /> */}
+        <input value={Tekst} onChange={(e) => setTekst(e.target.value)} />
+        <button
+          className="Gesprek"
+          onClick={() => {
+            NieuweChat();
+            setTekst("");
+          }}
+        >
+          Hallo
+        </button>
       </div>
     </>
   );
