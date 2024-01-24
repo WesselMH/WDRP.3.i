@@ -6,51 +6,49 @@ import Header from "../../Components/Header";
 import Opdracht from "../../Components/Opdracht";
 import axios from "axios";
 
+
 const buttons = [
-  { Naam: "terug", href: "/opdrachtenaangemeld" },
+  { Naam: "Alle Opdrachten", href: "/opdrachten" },
   { Naam: "Homeportaal", href: "/HomePortaal" },
   { Naam: "Uitloggen", href: "/" },
 ];
 
-function OpdrachtenPagina() {
+function OpdrachtenAangemeld() {
+
   const [opdrachten, setOpdrachten] = useState([]);
 
   function OpdrachtenBox() {
     return (
       <>
         {opdrachten.map((opdracht) => (
-          <Opdracht key={opdracht.id} opdracht={opdracht} />
+            <Opdracht key={opdracht.id} opdracht={opdracht} />
         ))}
       </>
     );
   }
-
   const getOnderzoeken = async () => {
-    await axios
-      .get("http://localhost:5155/api/Onderzoek", {
+    await axios.get(
+      "http://localhost:5155/api/ErvaringsDeskundige/Onderzoeken",
+      {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },
-      })
-      .then(
-        (response) => {
-          // console.log(response)
-          setOpdrachten(response.data);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      }
+    ).then((response)=> {
+      // console.log(response)
+      setOpdrachten(response.data)
+    },(error) => {
+      console.log(error)
+    });;
   };
-
-  //word geladen als de component eerst laad.
+  
   useEffect(() => {
-    getOnderzoeken();
+      getOnderzoeken()
   }, []);
 
   return (
     <div>
-      <Header Titel={"Opdrachten"} Knoppen={buttons} />
+      <Header Titel={"Aangemelde Opdrachten"} Knoppen={buttons} />
       <div
         className="opdrachtenPagina"
         style={{ backgroundImage: `url(${background})` }}
@@ -65,4 +63,4 @@ function OpdrachtenPagina() {
   );
 }
 
-export default OpdrachtenPagina;
+export default OpdrachtenAangemeld;

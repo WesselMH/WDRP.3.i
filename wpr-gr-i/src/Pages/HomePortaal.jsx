@@ -4,6 +4,7 @@ import { Link, Navigate } from "react-router-dom";
 import background from "./backgroundWithGradient.png";
 import "./HomePortaal.css";
 import { jwtDecode } from "jwt-decode";
+import axios from "axios";
 
 const headerButtons = [
   { Naam: "Profiel updaten", href: "/BedrijvenPortaal/Bijwerken" },
@@ -13,6 +14,26 @@ const headerButtons = [
 function HomePortaal() {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
   const [role, setRole] = useState("");
+
+  const [userData, SetUserData] = useState("");
+  const userInfo = async () => {
+    await axios
+      .get("http://localhost:5155/api/ErvaringsDeskundige/user/getMyInfo", {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      })
+      .then(
+        (response) => {
+          console.log(response.data);
+          SetUserData(JSON.stringify(response.data))
+        },
+        (error) => {
+          console.log(error);
+          console.log(error.response);
+        }
+      );
+  };
 
   useEffect(() => {
     const loggedInUser = sessionStorage.getItem("token");
@@ -42,7 +63,7 @@ function HomePortaal() {
               url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
             </style>
             <div className="HomePortaal-Button-Container">
-              <Link to="/opdrachten" className="HomePortaal-Button">
+              <Link to="/opdrachtenaangemeld" className="HomePortaal-Button">
                 Opdrachten
               </Link>
               <Link to="" className="HomePortaal-Button">
@@ -52,6 +73,8 @@ function HomePortaal() {
                 Chat
               </Link>
             </div>
+            <button onClick={userInfo}>click me voor user info</button>
+            <p>{userData}</p>
             <div className="Newsfeed">
               <iframe
                 width="850"
@@ -64,7 +87,7 @@ function HomePortaal() {
           </div>
         </>
       );
-    } 
+    }
   } else {
     return <Navigate replace to="/Unauthorized" />;
   }

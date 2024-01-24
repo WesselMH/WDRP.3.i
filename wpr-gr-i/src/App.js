@@ -19,6 +19,7 @@ import Loguit from "./Loguit";
 import OpdrachtInformatie from "./Pages/Opdrachten/OpdrachtInformatie";
 import OpdrachtPlaatsen from "./Pages/Opdrachten/OpdrachtPlaatsen";
 import ClickStream from "./Pages/Bedrijf/ClickstreamInfo";
+import OpdrachtenAangemeld from "./Pages/Opdrachten/OpdrachtenAangemeld";
 import Chat from "./Pages/Chat";
 
 function App() {
@@ -54,6 +55,8 @@ function App() {
       />
       <Route path="/BedrijvenPortaal" element={<BedrijvenPortaal />} />
       <Route path="/Opdrachten/" element={<OpdrachtenPagina />} />
+      <Route path="/OpdrachtenAangemeld/" element={<OpdrachtenAangemeld />} />
+
       <Route path="/Opdrachten/:id" element={<OpdrachtInformatie />} />
       <Route path="/Chat" element={<Chat />} />
 
