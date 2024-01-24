@@ -26,19 +26,21 @@ function OpdrachtenPagina() {
   }
 
   const getOnderzoeken = async () => {
-    await axios.get(
-      "http://localhost:5155/api/Onderzoek",
-      {
+    await axios
+      .get("http://localhost:5155/api/Onderzoek", {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },
-      }
-    ).then((response)=> {
-      console.log(response)
-      setOpdrachten(response.data)
-    },(error) => {
-      console.log(error)
-    });
+      })
+      .then(
+        (response) => {
+          // console.log(response)
+          setOpdrachten(response.data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   };
 
   //word geladen als de component eerst laad.
