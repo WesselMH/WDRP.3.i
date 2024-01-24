@@ -13,19 +13,9 @@ function OpdrachtInformatie() {
   const navigate = useNavigate();
 
   async function getOnderzoek() {
-    // await fetch("http://localhost:5155/api/Onderzoek/" + urlArray[2])
-    //   .then((results) => {
-    //     return results.json();
-    //   })
-    //   //code to change the opdrachten array
-    //   .then((data) => {
-    //     setOpdracht(data);
-
-    //     console.table(opdracht);
-    //   });
     await axios.get(`http://localhost:5155/api/Onderzoek/${urlArray[2]}`).then(
       (response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setOpdracht(response.data);
       },
       (error) => {
@@ -41,11 +31,6 @@ function OpdrachtInformatie() {
   }, []);
 
   function postSubscribe() {
-    const token = sessionStorage.getItem("token");
-    const decodedToken = jwtDecode(token);
-
-    const id = decodedToken.id;
-    const gebruikersnaam = decodedToken.name;
     //feedback docent
     //Moet navigeerbaar maken met tab.
     // Boolean "opdracht gedaan" in ErvaringsDeskundigeOnderzoek/tussentabel zodat bedrijf kan zien wie klaar is met onderzoek.
@@ -74,7 +59,7 @@ function OpdrachtInformatie() {
       });
   }
 
-  const buttons = [{ Naam: "Terug", href: "/Opdrachten" }];
+  const buttons = [{ Naam: "Terug", href: -1 }];
 
   // var date = opdracht?.datum?.split('T');
 
