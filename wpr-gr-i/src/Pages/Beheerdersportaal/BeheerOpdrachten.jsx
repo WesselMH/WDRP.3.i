@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Header from "../../Components/Header.jsx";
-import "../Beheer.css";
+import "./Beheer.css";
 import { Link } from "react-router-dom";
 import background from "./../backgroundWithGradient.png";
 import axios from "axios";
