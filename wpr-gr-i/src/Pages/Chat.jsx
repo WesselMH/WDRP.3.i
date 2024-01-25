@@ -25,7 +25,7 @@ function Chat() {
     // const tekst = tekstInput.value;  
 
     await axios
-      .post("http://localhost:5155/api/Chat", {
+      .post("http://wpr-i-backend.azurewebsites.net/api/Chat", {
         id: "",
         Tekst: Tekst,
         
@@ -49,7 +49,7 @@ function Chat() {
 
     const ChatGesprekken = async () => {
       try {
-        const response = await axios.get("http://localhost:5155/api/Chat", {
+        const response = await axios.get("http://wpr-i-backend.azurewebsites.net/api/Chat", {
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
           },

@@ -16,7 +16,7 @@ function BeheerDeskundige({}) {
     const DeskLijst = async () => {
       try {
         const responseDesk = await axios.get(
-          "http://localhost:5155/api/ErvaringsDeskundige",
+          "http://wpr-i-backend.azurewebsites.net/api/ErvaringsDeskundige",
           {
             headers: {
               Authorization: `Bearer ${sessionStorage.getItem("token")}`,

@@ -37,7 +37,7 @@ function HomePortaal() {
 
   const userInfo = async () => {
     await axios
-      .get("http://localhost:5155/api/ErvaringsDeskundige/user/getMyInfo", {
+      .get("http://wpr-i-backend.azurewebsites.net/api/ErvaringsDeskundige/user/getMyInfo", {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },

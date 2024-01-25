@@ -29,7 +29,7 @@ function OpdrachtenAangemeld() {
   }
   const getOnderzoeken = async () => {
     await axios.get(
-      "http://localhost:5155/api/ErvaringsDeskundige/Onderzoeken",
+      "http://wpr-i-backend.azurewebsites.net/api/ErvaringsDeskundige/Onderzoeken",
       {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,

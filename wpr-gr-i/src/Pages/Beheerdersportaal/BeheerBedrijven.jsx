@@ -17,7 +17,7 @@ function BeheerBedrijven({}) {
     const BedrLijst = async () => {
       try {
         const responseBedr = await axios.get(
-          "http://localhost:5155/api/Bedrijf",
+          "http://wpr-i-backend.azurewebsites.net/api/Bedrijf",
           {
             headers: {
               Authorization: `Bearer ${sessionStorage.getItem("token")}`,

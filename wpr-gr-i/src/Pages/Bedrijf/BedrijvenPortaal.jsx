@@ -78,7 +78,7 @@ function BedrijvenPortaal() {
   useEffect(() => {
     async function getOnderzoek() {
       console.log("getOnderzoek");
-      await fetch("http://localhost:5155/api/Onderzoek/")
+      await fetch("http://wpr-i-backend.azurewebsites.net/api/Onderzoek/")
         .then((results) => {
           return results.json();
         })

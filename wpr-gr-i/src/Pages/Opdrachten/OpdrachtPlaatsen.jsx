@@ -33,7 +33,7 @@ function OpdrachtPlaatsen() {
 
   async function haalDataOp() {
     await axios
-      .get("http://localhost:5155/api/Categorie")
+      .get("http://wpr-i-backend.azurewebsites.net/api/Categorie")
       //.get("https://wpr-i-backend.azurewebsites.net/api/Categorie")
       .then(
         (response) => {
@@ -50,7 +50,7 @@ function OpdrachtPlaatsen() {
     try {
       await axios
         .post(
-          "http://localhost:5155/api/Onderzoek",
+          "http://wpr-i-backend.azurewebsites.net/api/Onderzoek",
           // "https://wpr-i-backend.azurewebsites.net/api/Onderzoek",
           {
             Id: 0,

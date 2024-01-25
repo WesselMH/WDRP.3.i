@@ -26,7 +26,7 @@ function OpdrachtenPaginaToCheck() {
 
   const getOnderzoeken = async () => {
     await axios
-      .get("http://localhost:5155/api/Onderzoek/ToCheck", {
+      .get("http://wpr-i-backend.azurewebsites.net/api/Onderzoek/ToCheck", {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },

@@ -29,7 +29,7 @@ function OpdrachtenPagina() {
 
   const getOnderzoeken = async () => {
     await axios
-      .get("http://localhost:5155/api/Onderzoek", {
+      .get("http://wpr-i-backend.azurewebsites.net/api/Onderzoek", {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },

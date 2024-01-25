@@ -12,7 +12,7 @@ function TypeOpdrachtenGet({ selectedValues, onChange }) {
   async function haalDataOp() {
     setisLoading(true);
     await axios
-      .get("http://localhost:5155/api/Categorie")
+      .get("http://wpr-i-backend.azurewebsites.net/api/Categorie")
     //   .get("https://wpr-i-backend.azurewebsites.net/api/Categorie")
       .then(
         (response) => {

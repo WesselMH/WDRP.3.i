@@ -15,7 +15,7 @@ function OpdrachtInformatie() {
   const navigate = useNavigate();
 
   async function getOnderzoek() {
-    await axios.get(`http://localhost:5155/api/Onderzoek/${urlArray[2]}`).then(
+    await axios.get(`http://wpr-i-backend.azurewebsites.net/api/Onderzoek/${urlArray[2]}`).then(
       (response) => {
         // console.log(response.data);
         setOpdracht(response.data);
@@ -40,12 +40,12 @@ function OpdrachtInformatie() {
     // Boolean "opdracht gedaan" in ErvaringsDeskundigeOnderzoek/tussentabel zodat bedrijf kan zien wie klaar is met onderzoek.
     axios
       .put(
-        ` http://localhost:5155/api/ErvaringsDeskundige/AddOnderzoek/${urlArray[2]}`,
+        ` http://wpr-i-backend.azurewebsites.net/api/ErvaringsDeskundige/AddOnderzoek/${urlArray[2]}`,
         null,
         {
           headers: {
-            "Access-Control-Allow-Origin": "http://localhost:5155/api/",
-            // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+            // "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+            "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
             "Access-Control-Allow-Methods": "Put",
             "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
             "Content-Type": "application/json",
