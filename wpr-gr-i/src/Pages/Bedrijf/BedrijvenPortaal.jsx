@@ -102,9 +102,29 @@ function BedrijvenPortaal() {
             className="App bedrijvenportaal"
             style={{ backgroundImage: `url(${background})` }}
           >
-            {BedrijvenItem("Open Opdrachten", listOpdrachten(opdrachten))}
+            <div className="Bedrijf-Button-Container">
+              <Link to="/opdrachten" className="Bedrijf-Button">
+                Open Opdrachten
+              </Link>
+              <Link to="" className="Bedrijf-Button">
+                Berichten
+              </Link>
+              <Link to="" className="Bedrijf-Button">
+                Chat
+              </Link>
+            </div>
+            <div className="Newsfeed">
+              <iframe
+                width="850"
+                height="1600"
+                src="https://rss.app/embed/v1/list/nzu1XvGKmPML2e10"
+                frameborder="0"
+                title="Nieuws feed"
+              ></iframe>
+            </div>
+            {/* {BedrijvenItem("Open Opdrachten", listOpdrachten(opdrachten))}
             {BedrijvenItem("Berichten", InboxButton, listBerichten)}
-            {BedrijvenItem("Chat", InboxButton, listBerichten)}
+            {BedrijvenItem("Chat", InboxButton, listBerichten)} */}
           </div>
         </>
       );
