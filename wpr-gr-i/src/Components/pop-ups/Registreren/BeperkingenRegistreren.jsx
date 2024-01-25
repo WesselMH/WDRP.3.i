@@ -55,6 +55,7 @@ function BeperkingenRegistreren({ selectedValues, onChange }) {
                       checked={selectedValues.some((v) => v.id === item.id)}
                       onChange={() => handleCheckboxChange(item)}
                       name={item.beperking}
+                      aria-label={item.beperking}
                     ></input>
                     <label htmlFor={item.beperking}>{item.beperking}</label>
                   </div>

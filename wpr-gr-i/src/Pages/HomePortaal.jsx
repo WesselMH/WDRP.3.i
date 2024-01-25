@@ -63,19 +63,19 @@ function HomePortaal() {
               url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
             </style>
             <div className="HomePortaal-Button-Container">
-              <Link to="/opdrachtenaangemeld" className="HomePortaal-Button">
+              <Link to="/opdrachtenaangemeld" className="HomePortaal-Button" aria-label="Opdrachten knop">
                 Opdrachten
               </Link>
-              <Link to="" className="HomePortaal-Button">
+              <Link to="" className="HomePortaal-Button" aria-label="Afgeronde opdrachten knop">
                 Afgeronde opdrachten
               </Link>
-              <Link to="" className="HomePortaal-Button">
+              <Link to="" className="HomePortaal-Button" aria-label="Chat knop">
                 Chat
               </Link>
             </div>
             <button onClick={userInfo}>click me voor user info</button>
             <p>{userData}</p>
-            <div className="Newsfeed">
+            <div className="Newsfeed" aria-label="Nieuws feed">
               <iframe
                 width="850"
                 height="1600"
