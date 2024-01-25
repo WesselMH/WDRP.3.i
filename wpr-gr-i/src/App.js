@@ -23,6 +23,9 @@ import OpdrachtenAangemeld from "./Pages/Opdrachten/OpdrachtenAangemeld";
 import Chat from "./Pages/Chat";
 import OpdrachtenPaginaToCheck from "./Pages/Opdrachten/OpdrachtenPaginaToCheck";
 import OpdrachtInformatieToCheck from "./Pages/Opdrachten/OpdrachtInformatieToCheck";
+import ReactGA from "react-ga4";
+
+ReactGA.initialize("G-D1E5M9PJSR");
 
 function App() {
   const [token, setToken] = useState();

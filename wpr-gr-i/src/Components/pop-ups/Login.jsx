@@ -37,6 +37,9 @@ function Login({
     }
   }, [tryGoogle]);
 
+
+
+
   async function loginGoogleUser(id, username, gebruikersnaam, wachtwoord) {
     //verander eerst nog het ww naar de nieuwe token
     // !TODO
@@ -44,12 +47,13 @@ function Login({
     await axios
       .put(
         `http://localhost:5155/api/AaaAccount/google/wachtwoordupdate/${username}`,
-        // `https://wpr-i-backend.azurewebsites.net/api/AaaAccount/google/wachtwoordupdate/${username}`, 
+
+        // .put("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/google/wachtwoordupdate/" + {username}, {
         '"' + wachtwoord + '"',
         {
           headers: {
-            // "Access-Control-Allow-Origin": "http://localhost:5155/api/",
-            "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+            "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+            // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
             "Access-Control-Allow-Methods": "PUT",
             "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
             "Content-Type": "application/json",
@@ -58,7 +62,7 @@ function Login({
       )
       .then(
         (response) => {
-          // console.log(response);
+          console.log(response);
         },
         (error) => {
           console.log(error);
@@ -106,7 +110,7 @@ function Login({
     await axios
       .post("http://localhost:5155/api/AaaAccount/login", {
         // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
-        wachtwoord,
+                wachtwoord,
         username,
         headers: {
           "Access-Control-Allow-Origin": "http://localhost:5155/api/",
@@ -151,19 +155,19 @@ function Login({
       if (token !== "null") {
         if (
           jwtDecode(sessionStorage.getItem("token"))[
-            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
           ] === "ervaringsDeskundige"
         ) {
           navigate("/HomePortaal");
         } else if (
           jwtDecode(sessionStorage.getItem("token"))[
-            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
           ] === "bedrijf"
         ) {
           navigate("/BedrijvenPortaal");
         } else if (
           jwtDecode(sessionStorage.getItem("token"))[
-            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
           ] === "beheerder"
         ) {
           navigate("/BeheerdersPortaal");
@@ -217,7 +221,7 @@ function Login({
 
   return (
     <div className="pop-up">
-      <button className="exit-button" onClick={handleOverlayLoginClick}>
+      <button className="exit-button" onClick={handleOverlayLoginClick} aria-label="Exit knop">
         x
       </button>
       {/* <div className="Titel">Login</div> */}
@@ -241,7 +245,10 @@ function Login({
                 setError(null);
               }}
               data-cy="Gebruikersnaam"
+              aria-label="Gebruikersnaam invullen"
+
             ></input>
+            
           </div>
 
           <div className="inlog-bundel full-size">
@@ -252,6 +259,7 @@ function Login({
               type="button"
               onClick={ShowPassword}
               className="wachtwoord-button"
+              aria-label="Wachtwoord vertonen knop"
             >
               {wachtwoordZichtbaar ? <>onzichtbaar</> : <>zichtbaar</>}
             </button>
@@ -267,6 +275,7 @@ function Login({
                 setError(null);
               }}
               data-cy="Wachtwoord"
+              aria-label="Wachtwoord invullen"
             ></input>
           </div>
 
@@ -290,6 +299,7 @@ function Login({
               className="inlog-button"
               onClick={handleSubmit}
               data-cy="Login"
+              aria-label="Login knop"
             >
               Login
             </button>
@@ -301,13 +311,14 @@ function Login({
         <div className="right flex-column">
           <p>Of login met</p>
           {isLoading ? (
-            <button className="inlog-button google-button full-size">
+            <button className="inlog-button google-button full-size" aria-label="Google login laden">
               <img src={GoogleLogo} alt=""></img>
               Loading...
             </button>
           ) : (
             <button
               className="inlog-button google-button full-size"
+              aria-label="Google login"
               onClick={() => {
                 setisLoading(true);
                 login();
@@ -319,13 +330,14 @@ function Login({
           )}
 
           {isLoading ? (
-            <button className="inlog-button microsoft-button full-size">
+            <button className="inlog-button microsoft-button full-size" aria-label="Microsoft login laden">
               <img src={MicrosoftLogo} alt="" />
               Loading...
             </button>
           ) : (
             <button
               className="inlog-button microsoft-button full-size"
+              aria-label="Microsoft login"
               onClick={() => navigate("/")}
             >
               <img src={MicrosoftLogo} alt="" />
@@ -338,7 +350,7 @@ function Login({
           {isLoading ? (
             <button className="inlog-button">Loading...</button>
           ) : (
-            <button className="inlog-button" onClick={redirectAanmelden}>
+            <button className="inlog-button" onClick={redirectAanmelden} aria-label="Registreren knop">
               Registreren
             </button>
           )}

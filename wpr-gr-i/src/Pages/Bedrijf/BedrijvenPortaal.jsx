@@ -4,6 +4,7 @@ import "./BedrijvenPortaal.css";
 import background from "../backgroundWithGradient.png";
 import { Link, Navigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import ReactGA from "react-ga4"
 
 const opdracht = [
   { title: "Opdracht 1", bedrijf: "Mediamarkt", id: 1 },
@@ -40,6 +41,8 @@ function BedrijvenPortaal() {
   const [plaatsenOverlay, setPlaatsenOverlay] = useState(false);
 
   useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Bedrijven Portaal" })
+
     const loggedInUser = sessionStorage.getItem("token");
 
     if (loggedInUser !== "null") {

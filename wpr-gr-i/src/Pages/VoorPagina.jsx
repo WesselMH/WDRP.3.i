@@ -1,10 +1,12 @@
 // VoorPagina.jsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./VoorPagina.css";
 import background from "./backgroundWithGradient.png";
 import Login from "../Components/pop-ups/Login";
 import Registreren from "../Components/pop-ups/Registreren/Registreren";
 import GoogleRegistreren from "../Components/pop-ups/Registreren/GoogleRegistreren";
+import ReactGA from "react-ga4";
+
 
 function VoorPagina() {
   const [loginOverlay, setLoginOverlay] = useState(false);
@@ -13,8 +15,21 @@ function VoorPagina() {
   const [googleUser, setGoogleUser] = useState();
   const [googleToken, setGoogleToken] = useState();
 
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Hoofd Pagina" })
+  })
+
   const handleOverlayLoginClick = () => {
+    // Track login button click event
+    ReactGA.event({
+      category: 'Button Click',
+      action: 'Login Button Click',
+      label: 'VoorPagina',
+    });
+
     setLoginOverlay(!loginOverlay);
+
+    window.gtag('set', { 'dimension1': 'Logged In' }); 
   };
 
   const handleOverlayRegistreerClick = () => {
@@ -22,7 +37,18 @@ function VoorPagina() {
   };
 
   const handleOverlayGoogleRegistreerClick = () => {
+    // Track Google login button click event
+    ReactGA.event({
+      category: 'Button Click',
+      action: 'Google Login Button Click',
+      label: 'VoorPagina',
+    });
+
+    // Assume the user is logged in after successful Google login
     setRegistreerGoogleOverlay(!registreerGoogleOverlay);
+
+    // Track user login status in Google Analytics 4 custom dimension using gtag
+    window.gtag('set', { 'dimension1': 'Logged In' }); // Use the appropriate dimension index
   };
 
   return (

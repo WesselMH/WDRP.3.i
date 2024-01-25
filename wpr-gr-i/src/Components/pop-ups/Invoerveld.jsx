@@ -13,20 +13,30 @@ function InvoerVeld({
   data_cy,
   aria_label,
 }) {
+
   const [inputValue, setInputValue] = useState("");
   const [wachtwoordZichtbaar, setwachtwoordZichtbaar] = useState(false);
+  
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 
   useEffect(() => {
-    // Update inputValue when the value prop changes (for controlled components)
     setInputValue(value || "");
   }, [value]);
 
   const handleInputChange = (event) => {
-    const value = event.target.value;
-    setInputValue(value);
+    const inputValue = event.target.value;
+    setInputValue(inputValue);
+    onChange && onChange(inputValue);
+  };
 
-    // Call the onChange prop with the updated value
-    onChange && onChange(value);
+  const handleSpeechRecognition = () => {
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setInputValue(transcript);
+      onChange && onChange(transcript);
+    };
+
+    recognition.start();
   };
 
   function ShowPassword() {
@@ -56,14 +66,24 @@ function InvoerVeld({
           <div>
             <label htmlFor={id}>{label} </label>
             {type === "password" ? (
-              <button
-                type="button"
-                onClick={ShowPassword}
-                className="wachtwoord-button"
-                aria-label="Toggle knop zichtbaar maken wachtwoord"
-              >
-                {wachtwoordZichtbaar ? <>onzichtbaar</> : <>zichtbaar</>}
-              </button>
+              <>
+                <button
+                  type="button"
+                  onClick={ShowPassword}
+                  className="wachtwoord-button"
+                  aria-label="Toggle knop zichtbaar maken wachtwoord"
+                >
+                  {wachtwoordZichtbaar ? <>onzichtbaar</> : <>zichtbaar</>}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleSpeechRecognition}
+                  className="speech-to-text-button"
+                  aria-label="Speech to text"
+                >
+                  🎙️
+                </button>
+              </>
             ) : (
               <></>
             )}

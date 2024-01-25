@@ -4,6 +4,7 @@ import "./Beheer.css";
 import { Navigate, useNavigate } from "react-router-dom";
 import background from "./../backgroundWithGradient.png";
 import { jwtDecode } from "jwt-decode";
+import ReactGA from "react-ga4"
 
 // import { DeskundigePage } from './BeheerDeskundige'
 
@@ -19,6 +20,8 @@ function Beheer() {
   const [role, setRole] = useState("");
 
   useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Beheerder HomePortaal" })
+
     const loggedInUser = sessionStorage.getItem("token");
     // console.log("test");
     // console.log(loggedInUser);
