@@ -17,12 +17,15 @@ function Registreren({ handleOverlayRegistreerClick }) {
           name: "soort_account",
           label: "Ervaringsdeskundige account",
           value: "Ervaringsdeskundige",
+          aria_label: "Ervaringsdeskundigen account keuze voor registreren"
         },
         {
           id: 2,
           name: "soort_account",
           label: "Bedrijven account",
           value: "Bedrijf",
+          aria_label: "bedrijf account keuze voor registreren"
+
         },
       ],
     },
