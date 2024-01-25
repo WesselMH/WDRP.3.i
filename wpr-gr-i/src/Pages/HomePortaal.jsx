@@ -75,7 +75,7 @@ function HomePortaal() {
             </div>
             <button onClick={userInfo}>click me voor user info</button>
             <p>{userData}</p>
-            <div className="Newsfeed">
+            <div className="Newsfeed" aria-label="Nieuws feed">
               <iframe
                 width="850"
                 height="1600"
