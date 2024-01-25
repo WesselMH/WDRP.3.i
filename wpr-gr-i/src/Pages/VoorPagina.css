@@ -1,8 +1,3 @@
-/* App.css */
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-}
 
 .App {
   position: relative;
@@ -42,7 +37,6 @@ body {
   color: #FFF;
   width: 90%; /* Adjusted width for better responsiveness */
   max-width: 600px; /* Added max-width to prevent text from becoming too wide on larger screens */
-  font-family: 'Poppins', sans-serif;
   font-size: 3rem; /* Use rem for font size for better responsiveness */
   font-weight: 300;
   line-height: 1.2; /* Adjusted line-height for better readability */
@@ -62,7 +56,6 @@ body {
   /* height: 150px; */
   max-width: 900px; /* Added max-width for better responsiveness on larger screens */
   text-align: center;
-  font-family: 'Poppins';
   font-size: 1.2rem; /* Use rem for font size for better responsiveness */
   font-weight: 300;
   line-height: 1.5; /* Adjusted line-height for better readability */
@@ -76,7 +69,6 @@ body {
 }
 
 .Voorpagina-Button {
-  font-family: 'Poppins', sans-serif;
   padding: 13px 60px; /* Adjusted padding for better responsiveness */
   background: none;
   text-decoration: none;
@@ -157,5 +149,13 @@ body {
   .overlay{
     width: 100%;
     /* height: 100%; */
+  }
+}
+
+@media  screen and (max-width: 400px) {
+  .overlay{
+    top: 0;
+    left: 0;
+    transform: translate(0) ;
   }
 }

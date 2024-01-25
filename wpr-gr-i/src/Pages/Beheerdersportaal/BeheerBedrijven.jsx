@@ -1,118 +1,38 @@
+import { useEffect, useState } from "react";
 import Header from "../../Components/Header.jsx";
-import "../Beheer.css";
+import "./Beheer.css";
 import background from "./../backgroundWithGradient.png";
+import axios from "axios";
 
 const Knoppen = [
   { Naam: "Terug naar beheerdersportaal home", href: "/BeheerdersPortaal" },
 ];
 
-const Bedr = [
-  {
-    ID: "1",
-    Gebruikersnaam: "Wessel",
-    Bedrijfnaam: "Horsthuis",
-    WebSite: "28-02-2003",
-    Locatie: "asd@asd.com",
-    Omschrijving: "0612345678",
-  },
-  {
-    ID: "2",
-    Gebruikersnaam: "Wessel",
-    Bedrijfnaam: "Horsthuis",
-    WebSite: "28-02-2003",
-    Locatie: "asd@asd.com",
-    Omschrijving: "0612345678",
-  },
-  {
-    ID: "3",
-    Gebruikersnaam: "Wessel",
-    Bedrijfnaam: "Horsthuis",
-    WebSite: "28-02-2003",
-    Locatie: "asd@asd.com",
-    Omschrijving: "0612345678",
-  },
-  {
-    ID: "4",
-    Gebruikersnaam: "Wessel",
-    Bedrijfnaam: "Horsthuis",
-    WebSite: "28-02-2003",
-    Locatie: "asd@asd.com",
-    Omschrijving: "0612345678",
-  },
-  {
-    ID: "5",
-    Gebruikersnaam: "Wessel",
-    Bedrijfnaam: "Horsthuis",
-    WebSite: "28-02-2003",
-    Locatie: "asd@asd.com",
-    Omschrijving: "0612345678",
-  },
-  {
-    ID: "6",
-    Gebruikersnaam: "Wessel",
-    Bedrijfnaam: "Horsthuis",
-    WebSite: "28-02-2003",
-    Locatie: "asd@asd.com",
-    Omschrijving: "0612345678",
-  },
-  {
-    ID: "7",
-    Gebruikersnaam: "Wessel",
-    Bedrijfnaam: "Horsthuis",
-    WebSite: "28-02-2003",
-    Locatie: "asd@asd.com",
-    Omschrijving: "0612345678",
-  },
-];
-
-const ListBedr = Bedr.map((Bedr) => (
-  <>
-    <div className="BeheerItem">
-      <p className="BeheerInhoud">{Bedr.ID}</p>
-      <p className="BeheerInhoud">{Bedr.Gebruikersnaam}</p>
-      <p className="BeheerInhoud">{Bedr.Bedrijfnaam}</p>
-      <p className="BeheerInhoud">{Bedr.Locatie}</p>
-      <p className="BeheerInhoud">{Bedr.WebSite}</p>
-      <p className="BeheerInhoud">{Bedr.Omschrijving}</p>
-    </div>
-  </>
-));
-
 function BeheerBedrijven({}) {
-  function ListBedrijvenRow() {
-    return (
-      <>
-        {Bedr.map((item) => {
-          return (
-            <tr className="">
-              <td className="BeheerInhoud">{item.Gebruikersnaam}</td>
-              <td className="BeheerInhoud">{item.ID}</td>
-              <td className="BeheerInhoud">{item.Bedrijfnaam}</td>
-              <td className="BeheerInhoud">{item.Locatie}</td>
-              <td className="BeheerInhoud">{item.WebSite}</td>
-              <td className="BeheerInhoud">{item.Omschrijving}</td>
-            </tr>
-          );
-        })}
-        ;
-      </>
-    );
-  }
+  const [Bedr, setBedr] = useState([]);
+  useEffect(() => {
+    const BedrLijst = async () => {
+      try {
+        const responseBedr = await axios.get(
+          "http://localhost:5155/api/Bedrijf",
+          {
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+          }
+        );
+        console.log(responseBedr.data);
+        setBedr(responseBedr.data);
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+    BedrLijst();
+  }, []);
 
   return (
     <>
       <Header Titel={"Lijst van bedrijven"} Knoppen={Knoppen}></Header>
-      {/* <ul className="BeheerLijst">
-        <div className="TitelBeheerLijst">
-          <strong>ID</strong>
-          <strong>Gebruikersnaam</strong>
-          <strong>Bedrijfnaam</strong>
-          <strong>Locatie</strong>
-          <strong>WebSite</strong>
-          <strong>Omschrijving</strong>
-        </div>
-        <div className="BeheerItems">{ListBedr}</div>
-      </ul> */}
       <div className="App" style={{ backgroundImage: `url(${background})` }}>
         <style>
           {`
@@ -125,14 +45,23 @@ function BeheerBedrijven({}) {
             <tr className="TitelBeheerLijst">
               <th>ID</th>
               <th>Gebruikersnaam</th>
-              <th>Bedrijfnaam</th>
-              <th>Locatie</th>
+              <th>Bedrijfsnaam</th>
               <th>WebSite</th>
+              <th>Locatie</th>
               <th>Omschrijving</th>
             </tr>
           </thead>
           <tbody>
-            <ListBedrijvenRow />
+            {Bedr.map((item) => (
+              <tr key={item.id}>
+                <td className="BeheerInhoud">{item.id}</td>
+                <td className="BeheerInhoud">{item.gebruikersNaam}</td>
+                <td className="BeheerInhoud">{item.userName}</td>
+                <td className="BeheerInhoud">{item.url}</td>
+                <td className="BeheerInhoud">{item.locatie}</td>
+                <td className="BeheerInhoud">{item.informatie}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

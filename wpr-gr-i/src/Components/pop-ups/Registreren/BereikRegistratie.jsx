@@ -12,8 +12,8 @@ function BereikRegistratie({ selectedValues, onChange }) {
   async function haalDataOp() {
     setisLoading(true);
     await axios
-      // .get("http://localhost:5155/api/BenaderOptie")
-      .get("https://wpr-i-backend.azurewebsites.net/api/BenaderOptie")
+      .get("http://localhost:5155/api/BenaderOptie")
+      // .get("https://wpr-i-backend.azurewebsites.net/api/BenaderOptie")
       .then(
         (response) => {
           setOptions(response.data);

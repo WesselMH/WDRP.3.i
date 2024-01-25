@@ -1,121 +1,40 @@
+import { useEffect, useState } from "react";
 import Header from "../../Components/Header.jsx";
-import "../Beheer.css";
+import "./Beheer.css";
 import { Link } from "react-router-dom";
 import background from "./../backgroundWithGradient.png";
+import axios from "axios";
 
 const Knoppen = [
   { Naam: "Terug naar beheerdersportaal home", href: "/BeheerdersPortaal" },
 ];
 
-function ApiRequest({}) {
-  fetch("https://wpr-i-backend.azurewebsites.net/api/Account").then(
-    (Response) => Response.json()
-  );
-}
-
-const opdracht = [
-  {
-    title: "Opdracht 1",
-    bedrijf: "Mediamarkt",
-    beschrijving: "Een internet interview over ervaring",
-    datum: "12-12-12",
-    id: 1,
-  },
-  {
-    title: "Opdracht 2",
-    bedrijf: "Microsoft",
-    beschrijving: "Een internet interview over ervaring",
-    datum: "12-12-12",
-    id: 2,
-  },
-  {
-    title: "Opdracht 3",
-    bedrijf: "Albert Heijn",
-    beschrijving: "Een internet interview over ervaring",
-    datum: "12-12-12",
-    id: 3,
-  },
-  {
-    title: "Opdracht 4",
-    bedrijf: "Albert Heijn",
-    beschrijving: "Een internet interview over ervaring",
-    datum: "12-12-12",
-    id: 4,
-  },
-  {
-    title: "Opdracht 5",
-    bedrijf: "Albert Heijn",
-    beschrijving: "Een internet interview over ervaring",
-    datum: "12-12-12",
-    id: 5,
-  },
-  {
-    title: "Opdracht 6",
-    bedrijf: "Albert Heijn",
-    beschrijving: "Een internet interview over ervaring",
-    datum: "12-12-12",
-    id: 6,
-  },
-  {
-    title: "Opdracht 7",
-    bedrijf: "Albert Heijn",
-    beschrijving: "Een internet interview over ervaring",
-    datum: "12-12-12",
-    id: 7,
-  },
-  {
-    title: "Opdracht 8",
-    bedrijf: "Albert Heijn",
-    beschrijving: "Een internet interview over ervaring",
-    datum: "12-12-12",
-    id: 8,
-  },
-];
-
-const listOpdrachten = opdracht.map((opdracht) => (
-  <div className="BeheerItem">
-    {/* <Link className='BeheerItem' to={opdracht.href}> */}
-    {/* <li  key={opdracht.id}> */}
-    <p className="BeheerInhoud">{opdracht.title}</p>
-    <p className="BeheerInhoud">{opdracht.bedrijf}</p>
-    <p className="BeheerInhoud">{opdracht.beschrijving}</p>
-    <p className="BeheerInhoud">{opdracht.datum}</p>
-    {/* </li> */}
-    {/* </Link> */}
-  </div>
-));
-
-function BeheerOpdrachten({}) {
-  function ListOpdrachtenRow() {
-    return (
-      <>
-        {opdracht.map((item) => {
-          return (
-            <tr className="">
-              <td className="BeheerInhoud">{item.title}</td>
-              <td className="BeheerInhoud">{item.bedrijf}</td>
-              <td className="BeheerInhoud">{item.beschrijving}</td>
-              <td className="BeheerInhoud">{item.datum}</td>
-            </tr>
-          );
-        })}
-        ;
-      </>
-    );
-  }
+function BeheerOnderzoeken({}) {
+  const [Ond, setOnd] = useState([]);
+  useEffect(() => {
+    const OndLijst = async () => {
+      try {
+        const responseOpdr = await axios.get(
+          "http://localhost:5155/api/Onderzoek",
+          {
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+          }
+        );
+        console.log(responseOpdr.data);
+        setOnd(responseOpdr.data);
+        // console.log(Desk);
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+    OndLijst();
+  }, []);
 
   return (
     <>
-      <Header Titel={"Lijst van opdrachten"} Knoppen={Knoppen}></Header>
-      {/* <ul className="BeheerLijst">
-        <div className="TitelBeheerLijst">
-          <strong>Titel</strong>
-          <strong>Bedrijf</strong>
-          <strong>Beschrijving</strong>
-          <strong>Datum gepost</strong>
-        </div>
-        <div className="BeheerItems">{listOpdrachten}</div>
-      </ul> */}
+      <Header Titel={"Lijst van Onderzoeken"} Knoppen={Knoppen}></Header>
       <div className="App" style={{ backgroundImage: `url(${background})` }}>
         <style>
           {`
@@ -125,14 +44,33 @@ function BeheerOpdrachten({}) {
         <table className="BeheerLijst">
           <thead>
             <tr className="TitelBeheerLijst">
+              <th>ID</th>
               <th>Titel</th>
-              <th>Bedrijf</th>
+              <th>Uitvoerder</th>
+              <th>Datum</th>
               <th>Beschrijving</th>
-              <th>Datum gepost</th>
+              <th>Locatie</th>
+              <th>Categorie</th>
+              <th>Status</th>
+              <th>Beloning</th>
+              <th>Min Leeftijd</th>
             </tr>
           </thead>
           <tbody>
-            <ListOpdrachtenRow />{" "}
+            {Ond.map((onderzoek) => (
+              <tr key={onderzoek.id}>
+                <td className="BeheerInhoud">{onderzoek.id}</td>
+                <td className="BeheerInhoud">{onderzoek.titel}</td>
+                <td className="BeheerInhoud">{onderzoek.uitvoerder}</td>
+                <td className="BeheerInhoud">{onderzoek.datum}</td>
+                <td className="BeheerInhoud">{onderzoek.beschrijving}</td>
+                <td className="BeheerInhoud">{onderzoek.locatie}</td>
+                <td className="BeheerInhoud">{onderzoek.soortOnderzoek}</td>
+                <td className="BeheerInhoud">{onderzoek.status}</td>
+                <td className="BeheerInhoud">{onderzoek.beloning}</td>
+                <td className="BeheerInhoud">{onderzoek.leeftijd}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -140,4 +78,4 @@ function BeheerOpdrachten({}) {
   );
 }
 
-export default BeheerOpdrachten;
+export default BeheerOnderzoeken;

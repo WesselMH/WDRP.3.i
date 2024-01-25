@@ -1,0 +1,49 @@
+.opdrachtenPagina {
+    display: flex;
+    /* align-items: center; */
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    flex-direction: column;
+}
+
+.opdrachten-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 240px;
+}
+
+.listOpdrachten {
+    list-style-type: none;
+}
+
+.opdrachten-wrapper a, 
+.opdrachten-wrapper a:visited, 
+.opdrachten-wrapper a:hover, 
+.opdrachten-wrapper a:active {
+    text-decoration: none;
+    color: inherit;
+
+}
+
+.opdracht-details{
+    /* width: inherit;
+    padding: 25px;
+    border-radius: 15px;
+    font-weight: 400; */
+    margin: var(--spacing-opdracht ) 0px 0px;
+}
+
+.opdracht-details > div {
+    gap: 20px;
+}
+
+.opdracht-error{
+    color:red;
+    width: fit-content;
+}
+
+.float-left {
+    flex-grow: 1;
+}

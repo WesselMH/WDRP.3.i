@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+/* global cy */
 describe("Voor pagina", () => {
   beforeEach(() => {
     // cy.request({
