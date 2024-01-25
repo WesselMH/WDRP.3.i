@@ -48,6 +48,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je achternaam in.",
           id: "Achternaam",
           index: 1,
+          aria_label: "Achternaam invullen"
         },
         {
           label: "Wachtwoord",
@@ -56,6 +57,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je wachtwoord in.",
           id: "Wachtwoord",
           index: 2,
+          aria_label: "Wachtwoord invullen"
         },
         {
           label: "Wachtwoord bevestigen",
@@ -64,6 +66,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Bevestig je wachtwoord.",
           id: "bevestigWachtwoord",
           index: 3,
+          aria_label: "Wachtwoord bevestigen"
         },
         {
           label: "Email",
@@ -72,6 +75,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je email in.",
           id: "EmailAccount",
           index: 4,
+          aria_label: "Email invullen"
         },
         {
           label: "Bevestig email",
@@ -79,6 +83,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Bevestig je email.",
           id: "bevestigEmail",
           index: 5,
+          aria_label: "Email bevestigen"
         },
         {
           label: "Geboortedatum",
@@ -86,6 +91,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je geboorte datum in.",
           id: "geboorteDatum",
           index: 6,
+          aria_label: "Geboorte datum invullen"
         },
         {
           label: "Postcode",
@@ -93,6 +99,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je postcode in.",
           id: "PostCode",
           index: 7,
+          aria_label: "Postcode invullen"
         },
         {
           label: "Telefoonnummer",
@@ -100,6 +107,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je telefoonnummer in.",
           id: "TelefoonNummer",
           index: 8,
+          aria_label: "Telefoonnummer invullen"
         },
       ],
     };
@@ -112,6 +120,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je voornaam in.",
           id: "Voornaam",
           index: 1,
+          aria_label: "Voornaam invullen",
         },
         {
           label: "Achternaam",
@@ -119,6 +128,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je achternaam in.",
           id: "Achternaam",
           index: 2,
+          aria_label: "Achternaam invullen",
         },
         {
           label: "Email",
@@ -126,6 +136,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je email in.",
           id: "Email",
           index: 3,
+          aria_label: "Email invullen",
         },
         {
           label: "Bevestig email",
@@ -133,6 +144,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Bevestig je email.",
           id: "bevestigEmail",
           index: 4,
+          aria_label: "Email bevestigen",
         },
         {
           label: "Geboortedatum",
@@ -140,6 +152,8 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je geboorte datum in.",
           id: "geboorteDatum",
           index: 5,
+          aria_label: "Geboortedatum invullen",
+
         },
         {
           label: "Postcode",
@@ -147,6 +161,8 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je postcode in.",
           id: "PostCode",
           index: 6,
+          aria_label: "Postcode invullen",
+
         },
         {
           label: "Telefoonnummer",
@@ -154,6 +170,8 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je telefoonnummer in.",
           id: "TelefoonNummer",
           index: 7,
+          aria_label: "Telefoonnummer invullen",
+
         },
       ],
     };
