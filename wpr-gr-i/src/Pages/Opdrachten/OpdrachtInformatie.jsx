@@ -29,7 +29,7 @@ function OpdrachtInformatie() {
   }
 
   useEffect(() => {
-    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Opdracht Informatie" })
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: "Opdracht Informatie" })
 
     getOnderzoek();
   }, []);
@@ -131,13 +131,21 @@ function OpdrachtInformatie() {
                 <button
                   className="confirm-button"
                   onClick={() => {
+                    ReactGA.event({
+                      category: 'Aanmelden Button Click',
+                      action: opdracht.titel,
+                      label: opdracht.beschrijving,
+                      value: opdracht.id
+                    });
                     postSubscribe();
                   }}
                 >
                   Aanmelden
                 </button>
 
-                <button className="confirm-button" onClick={() => {}}>
+
+                <button className="confirm-button" onClick={() => {
+                }}>
                   Gedaan
                 </button>
               </div>
