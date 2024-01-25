@@ -21,6 +21,8 @@ import OpdrachtPlaatsen from "./Pages/Opdrachten/OpdrachtPlaatsen";
 import ClickStream from "./Pages/Bedrijf/ClickstreamInfo";
 import OpdrachtenAangemeld from "./Pages/Opdrachten/OpdrachtenAangemeld";
 import Chat from "./Pages/Chat";
+import OpdrachtenPaginaToCheck from "./Pages/Opdrachten/OpdrachtenPaginaToCheck";
+import OpdrachtInformatieToCheck from "./Pages/Opdrachten/OpdrachtInformatieToCheck";
 import ReactGA from "react-ga4";
 
 ReactGA.initialize("G-D1E5M9PJSR");
@@ -58,9 +60,11 @@ function App() {
       />
       <Route path="/BedrijvenPortaal" element={<BedrijvenPortaal />} />
       <Route path="/Opdrachten/" element={<OpdrachtenPagina />} />
+      <Route path="/BeheerdersPortaal/ToCheck" element={<OpdrachtenPaginaToCheck />} />
       <Route path="/OpdrachtenAangemeld/" element={<OpdrachtenAangemeld />} />
 
       <Route path="/Opdrachten/:id" element={<OpdrachtInformatie />} />
+      <Route path="/OpdrachtenToCheck/:id" element={<OpdrachtInformatieToCheck />} />
       <Route path="/Chat" element={<Chat />} />
 
       {/* <Route path="/Login" element={<Login setGoogle={setGoogle} />} /> */}

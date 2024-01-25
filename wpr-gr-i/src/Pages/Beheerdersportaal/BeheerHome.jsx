@@ -9,7 +9,7 @@ import ReactGA from "react-ga4"
 // import { DeskundigePage } from './BeheerDeskundige'
 
 const headerButtons = [
-  { Naam: "Goed te keuren opdrachten", href: "" },
+  { Naam: "Goed te keuren opdrachten", href: "/BeheerdersPortaal/ToCheck" },
   { Naam: "Uitloggen", href: "/" },
 ];
 

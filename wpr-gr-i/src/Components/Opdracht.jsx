@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./Opdracht.css";
 import ReactGA from "react-ga4";
 
-function Opdracht({ opdracht }) {
+function Opdracht({ opdracht, type }) {
 
   const Button = () => {
     ReactGA.event({
@@ -12,12 +12,11 @@ function Opdracht({ opdracht }) {
     });
   }
 
-
   // console.log("ditis eentitel", opdracht);
   return (
     <>
       <li className="opdracht-component">
-        <Link to={`/Opdrachten/${opdracht.id}`} onClick={Button}>
+        <Link to={`/Opdrachten${type}/${opdracht.id}`} onClick={Button}>
           {/* hier moet nog de link komen */}
 
           <div className="opdracht">
