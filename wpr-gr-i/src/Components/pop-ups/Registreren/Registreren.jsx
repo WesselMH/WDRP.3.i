@@ -691,16 +691,17 @@ function Registreren({ handleOverlayRegistreerClick }) {
                 type="button"
                 className="confirm-button "
                 onClick={gaTerug}
+                aria-label="Terug knop"
               >
                 Terug
               </button>
             )}
             {progress === 1 ? (
-              <button className="confirm-button" onClick={handleRegistratie}>
+              <button className="confirm-button" onClick={handleRegistratie} aria-label="Registreer knop">
                 {tekst}
               </button>
             ) : (
-              <button className="confirm-button" onClick={gaVerder}>
+              <button className="confirm-button" onClick={gaVerder} aria-label="Ga verder knop">
                 {tekst}
               </button>
             )}

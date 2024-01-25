@@ -221,7 +221,7 @@ function Login({
 
   return (
     <div className="pop-up">
-      <button className="exit-button" onClick={handleOverlayLoginClick}>
+      <button className="exit-button" onClick={handleOverlayLoginClick} aria-label="Exit knop">
         x
       </button>
       {/* <div className="Titel">Login</div> */}
