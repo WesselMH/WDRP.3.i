@@ -245,6 +245,8 @@ function Login({
                 setError(null);
               }}
               data-cy="Gebruikersnaam"
+              aria-label="Gebruikersnaam invullen"
+
             ></input>
             
           </div>
@@ -257,17 +259,10 @@ function Login({
               type="button"
               onClick={ShowPassword}
               className="wachtwoord-button"
+              aria-label="Wachtwoord vertonen knop"
             >
               {wachtwoordZichtbaar ? <>onzichtbaar</> : <>zichtbaar</>}
             </button>
-            {/* <button
-              type="button"
-              className="speech-recognition-button"
-              onClick={toggleSpeechRecognition}
-              aria-label="Speech To Text"
-            >
-              🎙️
-            </button> */}
             <input
               className="input-veld flex-center full-size"
               type={wachtwoordZichtbaar ? "new-password" : "password"}
@@ -280,6 +275,7 @@ function Login({
                 setError(null);
               }}
               data-cy="Wachtwoord"
+              aria-label="Wachtwoord invullen"
             ></input>
           </div>
 
@@ -303,6 +299,7 @@ function Login({
               className="inlog-button"
               onClick={handleSubmit}
               data-cy="Login"
+              aria-label="Login knop"
             >
               Login
             </button>
@@ -314,13 +311,14 @@ function Login({
         <div className="right flex-column">
           <p>Of login met</p>
           {isLoading ? (
-            <button className="inlog-button google-button full-size">
+            <button className="inlog-button google-button full-size" aria-label="Google login laden">
               <img src={GoogleLogo} alt=""></img>
               Loading...
             </button>
           ) : (
             <button
               className="inlog-button google-button full-size"
+              aria-label="Google login"
               onClick={() => {
                 setisLoading(true);
                 login();
@@ -332,13 +330,14 @@ function Login({
           )}
 
           {isLoading ? (
-            <button className="inlog-button microsoft-button full-size">
+            <button className="inlog-button microsoft-button full-size" aria-label="Microsoft login laden">
               <img src={MicrosoftLogo} alt="" />
               Loading...
             </button>
           ) : (
             <button
               className="inlog-button microsoft-button full-size"
+              aria-label="Microsoft login"
               onClick={() => navigate("/")}
             >
               <img src={MicrosoftLogo} alt="" />
@@ -351,7 +350,7 @@ function Login({
           {isLoading ? (
             <button className="inlog-button">Loading...</button>
           ) : (
-            <button className="inlog-button" onClick={redirectAanmelden}>
+            <button className="inlog-button" onClick={redirectAanmelden} aria-label="Registreren knop">
               Registreren
             </button>
           )}
