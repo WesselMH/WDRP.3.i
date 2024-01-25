@@ -3,7 +3,7 @@ import Header from "../../Components/Header";
 import { Link, Navigate } from "react-router-dom";
 import background from "../backgroundWithGradient.png";
 import "./ClickstreamInfo.css";
-// import ReactGA from "react-ga4";
+import ReactGA from "react-ga4";
 
 const headerButtons = [
   { Naam: "Terug", href: "/BedrijvenPortaal" },
@@ -11,6 +11,10 @@ const headerButtons = [
 ];
 
 function ClickStream() {
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Clickstream Informatie Pagina" })
+
+  })
   const [currentStep, setCurrentStep] = useState(1);
 
   const nextStep = () => {
