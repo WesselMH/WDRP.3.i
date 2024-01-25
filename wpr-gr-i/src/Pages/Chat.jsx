@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import "./Chat.css";
 import axios from "axios";
+import  ReactGA from "react-ga4";
 
 const Knoppen = [];
 
@@ -26,6 +27,8 @@ function Chat() {
   // }
 
   useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Chat" })
+
     const ChatGesprekken = async () => {
       try {
         const response = await axios.get("http://localhost:5155/api/Chat", {

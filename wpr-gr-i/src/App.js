@@ -21,6 +21,9 @@ import OpdrachtPlaatsen from "./Pages/Opdrachten/OpdrachtPlaatsen";
 import ClickStream from "./Pages/Bedrijf/ClickstreamInfo";
 import OpdrachtenAangemeld from "./Pages/Opdrachten/OpdrachtenAangemeld";
 import Chat from "./Pages/Chat";
+import ReactGA from "react-ga4";
+
+ReactGA.initialize("G-D1E5M9PJSR");
 
 function App() {
   const [token, setToken] = useState();

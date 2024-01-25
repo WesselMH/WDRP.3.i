@@ -5,6 +5,7 @@ import background from "../../achtergrondfoto.jpg";
 import Header from "../../Components/Header";
 import Opdracht from "../../Components/Opdracht";
 import axios from "axios";
+import ReactGA from 'react-ga4'
 
 
 const buttons = [
@@ -43,6 +44,7 @@ function OpdrachtenAangemeld() {
   };
   
   useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Opdracht Pagina" })
       getOnderzoeken()
   }, [])
 

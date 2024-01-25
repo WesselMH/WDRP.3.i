@@ -3,6 +3,7 @@ import Header from "../../Components/Header.jsx";
 import "./Beheer.css";
 import background from "./../backgroundWithGradient.png";
 import axios from "axios";
+import ReactGA from "react-ga4";
 
 const Knoppen = [
   { Naam: "Terug naar beheerdersportaal home", href: "/BeheerdersPortaal" },
@@ -11,6 +12,8 @@ const Knoppen = [
 function BeheerBedrijven({}) {
   const [Bedr, setBedr] = useState([]);
   useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Beheer Bedrijven" })
+
     const BedrLijst = async () => {
       try {
         const responseBedr = await axios.get(
