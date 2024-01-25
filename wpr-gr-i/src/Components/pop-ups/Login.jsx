@@ -28,7 +28,50 @@ function Login({
   const [googleUsername, setGoogleUsername] = useState();
   const [tryGoogle, setTryGoogle] = useState(false);
 
+  const [isUsernameListening, setIsUsernameListening] = useState(false);
+  const [isPasswordListening, setIsPasswordListening] = useState(false);
+  const [usernameValue, setUsernameValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
+
   const navigate = useNavigate();
+
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+  recognition.lang = "nl-nl";
+
+  recognition.onstart = () => {
+    console.log("Speech recognition started");
+  };
+
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+
+    if (isUsernameListening) {
+      setUsernameValue(transcript);
+    } else if (isPasswordListening) {
+      setPasswordValue(transcript);
+    }
+  };
+
+  recognition.onend = () => {
+    console.log("Speech recognition ended");
+  };
+
+  const toggleSpeechRecognition = (field) => {
+    if (field === "username") {
+      setIsUsernameListening(!isUsernameListening);
+      setIsPasswordListening(false);
+    } else if (field === "password") {
+      setIsPasswordListening(!isPasswordListening);
+      setIsUsernameListening(false);
+    }
+
+    if (isUsernameListening || isPasswordListening) {
+      recognition.start();
+    } else {
+      recognition.stop();
+    }
+  };
 
   //zoek even uit hoe je dit doet als ze correct ingelogd zijn
   useEffect(() => {
@@ -37,6 +80,9 @@ function Login({
     }
   }, [tryGoogle]);
 
+
+
+
   async function loginGoogleUser(id, username, gebruikersnaam, wachtwoord) {
     //verander eerst nog het ww naar de nieuwe token
     // !TODO
@@ -44,12 +90,13 @@ function Login({
     await axios
       .put(
         `http://localhost:5155/api/AaaAccount/google/wachtwoordupdate/${username}`,
-        // `https://wpr-i-backend.azurewebsites.net/api/AaaAccount/google/wachtwoordupdate/${username}`, 
+
+        // .put("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/google/wachtwoordupdate/" + {username}, {
         '"' + wachtwoord + '"',
         {
           headers: {
-            // "Access-Control-Allow-Origin": "http://localhost:5155/api/",
-            "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
+            "Access-Control-Allow-Origin": "http://localhost:5155/api/",
+            // "Access-Control-Allow-Origin": "https://wpr-i-backend.azurewebsites.net/api/",
             "Access-Control-Allow-Methods": "PUT",
             "Access-Control-Allow-Headers": "Content-Type, Custom-Header",
             "Content-Type": "application/json",
@@ -58,7 +105,7 @@ function Login({
       )
       .then(
         (response) => {
-          // console.log(response);
+          console.log(response);
         },
         (error) => {
           console.log(error);
@@ -106,7 +153,7 @@ function Login({
     await axios
       .post("http://localhost:5155/api/AaaAccount/login", {
         // .post("https://wpr-i-backend.azurewebsites.net/api/AaaAccount/login", {
-        wachtwoord,
+                wachtwoord,
         username,
         headers: {
           "Access-Control-Allow-Origin": "http://localhost:5155/api/",
@@ -151,19 +198,19 @@ function Login({
       if (token !== "null") {
         if (
           jwtDecode(sessionStorage.getItem("token"))[
-            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
           ] === "ervaringsDeskundige"
         ) {
           navigate("/HomePortaal");
         } else if (
           jwtDecode(sessionStorage.getItem("token"))[
-            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
           ] === "bedrijf"
         ) {
           navigate("/BedrijvenPortaal");
         } else if (
           jwtDecode(sessionStorage.getItem("token"))[
-            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
           ] === "beheerder"
         ) {
           navigate("/BeheerdersPortaal");
@@ -228,12 +275,21 @@ function Login({
             <label htmlFor="Gebruikersnaam" className="inlog-label">
               Gebruikersnaam
             </label>
+            <button
+              type="button"
+              className="speech-recognition-button"
+              onClick={() => toggleSpeechRecognition("username")}
+              aria-label="Speech To Text"
+            >
+              🎙️
+            </button>
             <input
               className="input-veld flex-center full-size"
               type="text"
               autoComplete="username"
               placeholder="voorbeeld@email.com"
               id="Gebruikersnaam"
+              value={isUsernameListening ? usernameValue : username}
               onChange={(e) => {
                 setUserName(e.target.value);
                 setgebruikersNaam(e.target.value);
@@ -242,6 +298,7 @@ function Login({
               }}
               data-cy="Gebruikersnaam"
             ></input>
+            
           </div>
 
           <div className="inlog-bundel full-size">
@@ -255,6 +312,14 @@ function Login({
             >
               {wachtwoordZichtbaar ? <>onzichtbaar</> : <>zichtbaar</>}
             </button>
+            {/* <button
+              type="button"
+              className="speech-recognition-button"
+              onClick={toggleSpeechRecognition}
+              aria-label="Speech To Text"
+            >
+              🎙️
+            </button> */}
             <input
               className="input-veld flex-center full-size"
               type={wachtwoordZichtbaar ? "new-password" : "password"}
