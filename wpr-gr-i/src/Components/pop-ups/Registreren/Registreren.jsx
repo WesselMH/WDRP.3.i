@@ -6,6 +6,7 @@ import axios from "axios";
 import HulpmiddelenRegistreren from "./HulpmiddelenRegistreren";
 import BereikRegistratie from "./BereikRegistratie";
 import AccountKeuze from "./AccountKeuze";
+import Registeren2 from "./Registeren2";
 
 function Registreren({ handleOverlayRegistreerClick }) {
   const [allKnoppen, setAllKnoppen] = useState([
@@ -593,6 +594,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
         x
       </button>
       <h1 className="Titel">Registratie</h1>
+      <Registeren2 />
 
       <form className="registreer-wrapper" onSubmit={dontSubmit}>
         {currentStep === 0 && !accountKeuze && (
