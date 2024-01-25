@@ -14,7 +14,7 @@ const Knoppen = [
 function BeheerOnderzoeken({}) {
   const [Ond, setOnd] = useState([]);
   useEffect(() => {
-    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Chat" })
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Beheerder Opdrachten" })
 
     const OndLijst = async () => {
       try {

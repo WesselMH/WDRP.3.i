@@ -12,7 +12,7 @@ const Knoppen = [
 function BeheerBedrijven({}) {
   const [Bedr, setBedr] = useState([]);
   useEffect(() => {
-    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Beheer bedrijven" })
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Beheer Bedrijven" })
 
     const BedrLijst = async () => {
       try {

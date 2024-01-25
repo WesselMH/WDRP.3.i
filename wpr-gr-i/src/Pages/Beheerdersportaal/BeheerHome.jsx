@@ -20,7 +20,7 @@ function Beheer() {
   const [role, setRole] = useState("");
 
   useEffect(() => {
-    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"BeheerderHome" })
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Beheerder HomePortaal" })
 
     const loggedInUser = sessionStorage.getItem("token");
     // console.log("test");
