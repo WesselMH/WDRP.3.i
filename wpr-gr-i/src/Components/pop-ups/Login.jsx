@@ -28,50 +28,7 @@ function Login({
   const [googleUsername, setGoogleUsername] = useState();
   const [tryGoogle, setTryGoogle] = useState(false);
 
-  const [isUsernameListening, setIsUsernameListening] = useState(false);
-  const [isPasswordListening, setIsPasswordListening] = useState(false);
-  const [usernameValue, setUsernameValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
-
   const navigate = useNavigate();
-
-  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-
-  recognition.lang = "nl-nl";
-
-  recognition.onstart = () => {
-    console.log("Speech recognition started");
-  };
-
-  recognition.onresult = (event) => {
-    const transcript = event.results[0][0].transcript;
-
-    if (isUsernameListening) {
-      setUsernameValue(transcript);
-    } else if (isPasswordListening) {
-      setPasswordValue(transcript);
-    }
-  };
-
-  recognition.onend = () => {
-    console.log("Speech recognition ended");
-  };
-
-  const toggleSpeechRecognition = (field) => {
-    if (field === "username") {
-      setIsUsernameListening(!isUsernameListening);
-      setIsPasswordListening(false);
-    } else if (field === "password") {
-      setIsPasswordListening(!isPasswordListening);
-      setIsUsernameListening(false);
-    }
-
-    if (isUsernameListening || isPasswordListening) {
-      recognition.start();
-    } else {
-      recognition.stop();
-    }
-  };
 
   //zoek even uit hoe je dit doet als ze correct ingelogd zijn
   useEffect(() => {
@@ -275,21 +232,12 @@ function Login({
             <label htmlFor="Gebruikersnaam" className="inlog-label">
               Gebruikersnaam
             </label>
-            <button
-              type="button"
-              className="speech-recognition-button"
-              onClick={() => toggleSpeechRecognition("username")}
-              aria-label="Speech To Text"
-            >
-              🎙️
-            </button>
             <input
               className="input-veld flex-center full-size"
               type="text"
               autoComplete="username"
               placeholder="voorbeeld@email.com"
               id="Gebruikersnaam"
-              value={isUsernameListening ? usernameValue : username}
               onChange={(e) => {
                 setUserName(e.target.value);
                 setgebruikersNaam(e.target.value);
