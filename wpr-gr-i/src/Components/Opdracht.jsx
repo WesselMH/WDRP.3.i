@@ -21,14 +21,14 @@ function Opdracht({ opdracht }) {
           {/* hier moet nog de link komen */}
 
           <div className="opdracht">
-            <div className="opdracht-header">
-              <h1 className="opdracht-titel">{opdracht.titel}</h1>
-              <h2 className="opdracht-opdrachtgever">
+            <div className="opdracht-header" aria-label={opdracht.header}>
+              <h1 className="opdracht-titel" aria-label={opdracht.titel}>{opdracht.titel}</h1>
+              <h2 className="opdracht-opdrachtgever" aria-label={opdracht.uitvoerder?.gebruikersNaam}>
                 {opdracht.uitvoerder?.gebruikersNaam}
               </h2>
               {/* <h2 className="opdracht-opdrachtgever">uitvoerder gebruikersNaam</h2> */}
             </div>
-            <p className="opdracht-omschrijving">{opdracht.beschrijving}</p>
+            <p className="opdracht-omschrijving" aria-label={opdracht.beschrijving}>{opdracht.beschrijving}</p>
           </div>
         </Link>
       </li>

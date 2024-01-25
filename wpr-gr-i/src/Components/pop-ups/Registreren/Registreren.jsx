@@ -17,12 +17,15 @@ function Registreren({ handleOverlayRegistreerClick }) {
           name: "soort_account",
           label: "Ervaringsdeskundige account",
           value: "Ervaringsdeskundige",
+          aria_label: "Ervaringsdeskundigen account keuze voor registreren"
         },
         {
           id: 2,
           name: "soort_account",
           label: "Bedrijven account",
           value: "Bedrijf",
+          aria_label: "bedrijf account keuze voor registreren"
+
         },
       ],
     },
@@ -48,6 +51,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je achternaam in.",
           id: "Achternaam",
           index: 1,
+          aria_label: "Achternaam invullen"
         },
         {
           label: "Wachtwoord",
@@ -56,6 +60,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je wachtwoord in.",
           id: "Wachtwoord",
           index: 2,
+          aria_label: "Wachtwoord invullen"
         },
         {
           label: "Wachtwoord bevestigen",
@@ -64,6 +69,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Bevestig je wachtwoord.",
           id: "bevestigWachtwoord",
           index: 3,
+          aria_label: "Wachtwoord bevestigen"
         },
         {
           label: "Email",
@@ -72,6 +78,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je email in.",
           id: "EmailAccount",
           index: 4,
+          aria_label: "Email invullen"
         },
         {
           label: "Bevestig email",
@@ -79,6 +86,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Bevestig je email.",
           id: "bevestigEmail",
           index: 5,
+          aria_label: "Email bevestigen"
         },
         {
           label: "Geboortedatum",
@@ -86,6 +94,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je geboorte datum in.",
           id: "geboorteDatum",
           index: 6,
+          aria_label: "Geboorte datum invullen"
         },
         {
           label: "Postcode",
@@ -93,6 +102,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je postcode in.",
           id: "PostCode",
           index: 7,
+          aria_label: "Postcode invullen"
         },
         {
           label: "Telefoonnummer",
@@ -100,6 +110,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je telefoonnummer in.",
           id: "TelefoonNummer",
           index: 8,
+          aria_label: "Telefoonnummer invullen"
         },
       ],
     };
@@ -112,6 +123,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je voornaam in.",
           id: "Voornaam",
           index: 1,
+          aria_label: "Voornaam invullen",
         },
         {
           label: "Achternaam",
@@ -119,6 +131,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je achternaam in.",
           id: "Achternaam",
           index: 2,
+          aria_label: "Achternaam invullen",
         },
         {
           label: "Email",
@@ -126,6 +139,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je email in.",
           id: "Email",
           index: 3,
+          aria_label: "Email invullen",
         },
         {
           label: "Bevestig email",
@@ -133,6 +147,7 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Bevestig je email.",
           id: "bevestigEmail",
           index: 4,
+          aria_label: "Email bevestigen",
         },
         {
           label: "Geboortedatum",
@@ -140,6 +155,8 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je geboorte datum in.",
           id: "geboorteDatum",
           index: 5,
+          aria_label: "Geboortedatum invullen",
+
         },
         {
           label: "Postcode",
@@ -147,6 +164,8 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je postcode in.",
           id: "PostCode",
           index: 6,
+          aria_label: "Postcode invullen",
+
         },
         {
           label: "Telefoonnummer",
@@ -154,6 +173,8 @@ function Registreren({ handleOverlayRegistreerClick }) {
           placeholder: "Vul hier je telefoonnummer in.",
           id: "TelefoonNummer",
           index: 7,
+          aria_label: "Telefoonnummer invullen",
+
         },
       ],
     };
@@ -670,16 +691,17 @@ function Registreren({ handleOverlayRegistreerClick }) {
                 type="button"
                 className="confirm-button "
                 onClick={gaTerug}
+                aria-label="Terug knop"
               >
                 Terug
               </button>
             )}
             {progress === 1 ? (
-              <button className="confirm-button" onClick={handleRegistratie}>
+              <button className="confirm-button" onClick={handleRegistratie} aria-label="Registreer knop">
                 {tekst}
               </button>
             ) : (
-              <button className="confirm-button" onClick={gaVerder}>
+              <button className="confirm-button" onClick={gaVerder} aria-label="Ga verder knop">
                 {tekst}
               </button>
             )}

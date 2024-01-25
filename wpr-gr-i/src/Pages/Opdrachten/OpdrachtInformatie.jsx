@@ -139,13 +139,11 @@ function OpdrachtInformatie() {
                     });
                     postSubscribe();
                   }}
+                  aria-label="Aanmeld knop"
                 >
                   Aanmelden
                 </button>
-
-
-                <button className="confirm-button" onClick={() => {
-                }}>
+                <button className="confirm-button" onClick={() => {}} aria-label="Gedaan knop">
                   Gedaan
                 </button>
               </div>
