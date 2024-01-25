@@ -4,6 +4,7 @@ import "./Chat.css";
 import axios from "axios";
 import Login from "../Components/pop-ups/Login";
 import { jwtDecode } from "jwt-decode";
+import  ReactGA from "react-ga4";
 
 const Knoppen = [{ Naam: "Voorpagina", href: "../" }];
 
@@ -44,6 +45,8 @@ function Chat() {
       setTekst("")
   }
   useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Chat" })
+
     const ChatGesprekken = async () => {
       try {
         const response = await axios.get("http://localhost:5155/api/Chat", {

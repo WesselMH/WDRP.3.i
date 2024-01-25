@@ -54,6 +54,7 @@ function BereikRegistratie({ selectedValues, onChange }) {
                       checked={selectedValues.some((v) => v.id === item.id)}
                       onChange={() => handleCheckboxChange(item)}
                       name={item.type}
+                      aria-label={item.type}
                     ></input>
                     <label htmlFor={item.type}>{item.type}</label>
                   </div>

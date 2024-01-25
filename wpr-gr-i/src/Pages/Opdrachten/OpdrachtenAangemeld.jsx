@@ -5,6 +5,7 @@ import background from "../../achtergrondfoto.jpg";
 import Header from "../../Components/Header";
 import Opdracht from "../../Components/Opdracht";
 import axios from "axios";
+import ReactGA from 'react-ga4'
 
 
 const buttons = [
@@ -43,12 +44,13 @@ function OpdrachtenAangemeld() {
   };
   
   useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Opdracht Pagina" })
       getOnderzoeken()
-  }, []);
+  }, [])
 
   return (
     <div>
-      <Header Titel={"Aangemelde Opdrachten"} Knoppen={buttons} />
+      <Header Titel={"Aangemelde Opdrachten"} Knoppen={buttons}/>
       <div
         className="opdrachtenPagina"
         style={{ backgroundImage: `url(${background})` }}

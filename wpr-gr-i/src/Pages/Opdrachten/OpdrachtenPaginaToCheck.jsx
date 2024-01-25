@@ -5,23 +5,20 @@ import background from "../../achtergrondfoto.jpg";
 import Header from "../../Components/Header";
 import Opdracht from "../../Components/Opdracht";
 import axios from "axios";
-import ReactGA from 'react-ga4'
-
 
 const buttons = [
-  { Naam: "terug", href: "/opdrachtenaangemeld" },
-  { Naam: "Homeportaal", href: "/HomePortaal" },
+  { Naam: "terug", href: "/BeheerdersPortaal" },
   { Naam: "Uitloggen", href: "/" },
 ];
 
-function OpdrachtenPagina() {
+function OpdrachtenPaginaToCheck() {
   const [opdrachten, setOpdrachten] = useState([]);
 
   function OpdrachtenBox() {
     return (
       <>
         {opdrachten.map((opdracht) => (
-          <Opdracht key={opdracht.id} opdracht={opdracht} />
+          <Opdracht key={opdracht.id} opdracht={opdracht} type={"ToCheck"} />
         ))}
       </>
     );
@@ -29,7 +26,7 @@ function OpdrachtenPagina() {
 
   const getOnderzoeken = async () => {
     await axios
-      .get("http://localhost:5155/api/Onderzoek", {
+      .get("http://localhost:5155/api/Onderzoek/ToCheck", {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },
@@ -47,8 +44,6 @@ function OpdrachtenPagina() {
 
   //word geladen als de component eerst laad.
   useEffect(() => {
-    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title:"Opdracht Pagina" })
-
     getOnderzoeken();
   }, []);
 
@@ -69,4 +64,4 @@ function OpdrachtenPagina() {
   );
 }
 
-export default OpdrachtenPagina;
+export default OpdrachtenPaginaToCheck;
