@@ -7,8 +7,7 @@ import Opdracht from "../../Components/Opdracht";
 import axios from "axios";
 
 const buttons = [
-  { Naam: "terug", href: "/opdrachtenaangemeld" },
-  { Naam: "Homeportaal", href: "/HomePortaal" },
+  { Naam: "terug", href: "/BeheerdersPortaal" },
   { Naam: "Uitloggen", href: "/" },
 ];
 
