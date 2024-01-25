@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import "./Opdracht.css";
 
-function Opdracht({ opdracht }) {
+function Opdracht({ opdracht, type }) {
   // console.log("ditis eentitel", opdracht);
   return (
     <>
       <li className="opdracht-component">
-        <Link to={`/Opdrachten/${opdracht.id}`}>
+        <Link to={`/Opdrachten${type}/${opdracht.id}`}>
           {/* hier moet nog de link komen */}
 
           <div className="opdracht">
