@@ -56,7 +56,7 @@ function HomePortaal() {
 
   useEffect(() => {
     const loggedInUser = sessionStorage.getItem("token");
-    ReactGA.send({ hitType: "pageview", page: location.pathname, title: "Hoofd Pagina" });
+    ReactGA.send({ hitType: "pageview", page: location.pathname, title: "Home Portaal" });
     if (loggedInUser !== "null") {
       const loggedInUserrole =
         jwtDecode(loggedInUser)[
